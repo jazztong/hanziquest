@@ -197,13 +197,20 @@ export function validatePinyin(
  * Pinyin for a whole run of text, resolved word by word against the lexicon.
  *
  * Punctuation is dropped rather than transliterated, so the result lines up
- * syllable-for-character with the 汉字 in the input - which is what the
- * karaoke highlighter and the relic line display both need.
+ * syllable-for-character with the 汉字 in the input - which is what the karaoke
+ * highlighter and the relic line display both need.
+ *
+ * `overrides` exists for classical readings the modern dictionary cannot know.
+ * 见 in 风吹草低见牛羊 is xiàn, not jiàn - it is 通假 for 现 - and no amount of
+ * word-level lookup will find that, because 见牛羊 is not a word. The poems
+ * declare these in their `polyphonic` field, and this is where that declaration
+ * is applied. Without it the app renders a wrong reading on the single most
+ * commonly-failed character of the 默写 list.
  */
-export function pinyinOf(text: string): string {
+export function pinyinOf(text: string, overrides: Record<string, string> = {}): string {
   return segmentReadings(text)
     .filter((s) => s.reading)
-    .map((s) => s.reading)
+    .map((s) => overrides[s.char] ?? s.reading)
     .join(' ');
 }
 

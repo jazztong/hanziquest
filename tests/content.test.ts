@@ -8,7 +8,7 @@ import { SAMPLE_LESSONS } from '@/content/sample-lessons';
 import { LANGUAGE_KNOWLEDGE_ITEMS, PASSAGES, READ_ALOUD_LINES } from '@/content/baseline-items';
 import { validateScript, chapterText } from '@/lib/story/types';
 import { gateChapter, targetChars, nameChars } from '@/lib/story/engine';
-import { CHARS, splitCoverage, isHanzi, isPolyphonic, readingsOf } from '@/lib/lexicon';
+import { CHARS, splitCoverage, isHanzi, isPolyphonic, readingsOf, pinyinOf } from '@/lib/lexicon';
 import { VOICES } from '@/lib/providers/tts';
 import { publicItem, resolveOption } from '@/lib/items/public';
 
@@ -146,6 +146,45 @@ describe('the 14 古诗文 relics', () => {
     expect(jian!.reading).toBe('xiàn');
     expect(isPolyphonic('见')).toBe(true);
     expect(readingsOf('见').join(' ')).toContain('xiàn');
+  });
+
+  it('renders the declared classical reading, not the modern dictionary one', () => {
+    // 风吹草低见牛羊: 见 is xiàn here (通假 for 现), not jiàn. No word-level lookup
+    // can find this - 见牛羊 is not a word - so the poem declares it and pinyinOf
+    // must honour the declaration. Getting this wrong teaches the single
+    // most-failed character of the 默写 list incorrectly.
+    for (const p of POEMS) {
+      if (!p.polyphonic.length) continue;
+      const overrides = Object.fromEntries(p.polyphonic.map((x) => [x.char, x.reading]));
+      for (const line of p.lines) {
+        if (![...line.zh].some((c) => overrides[c])) continue;
+        const withOverride = pinyinOf(line.zh, overrides);
+        for (const [char, reading] of Object.entries(overrides)) {
+          if (!line.zh.includes(char)) continue;
+          expect({ poem: p.id, char, has: withOverride.includes(reading) }).toEqual({
+            poem: p.id,
+            char,
+            has: true,
+          });
+        }
+      }
+    }
+  });
+
+  it('declares only classical readings the dictionary actually recognises', () => {
+    // A declared override that is not a real reading of the character would be a
+    // typo silently taught as fact.
+    for (const p of POEMS) {
+      for (const { char, reading } of p.polyphonic) {
+        const known = readingsOf(char);
+        expect({ poem: p.id, char, reading, known: known.includes(reading) }).toEqual({
+          poem: p.id,
+          char,
+          reading,
+          known: true,
+        });
+      }
+    }
   });
 
   it('gives every poem line an English gloss and every note a translation', () => {

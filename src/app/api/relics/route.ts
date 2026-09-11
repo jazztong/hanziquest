@@ -26,7 +26,11 @@ export async function GET() {
         gist: p.gist,
         hook: p.hook,
         artId: p.artId,
-        lines: p.lines.map((l) => ({ ...l, pinyin: pinyinOf(l.zh) })),
+        // Classical readings declared on the poem beat the modern dictionary.
+        lines: p.lines.map((l) => ({
+          ...l,
+          pinyin: pinyinOf(l.zh, Object.fromEntries(p.polyphonic.map((x) => [x.char, x.reading]))),
+        })),
         notes: p.notes,
         polyphonic: p.polyphonic,
         charCount: [...poemText(p)].filter((c) => /[一-鿿]/u.test(c)).length,

@@ -309,6 +309,42 @@ that escapes it.
 input, and a child's audio directory is not where you want to find out you were
 wrong about that.
 
+## D-026 · Declared classical readings beat the dictionary
+
+**Decision.** `pinyinOf(text, overrides)` takes a character→reading map, and the
+relics route passes each poem's own `polyphonic` declarations into it.
+
+**Why.** Caught by looking at the rendered page. 敕勒歌's last line rendered
+`fēng chuī cǎo dī jiàn niú yáng` — but 见 there is **xiàn**, 通假 for 现. No
+amount of word-level lookup finds that, because 见牛羊 is not a word, and the
+modern dictionary has no reason to know the classical usage. The poem data
+already declared it (`polyphonic: [{char: '见', reading: 'xiàn'}]`); the
+declaration simply was not being applied.
+
+This mattered more than a normal bug: 见 in 敕勒歌 is one of the best-known
+lost-mark traps in the whole 默写 list, and the app was teaching it wrong on the
+relic screen whose entire job is to teach it right.
+
+**Now covered by two tests:** every declared override must appear in the
+rendered line, and every declared override must be a reading the dictionary
+actually recognises — so a typo cannot be silently taught as fact.
+
+Same fix now carries 重=zhòng (春夜喜雨), 教=jiào (出塞), 朝=cháo (满江红),
+了=liǎo (虞美人) and 曾参=zēng shēn (慈乌夜啼), which would otherwise default to
+céng cān.
+
+## D-027 · Arcade items carry an explicit `subject`
+
+**Decision.** The arcade's public items include `subject` — the word or
+character being asked about — and marking rebuilds the item from that.
+
+**Why.** Two bugs, both found by running a round. Rounds deduped on
+`payload.stem`, but every tone-discrimination item shares the stem
+「这个词的声调是什么？」, so a 12-question round silently came back with 3.
+And marking looked the item up by that same generic stem, so tone questions were
+unmarkable. The subject is what identifies the question; the stem is only what it
+says.
+
 ---
 
 ## Open decisions, deferred

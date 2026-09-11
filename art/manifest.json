@@ -65,12 +65,12 @@
       "out": "art/out/char-mystery-auntie.png",
       "status": "done",
       "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: Contemporary Klang / Kuala Lumpur after dark. Wet five-foot-ways, kopitiam shutters, neon reflected in puddles, monsoon drains, KTM overpasses, old shophouse tiles. Palette lean: Slate and Ink dominant, Jade as neon, Cinnabar as tail-lights. High contrast, rain-streak texture, deep shadow with a single readable light source. Mood: alert, curious, a little noir — not frightening.\n\nShot: Character reference sheet: a Malaysian Chinese woman in her sixties, short permed grey hair, reading glasses pushed up on her head, floral cotton blouse over dark trousers, rubber sandals, a cloth money-pouch at her waist; watchful, tired, arms often folded. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
-      "generatedAt": "2026-09-11T19:40:34.061Z",
+      "generatedAt": "2026-09-11T19:50:31.978Z",
       "web": [
         "art/char-mystery-auntie-768.webp",
         "art/char-mystery-auntie-384.webp"
       ],
-      "bytes": 1893495
+      "bytes": 1884845
     },
     {
       "id": "char-mystery-son",
@@ -447,6 +447,119 @@
       "fallback": "map-mystery",
       "size": "1536x1024",
       "out": "art/out/scene-mystery-1-3.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-scifi-1-1",
+      "type": "scene",
+      "genre": "scifi",
+      "prompt": "Interior of an ageing solar-sail junk. Looking over the player’s shoulder at a heavy circular hatch, shut, with worn hand-polished edges; warm instrument glow from a bank of repaired panels to one side, cold planet-light from a porthole to the other. A small floating lantern-like ship-mind construct hovers beside the hatch. Bottom third low-detail.",
+      "refs": [
+        "char-scifi-ship"
+      ],
+      "fallback": "map-scifi",
+      "size": "1536x1024",
+      "out": "art/out/scene-scifi-1-1.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-scifi-1-2",
+      "type": "scene",
+      "genre": "scifi",
+      "prompt": "The junk’s cramped command nook at night. The captain stands with her back half-turned, arms folded, lit from below by a console; the floating ship-mind construct hangs dim and quiet between her and the viewer. Dense with cables, patched panels and stowed cargo. Bottom third kept plain.",
+      "refs": [
+        "char-scifi-captain",
+        "char-scifi-ship"
+      ],
+      "fallback": "map-scifi",
+      "size": "1536x1024",
+      "out": "art/out/scene-scifi-1-2.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-scifi-1-3",
+      "type": "scene",
+      "genre": "scifi",
+      "prompt": "The dark rear passage of the junk, looking down its length toward a sealed cargo hatch. One thin seam of jade light escapes from around its edge. Everything else is silhouette and cold reflection. A hand rests on the hatch in the near foreground. Bottom third very dark.",
+      "fallback": "map-scifi",
+      "size": "1536x1024",
+      "out": "art/out/scene-scifi-1-3.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-wuxia-1-1",
+      "type": "scene",
+      "genre": "wuxia",
+      "prompt": "Dawn beside a still limestone-pool at the foot of a karst peak, mist to the knees. An elderly teacher in dark indigo robe stands at the water’s edge with his back to the viewer, watching the surface. A second, smaller set of footprints waits on the flagstones. Ink-wash mountains behind. Bottom third low-detail water.",
+      "refs": [
+        "char-wuxia-shifu"
+      ],
+      "fallback": "map-wuxia",
+      "size": "1536x1024",
+      "out": "art/out/scene-wuxia-1-1.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-wuxia-1-2",
+      "type": "scene",
+      "genre": "wuxia",
+      "prompt": "Mid-morning at the same water’s edge. A teenage girl disciple in pale jade training robes is caught mid-step, sleeve flaring, having just moved first; the water beneath her is disturbed into rings. Composition leaves the opposite position empty for the player. Bottom third kept plain.",
+      "refs": [
+        "char-wuxia-sister"
+      ],
+      "fallback": "map-wuxia",
+      "size": "1536x1024",
+      "out": "art/out/scene-wuxia-1-2.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-wuxia-1-3",
+      "type": "scene",
+      "genre": "wuxia",
+      "prompt": "A dim hall in a Peranakan courtyard school. A hanging cloth panel with four horizontal bands of blank embroidery; the third band is conspicuously empty, its threads cleanly cut away. Low lantern light rakes across the fabric. No writing on the panel at all. Bottom third low-detail.",
+      "fallback": "map-wuxia",
+      "size": "1536x1024",
+      "out": "art/out/scene-wuxia-1-3.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-legend-1-1",
+      "type": "scene",
+      "genre": "legend",
+      "prompt": "A mythic crossroads in a cloud sea at sunrise. Two stone roads fork — one climbing toward a bronze mountain gate, one descending into cloud. A small grey stone monkey in a ragged cinnabar cape is already striding down the wrong one, chin up. A blank folded sheet of paper is held in the near foreground. 年画 colour. Bottom third cloud.",
+      "refs": [
+        "char-legend-monkey"
+      ],
+      "fallback": "map-legend",
+      "size": "1536x1024",
+      "out": "art/out/scene-legend-1-1.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-legend-1-2",
+      "type": "scene",
+      "genre": "legend",
+      "prompt": "A tiny weathered roadside shrine at the foot of a mountain, its plaque blank and moss-covered. A very short round earth deity in a crimson robe stands in the doorway leaning on a gnarled staff, mildly aggrieved. The stone monkey lurks at the edge of frame, unimpressed. Warm evening light. Bottom third low-detail.",
+      "refs": [
+        "char-legend-earthgod",
+        "char-legend-monkey"
+      ],
+      "fallback": "map-legend",
+      "size": "1536x1024",
+      "out": "art/out/scene-legend-1-2.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-legend-1-3",
+      "type": "scene",
+      "genre": "legend",
+      "prompt": "High on a mountain path, an enormous ancient boulder completely blocking the road, moss-bearded and veined, dwarfing the figures. The stone monkey has both palms flat against it and is achieving nothing. Cloud sea far below. Dramatic side light. Bottom third kept simple.",
+      "refs": [
+        "char-legend-monkey"
+      ],
+      "fallback": "map-legend",
+      "size": "1536x1024",
+      "out": "art/out/scene-legend-1-3.png",
       "status": "pending"
     }
   ]
