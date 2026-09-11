@@ -13,4 +13,5 @@ public/audio/tts/
 .DS_Store
 scratch/
 .playwright-mcp/
+/*.png
 *.png.tmp
