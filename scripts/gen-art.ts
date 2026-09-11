@@ -321,8 +321,26 @@ function loadManifest(): Manifest {
   return JSON.parse(fs.readFileSync(MANIFEST, 'utf8')) as Manifest;
 }
 
-function saveManifest(m: Manifest) {
-  fs.writeFileSync(MANIFEST, JSON.stringify(m, null, 2) + '\n');
+/**
+ * Persist one entry by merging it into whatever is on disk right now.
+ *
+ * A full run holds the manifest in memory for the best part of an hour. Anything
+ * that edits the file meanwhile - scripts/build-manifest.ts adding entries for
+ * newly written chapters, most obviously - would be silently reverted by the
+ * next save. Re-reading and updating only the entry we own makes the two
+ * scripts safe to use together, which is exactly how they get used.
+ */
+function saveEntry(entry: ArtEntry) {
+  let onDisk: Manifest;
+  try {
+    onDisk = loadManifest();
+  } catch {
+    onDisk = { version: 1, entries: [] };
+  }
+  const i = onDisk.entries.findIndex((e) => e.id === entry.id);
+  if (i === -1) onDisk.entries.push(entry);
+  else onDisk.entries[i] = entry;
+  fs.writeFileSync(MANIFEST, JSON.stringify(onDisk, null, 2) + '\n');
 }
 
 function arg(flag: string): string | undefined {
@@ -402,7 +420,7 @@ async function main() {
       entry.lastPrompt = prompt;
       entry.generatedAt = new Date().toISOString();
       entry.web = await toWebp(absOut, entry.id);
-      saveManifest(manifest);
+      saveEntry(entry);
       console.log(`PLACEHOLDER ${entry.id}`);
       done++;
       continue;
@@ -438,7 +456,7 @@ async function main() {
       entry.web = await toWebp(absOut, entry.id);
       failed++;
     }
-    saveManifest(manifest);
+    saveEntry(entry);
     await new Promise((r) => setTimeout(r, DELAY_MS));
   }
 

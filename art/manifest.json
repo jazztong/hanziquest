@@ -115,7 +115,14 @@
       "prompt": "Character reference sheet: a weathered Southeast Asian spacer captain in her fifties, silver-streaked hair in a tight braid, a patched teal flight jacket over a batik-print undershirt, one prosthetic forearm in brushed brass, salt-stained boots. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
       "size": "1024x1024",
       "out": "art/out/char-scifi-captain.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: A Malaysian-flavoured near-future: orbital kampung platforms, solar-sail trading junks, a Straits archipelago seen from above, biotech mangroves. Hardware looks built and repaired, not chrome. Palette lean: Jade and Slate dominant with Gold instrument glow, Cinnabar as warning light. Mood: wonder and competence.\n\nShot: Character reference sheet: a weathered Southeast Asian spacer captain in her fifties, silver-streaked hair in a tight braid, a patched teal flight jacket over a batik-print undershirt, one prosthetic forearm in brushed brass, salt-stained boots. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:44:16.609Z",
+      "bytes": 2191063,
+      "web": [
+        "art/char-scifi-captain-768.webp",
+        "art/char-scifi-captain-384.webp"
+      ]
     },
     {
       "id": "char-scifi-ship",
@@ -125,7 +132,14 @@
       "prompt": "Character reference sheet: the ship-mind avatar: a floating lantern-like construct of woven brass ribs and jade-green light, roughly head-sized, with no face, trailing thin solar-sail filaments. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
       "size": "1024x1024",
       "out": "art/out/char-scifi-ship.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: A Malaysian-flavoured near-future: orbital kampung platforms, solar-sail trading junks, a Straits archipelago seen from above, biotech mangroves. Hardware looks built and repaired, not chrome. Palette lean: Jade and Slate dominant with Gold instrument glow, Cinnabar as warning light. Mood: wonder and competence.\n\nShot: Character reference sheet: the ship-mind avatar: a floating lantern-like construct of woven brass ribs and jade-green light, roughly head-sized, with no face, trailing thin solar-sail filaments. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:45:35.876Z",
+      "bytes": 2137859,
+      "web": [
+        "art/char-scifi-ship-768.webp",
+        "art/char-scifi-ship-384.webp"
+      ]
     },
     {
       "id": "map-scifi",

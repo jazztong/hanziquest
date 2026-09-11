@@ -186,6 +186,49 @@ const SCENE_PROMPTS: Record<string, { prompt: string; refs?: string[] }> = {
       'Late afternoon, the rain stopped, the street steaming. A black saloon car parked at the kerb outside the shophouse, seen from the five-foot-way; a figure barely visible behind the windscreen. The older woman stands in the shop doorway in the foreground, watching the car. Bottom third kept low-detail.',
     refs: ['char-mystery-auntie'],
   },
+  'scene-scifi-1-1': {
+    prompt:
+      'Interior of an ageing solar-sail junk. Looking over the player’s shoulder at a heavy circular hatch, shut, with worn hand-polished edges; warm instrument glow from a bank of repaired panels to one side, cold planet-light from a porthole to the other. A small floating lantern-like ship-mind construct hovers beside the hatch. Bottom third low-detail.',
+    refs: ['char-scifi-ship'],
+  },
+  'scene-scifi-1-2': {
+    prompt:
+      'The junk’s cramped command nook at night. The captain stands with her back half-turned, arms folded, lit from below by a console; the floating ship-mind construct hangs dim and quiet between her and the viewer. Dense with cables, patched panels and stowed cargo. Bottom third kept plain.',
+    refs: ['char-scifi-captain', 'char-scifi-ship'],
+  },
+  'scene-scifi-1-3': {
+    prompt:
+      'The dark rear passage of the junk, looking down its length toward a sealed cargo hatch. One thin seam of jade light escapes from around its edge. Everything else is silhouette and cold reflection. A hand rests on the hatch in the near foreground. Bottom third very dark.',
+  },
+  'scene-wuxia-1-1': {
+    prompt:
+      'Dawn beside a still limestone-pool at the foot of a karst peak, mist to the knees. An elderly teacher in dark indigo robe stands at the water’s edge with his back to the viewer, watching the surface. A second, smaller set of footprints waits on the flagstones. Ink-wash mountains behind. Bottom third low-detail water.',
+    refs: ['char-wuxia-shifu'],
+  },
+  'scene-wuxia-1-2': {
+    prompt:
+      'Mid-morning at the same water’s edge. A teenage girl disciple in pale jade training robes is caught mid-step, sleeve flaring, having just moved first; the water beneath her is disturbed into rings. Composition leaves the opposite position empty for the player. Bottom third kept plain.',
+    refs: ['char-wuxia-sister'],
+  },
+  'scene-wuxia-1-3': {
+    prompt:
+      'A dim hall in a Peranakan courtyard school. A hanging cloth panel with four horizontal bands of blank embroidery; the third band is conspicuously empty, its threads cleanly cut away. Low lantern light rakes across the fabric. No writing on the panel at all. Bottom third low-detail.',
+  },
+  'scene-legend-1-1': {
+    prompt:
+      'A mythic crossroads in a cloud sea at sunrise. Two stone roads fork — one climbing toward a bronze mountain gate, one descending into cloud. A small grey stone monkey in a ragged cinnabar cape is already striding down the wrong one, chin up. A blank folded sheet of paper is held in the near foreground. 年画 colour. Bottom third cloud.',
+    refs: ['char-legend-monkey'],
+  },
+  'scene-legend-1-2': {
+    prompt:
+      'A tiny weathered roadside shrine at the foot of a mountain, its plaque blank and moss-covered. A very short round earth deity in a crimson robe stands in the doorway leaning on a gnarled staff, mildly aggrieved. The stone monkey lurks at the edge of frame, unimpressed. Warm evening light. Bottom third low-detail.',
+    refs: ['char-legend-earthgod', 'char-legend-monkey'],
+  },
+  'scene-legend-1-3': {
+    prompt:
+      'High on a mountain path, an enormous ancient boulder completely blocking the road, moss-bearded and veined, dwarfing the figures. The stone monkey has both palms flat against it and is achieving nothing. Cloud sea far below. Dramatic side light. Bottom third kept simple.',
+    refs: ['char-legend-monkey'],
+  },
 };
 for (const ch of ALL_SEED_CHAPTERS) {
   const spec = SCENE_PROMPTS[ch.artId];

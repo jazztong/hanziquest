@@ -214,10 +214,11 @@ it is off by default.
 Honest list of what is not done. Fuller detail at the end of
 [docs/decisions.md](docs/decisions.md).
 
-1. **Seed chapters exist for `mystery` only.** The other three genres have story
-   bibles, casts, maps and boss art, but no authored chapters yet — picking them
-   currently leads to the "no chapter available" screen. Three chapters per genre
-   is the next content job.
+1. **Three chapters per genre, one arc each.** Twelve authored chapters in
+   total — enough to see every mechanic and to reach the end of arc one in any
+   genre, not enough for a term. Arc two is the next content job. Chapter
+   difficulty is machine-verified, not eyeballed: run
+   `npx tsx scripts/check-coverage.ts` after editing any of them.
 2. **Not yet built as screens:** the 拼音 arcade, 课文 side quests, 阅读理解
    investigations, 作文 quests and boss battles. The *engines* for all of them
    exist and are tested — item types, the 统考 blueprint, the 作文 rubric, the
