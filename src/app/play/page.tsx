@@ -101,19 +101,24 @@ export default function PlayHub() {
             </div>
           </Link>
 
-          <div className="grid grid-cols-2 gap-3 mt-3">
+          <div className="grid grid-cols-3 gap-3 mt-3">
             <Link href="/deck" className="surface p-4 hover:border-[var(--color-jade)] transition">
               <div className="text-2xl" aria-hidden>🎴</div>
-              <div className="font-semibold mt-1.5 text-sm">识字 deck</div>
+              <div className="font-semibold mt-1.5 text-sm">识字</div>
               <div className="text-xs text-[var(--color-slate-soft)]">
-                {s.cards.due > 0 ? `${s.cards.due} due now` : 'All caught up'}
+                {s.cards.due > 0 ? `${s.cards.due} due` : 'Clear'}
               </div>
+            </Link>
+            <Link href="/arcade" className="surface p-4 hover:border-[var(--color-jade)] transition">
+              <div className="text-2xl" aria-hidden>🎯</div>
+              <div className="font-semibold mt-1.5 text-sm">声调</div>
+              <div className="text-xs text-[var(--color-slate-soft)]">Tone arcade</div>
             </Link>
             <Link href="/relics" className="surface p-4 hover:border-[var(--color-jade)] transition">
               <div className="text-2xl" aria-hidden>📜</div>
-              <div className="font-semibold mt-1.5 text-sm">古诗文 relics</div>
+              <div className="font-semibold mt-1.5 text-sm">古诗文</div>
               <div className="text-xs text-[var(--color-slate-soft)]">
-                {s.relics.activated} / {s.relics.total} activated
+                {s.relics.activated}/{s.relics.total}
               </div>
             </Link>
           </div>

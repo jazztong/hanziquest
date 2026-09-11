@@ -167,7 +167,14 @@
       "prompt": "Character reference sheet: an elderly Straits-Chinese martial teacher, long thin beard, dark indigo robe with cinnabar sash, bare feet, carrying a bamboo staff he never leans on; economical, still, watching. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
       "size": "1024x1024",
       "out": "art/out/char-wuxia-shifu.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 武侠 transplanted to the Straits: limestone karst, rubber estates, river towns, tin-mining country, Peranakan courtyards. Flowing robes, bamboo, mist, ink-wash mountains bleeding into painted foreground. Palette lean: Ink and Paper dominant — closest to 水墨 — with Cinnabar sashes and Jade river water. Mood: poised, mythic, a held breath.\n\nShot: Character reference sheet: an elderly Straits-Chinese martial teacher, long thin beard, dark indigo robe with cinnabar sash, bare feet, carrying a bamboo staff he never leans on; economical, still, watching. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:47:09.859Z",
+      "bytes": 2218485,
+      "web": [
+        "art/char-wuxia-shifu-768.webp",
+        "art/char-wuxia-shifu-384.webp"
+      ]
     },
     {
       "id": "char-wuxia-sister",

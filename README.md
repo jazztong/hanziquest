@@ -75,9 +75,12 @@ The 14 poems named in the 考试纲要 默写 list — the exact list, not a sel
 Line-by-line audio and English, 文言实词 notes, **多音字 traps** (敕勒歌's 见 is
 xiàn, not jiàn), scaling cloze recall, and recite-to-activate.
 
-### 朗读
-Read a line aloud to open a door or persuade someone. Pronunciation decides the
-outcome; tone confusions go straight into the error log.
+### 朗读 and the 声调 arcade
+Read a line aloud to open a door or persuade someone; pronunciation decides the
+outcome. Every tone confusion it finds goes into the error log — and the arcade
+builds its next round out of exactly those pairs. Miss 1v2 today and tomorrow's
+round is full of first and second tones. Per-question clock, streak bonus, and
+running out of time costs you the points but never anything you had.
 
 ### Parent dashboard
 Activity chart, skill trends, weak areas, milestone status, recording playback,
@@ -219,10 +222,11 @@ Honest list of what is not done. Fuller detail at the end of
    genre, not enough for a term. Arc two is the next content job. Chapter
    difficulty is machine-verified, not eyeballed: run
    `npx tsx scripts/check-coverage.ts` after editing any of them.
-2. **Not yet built as screens:** the 拼音 arcade, 课文 side quests, 阅读理解
-   investigations, 作文 quests and boss battles. The *engines* for all of them
-   exist and are tested — item types, the 统考 blueprint, the 作文 rubric, the
-   应用文 format checker, tone-error capture — but they are not wired to UI.
+2. **Not yet built as screens:** 课文 side quests, 阅读理解 investigations,
+   作文 quests and boss battles. The *engines* for all of them exist and are
+   tested — item types, the 统考 blueprint, the 作文 rubric, the 应用文 format
+   checker — but they are not wired to UI. (The 拼音/声调 arcade *is* built:
+   `/arcade`, built from the player's own logged tone confusions.)
 3. **Claude-backed generation is interfaced but not implemented.** `src/lib/ai/`
    has the client, caching and prompt-recording; the story and item generators
    that call it are not written. Everything degrades to seed content.
