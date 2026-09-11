@@ -157,6 +157,23 @@ originals stay in `art/out/` and are committed alongside the WebPs.
 
 ---
 
+## 5b. Observed drift (first full generation pass)
+
+The first complete run produced art that is **internally very consistent** but
+noticeably more cinematic and photoreal than the "painterly, flat-to-soft cel
+shading" this guide asks for — closer to a rendered key frame than to an
+illustrated page. Scenes especially.
+
+It is cohesive and age-appropriate, so it was kept rather than regenerated. But
+it means the character *sheets* (which came out illustrative) and the *scenes*
+(which came out cinematic) sit in slightly different registers.
+
+If you want to pull it back toward illustration, the lever is the global style
+block in section 2 — try leading with a flat-shading instruction and an explicit
+negative ("not photorealistic, not a 3D render, visible brush and line work"),
+then `npm run gen-art -- --only scene --force <id>` on one entry to check before
+committing to a full regeneration.
+
 ## 6. Reviewing generated art
 
 Reject and regenerate if any of these are true:

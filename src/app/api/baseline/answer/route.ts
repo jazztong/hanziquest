@@ -14,6 +14,7 @@ import {
 } from '@/lib/baseline';
 import { publicItem } from '@/lib/items/public';
 import { newCardState } from '@/lib/srs';
+import { refreshMilestones } from '@/lib/player';
 import { rarityOf } from '@/lib/lexicon';
 import { BadRequest, body, route } from '@/lib/api';
 
@@ -126,6 +127,12 @@ export async function POST(req: Request) {
           })
           .onConflictDoNothing();
       }
+
+      // The seeded deck is the player's first real progress - without this the
+      // hub greets them with "0 / 1000 characters" immediately after telling
+      // them they know 301, and picks the wrong "next" milestone because every
+      // one of them is still sitting at zero.
+      await refreshMilestones(user.id);
     }
 
     const after = done ? { state: next, item: null } : ensureItem(next);

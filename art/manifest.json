@@ -8,7 +8,14 @@
       "prompt": "Head-and-shoulders portrait of a quiet, watchful teenager with short dark hair and a heavy canvas satchel, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
       "size": "1024x1024",
       "out": "art/out/avatar-01.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: Head-and-shoulders portrait of a quiet, watchful teenager with short dark hair and a heavy canvas satchel, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:55:56.398Z",
+      "bytes": 2301641,
+      "web": [
+        "art/avatar-01-768.webp",
+        "art/avatar-01-384.webp"
+      ]
     },
     {
       "id": "avatar-02",
@@ -17,7 +24,14 @@
       "prompt": "Head-and-shoulders portrait of a fast-talking teenager with an undercut and a windbreaker tied at the waist, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
       "size": "1024x1024",
       "out": "art/out/avatar-02.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: Head-and-shoulders portrait of a fast-talking teenager with an undercut and a windbreaker tied at the waist, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:57:09.194Z",
+      "bytes": 2166034,
+      "web": [
+        "art/avatar-02-768.webp",
+        "art/avatar-02-384.webp"
+      ]
     },
     {
       "id": "avatar-03",
@@ -26,7 +40,14 @@
       "prompt": "Head-and-shoulders portrait of a studious teenager with round glasses, a pencil behind one ear, sleeves rolled, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
       "size": "1024x1024",
       "out": "art/out/avatar-03.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: Head-and-shoulders portrait of a studious teenager with round glasses, a pencil behind one ear, sleeves rolled, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:58:15.321Z",
+      "bytes": 2578360,
+      "web": [
+        "art/avatar-03-768.webp",
+        "art/avatar-03-384.webp"
+      ]
     },
     {
       "id": "avatar-04",
@@ -35,7 +56,14 @@
       "prompt": "Head-and-shoulders portrait of a wiry teenager in a worn hoodie with chalk-dusted hands and scuffed trainers, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
       "size": "1024x1024",
       "out": "art/out/avatar-04.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: Head-and-shoulders portrait of a wiry teenager in a worn hoodie with chalk-dusted hands and scuffed trainers, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:59:25.716Z",
+      "bytes": 2438220,
+      "web": [
+        "art/avatar-04-768.webp",
+        "art/avatar-04-384.webp"
+      ]
     },
     {
       "id": "avatar-05",
@@ -44,7 +72,14 @@
       "prompt": "Head-and-shoulders portrait of a calm teenager with long hair tied back and oversized headphones round the neck, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
       "size": "1024x1024",
       "out": "art/out/avatar-05.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: Head-and-shoulders portrait of a calm teenager with long hair tied back and oversized headphones round the neck, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:00:32.488Z",
+      "bytes": 2559078,
+      "web": [
+        "art/avatar-05-768.webp",
+        "art/avatar-05-384.webp"
+      ]
     },
     {
       "id": "avatar-06",
@@ -53,7 +88,14 @@
       "prompt": "Head-and-shoulders portrait of a stubborn teenager with a squared jaw, cropped hair and a taped-up wrist, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
       "size": "1024x1024",
       "out": "art/out/avatar-06.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: Head-and-shoulders portrait of a stubborn teenager with a squared jaw, cropped hair and a taped-up wrist, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:01:45.569Z",
+      "bytes": 2459889,
+      "web": [
+        "art/avatar-06-768.webp",
+        "art/avatar-06-384.webp"
+      ]
     },
     {
       "id": "char-mystery-auntie",
@@ -96,7 +138,15 @@
       "prompt": "A stylised bird’s-eye map of a rain-soaked Malaysian river town at night: rows of shophouses with five-foot-ways, a wide brown river, a railway bridge, monsoon drains, scattered neon reflections in standing water. Illustrated map style, no labels, no compass rose, no text of any kind.",
       "size": "1536x1024",
       "out": "art/out/map-mystery.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: Contemporary Klang / Kuala Lumpur after dark. Wet five-foot-ways, kopitiam shutters, neon reflected in puddles, monsoon drains, KTM overpasses, old shophouse tiles. Palette lean: Slate and Ink dominant, Jade as neon, Cinnabar as tail-lights. High contrast, rain-streak texture, deep shadow with a single readable light source. Mood: alert, curious, a little noir — not frightening.\n\nShot: A stylised bird’s-eye map of a rain-soaked Malaysian river town at night: rows of shophouses with five-foot-ways, a wide brown river, a railway bridge, monsoon drains, scattered neon reflections in standing water. Illustrated map style, no labels, no compass rose, no text of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:10:20.129Z",
+      "bytes": 3589297,
+      "web": [
+        "art/map-mystery-1536.webp",
+        "art/map-mystery-768.webp",
+        "art/map-mystery-384.webp"
+      ]
     },
     {
       "id": "boss-mystery",
@@ -105,7 +155,14 @@
       "prompt": "The Examiner: an imposing but not frightening figure in a dark raincoat standing under a single street lamp in heavy rain, face in shadow under the brim of a hat, holding a closed folder. Centred, negative space at the edges, water streaming through the light cone.",
       "size": "1024x1024",
       "out": "art/out/boss-mystery.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: Contemporary Klang / Kuala Lumpur after dark. Wet five-foot-ways, kopitiam shutters, neon reflected in puddles, monsoon drains, KTM overpasses, old shophouse tiles. Palette lean: Slate and Ink dominant, Jade as neon, Cinnabar as tail-lights. High contrast, rain-streak texture, deep shadow with a single readable light source. Mood: alert, curious, a little noir — not frightening.\n\nShot: The Examiner: an imposing but not frightening figure in a dark raincoat standing under a single street lamp in heavy rain, face in shadow under the brim of a hat, holding a closed folder. Centred, negative space at the edges, water streaming through the light cone.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:32:42.475Z",
+      "bytes": 2744943,
+      "web": [
+        "art/boss-mystery-768.webp",
+        "art/boss-mystery-384.webp"
+      ]
     },
     {
       "id": "char-scifi-captain",
@@ -148,7 +205,15 @@
       "prompt": "A stylised orbital map: a ring of stilted kampung platforms hanging above a cloud-wrapped tropical archipelago, linked by tether lines, with solar-sail junks under way between them. Illustrated map style, no labels, no text of any kind.",
       "size": "1536x1024",
       "out": "art/out/map-scifi.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: A Malaysian-flavoured near-future: orbital kampung platforms, solar-sail trading junks, a Straits archipelago seen from above, biotech mangroves. Hardware looks built and repaired, not chrome. Palette lean: Jade and Slate dominant with Gold instrument glow, Cinnabar as warning light. Mood: wonder and competence.\n\nShot: A stylised orbital map: a ring of stilted kampung platforms hanging above a cloud-wrapped tropical archipelago, linked by tether lines, with solar-sail junks under way between them. Illustrated map style, no labels, no text of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:11:44.723Z",
+      "bytes": 2864654,
+      "web": [
+        "art/map-scifi-1536.webp",
+        "art/map-scifi-768.webp",
+        "art/map-scifi-384.webp"
+      ]
     },
     {
       "id": "boss-scifi",
@@ -157,7 +222,14 @@
       "prompt": "The Gatekeeper: a vast dormant orbital customs construct, a wheel of brass and jade lenses, each lens an unopened eye, hanging against a cloud-lit planet. Centred, sense of enormous scale, negative space at the edges.",
       "size": "1024x1024",
       "out": "art/out/boss-scifi.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: A Malaysian-flavoured near-future: orbital kampung platforms, solar-sail trading junks, a Straits archipelago seen from above, biotech mangroves. Hardware looks built and repaired, not chrome. Palette lean: Jade and Slate dominant with Gold instrument glow, Cinnabar as warning light. Mood: wonder and competence.\n\nShot: The Gatekeeper: a vast dormant orbital customs construct, a wheel of brass and jade lenses, each lens an unopened eye, hanging against a cloud-lit planet. Centred, sense of enormous scale, negative space at the edges.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:34:03.810Z",
+      "bytes": 2935762,
+      "web": [
+        "art/boss-scifi-768.webp",
+        "art/boss-scifi-384.webp"
+      ]
     },
     {
       "id": "char-wuxia-shifu",
@@ -184,7 +256,14 @@
       "prompt": "Character reference sheet: a fourteen-year-old girl disciple, hair in two practical buns, pale jade training robe with sleeves bound at the wrists, a wooden practice sword slung across her back, permanently mid-argument. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
       "size": "1024x1024",
       "out": "art/out/char-wuxia-sister.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 武侠 transplanted to the Straits: limestone karst, rubber estates, river towns, tin-mining country, Peranakan courtyards. Flowing robes, bamboo, mist, ink-wash mountains bleeding into painted foreground. Palette lean: Ink and Paper dominant — closest to 水墨 — with Cinnabar sashes and Jade river water. Mood: poised, mythic, a held breath.\n\nShot: Character reference sheet: a fourteen-year-old girl disciple, hair in two practical buns, pale jade training robe with sleeves bound at the wrists, a wooden practice sword slung across her back, permanently mid-argument. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:52:16.120Z",
+      "bytes": 2010511,
+      "web": [
+        "art/char-wuxia-sister-768.webp",
+        "art/char-wuxia-sister-384.webp"
+      ]
     },
     {
       "id": "map-wuxia",
@@ -193,7 +272,15 @@
       "prompt": "A stylised ink-wash map of a Straits martial world: limestone karst peaks rising from mist, a winding river, a walled river town, rubber estates in neat rows, a mountain temple. Traditional 山水 map feel, no labels, no seals, no text of any kind.",
       "size": "1536x1024",
       "out": "art/out/map-wuxia.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 武侠 transplanted to the Straits: limestone karst, rubber estates, river towns, tin-mining country, Peranakan courtyards. Flowing robes, bamboo, mist, ink-wash mountains bleeding into painted foreground. Palette lean: Ink and Paper dominant — closest to 水墨 — with Cinnabar sashes and Jade river water. Mood: poised, mythic, a held breath.\n\nShot: A stylised ink-wash map of a Straits martial world: limestone karst peaks rising from mist, a winding river, a walled river town, rubber estates in neat rows, a mountain temple. Traditional 山水 map feel, no labels, no seals, no text of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:13:09.482Z",
+      "bytes": 3849442,
+      "web": [
+        "art/map-wuxia-1536.webp",
+        "art/map-wuxia-768.webp",
+        "art/map-wuxia-384.webp"
+      ]
     },
     {
       "id": "boss-wuxia",
@@ -202,7 +289,14 @@
       "prompt": "The Silent Master: a tall robed figure standing on still water at dawn, one sleeve raised, mist to the knees, face calm and unreadable. Centred, ink-wash mountains far behind, negative space at the edges.",
       "size": "1024x1024",
       "out": "art/out/boss-wuxia.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 武侠 transplanted to the Straits: limestone karst, rubber estates, river towns, tin-mining country, Peranakan courtyards. Flowing robes, bamboo, mist, ink-wash mountains bleeding into painted foreground. Palette lean: Ink and Paper dominant — closest to 水墨 — with Cinnabar sashes and Jade river water. Mood: poised, mythic, a held breath.\n\nShot: The Silent Master: a tall robed figure standing on still water at dawn, one sleeve raised, mist to the knees, face calm and unreadable. Centred, ink-wash mountains far behind, negative space at the edges.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:35:17.951Z",
+      "bytes": 2683329,
+      "web": [
+        "art/boss-wuxia-768.webp",
+        "art/boss-wuxia-384.webp"
+      ]
     },
     {
       "id": "char-legend-monkey",
@@ -212,7 +306,14 @@
       "prompt": "Character reference sheet: a stone monkey spirit the size of a child, granite-grey fur with gold-flecked eyes, a ragged cinnabar cape, a bronze hoop earring, standing in an unearned heroic pose. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
       "size": "1024x1024",
       "out": "art/out/char-legend-monkey.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 西游记 and 三国 energy, filtered through Southeast Asia. Mythic beasts, cloud seas, temple gates, celestial bureaucracy, bronze vessels. Stylised and graphic, closer to 年画 and Dunhuang colour than to realism. Palette lean: Cinnabar and Gold dominant on Paper, Jade for jade and water. Mood: grand, funny, larger than life. ---\n\nShot: Character reference sheet: a stone monkey spirit the size of a child, granite-grey fur with gold-flecked eyes, a ragged cinnabar cape, a bronze hoop earring, standing in an unearned heroic pose. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:53:29.727Z",
+      "bytes": 2265831,
+      "web": [
+        "art/char-legend-monkey-768.webp",
+        "art/char-legend-monkey-384.webp"
+      ]
     },
     {
       "id": "char-legend-earthgod",
@@ -222,7 +323,14 @@
       "prompt": "Character reference sheet: a very short, very round local earth deity with a long white beard, a gold-trimmed crimson robe, a gnarled walking staff and an expression of permanent mild grievance. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
       "size": "1024x1024",
       "out": "art/out/char-legend-earthgod.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 西游记 and 三国 energy, filtered through Southeast Asia. Mythic beasts, cloud seas, temple gates, celestial bureaucracy, bronze vessels. Stylised and graphic, closer to 年画 and Dunhuang colour than to realism. Palette lean: Cinnabar and Gold dominant on Paper, Jade for jade and water. Mood: grand, funny, larger than life. ---\n\nShot: Character reference sheet: a very short, very round local earth deity with a long white beard, a gold-trimmed crimson robe, a gnarled walking staff and an expression of permanent mild grievance. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:54:48.321Z",
+      "bytes": 2102241,
+      "web": [
+        "art/char-legend-earthgod-768.webp",
+        "art/char-legend-earthgod-384.webp"
+      ]
     },
     {
       "id": "map-legend",
@@ -231,7 +339,15 @@
       "prompt": "A stylised mythic map: a cloud sea with islands of rock and temple gates, a great bronze mountain, a celestial road winding upward, enormous beasts half-hidden in cloud. 年画 colour, decorative border of abstract cloud motifs, no labels, no text of any kind.",
       "size": "1536x1024",
       "out": "art/out/map-legend.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 西游记 and 三国 energy, filtered through Southeast Asia. Mythic beasts, cloud seas, temple gates, celestial bureaucracy, bronze vessels. Stylised and graphic, closer to 年画 and Dunhuang colour than to realism. Palette lean: Cinnabar and Gold dominant on Paper, Jade for jade and water. Mood: grand, funny, larger than life. ---\n\nShot: A stylised mythic map: a cloud sea with islands of rock and temple gates, a great bronze mountain, a celestial road winding upward, enormous beasts half-hidden in cloud. 年画 colour, decorative border of abstract cloud motifs, no labels, no text of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:14:33.710Z",
+      "bytes": 3455852,
+      "web": [
+        "art/map-legend-1536.webp",
+        "art/map-legend-768.webp",
+        "art/map-legend-384.webp"
+      ]
     },
     {
       "id": "boss-legend",
@@ -240,7 +356,14 @@
       "prompt": "The Mountain Warden: a colossal bronze-and-stone guardian seated in a mountain pass, moss on its shoulders, eyes of banked gold light, one open palm barring the road. Centred, cloud sea below, negative space at the edges.",
       "size": "1024x1024",
       "out": "art/out/boss-legend.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 西游记 and 三国 energy, filtered through Southeast Asia. Mythic beasts, cloud seas, temple gates, celestial bureaucracy, bronze vessels. Stylised and graphic, closer to 年画 and Dunhuang colour than to realism. Palette lean: Cinnabar and Gold dominant on Paper, Jade for jade and water. Mood: grand, funny, larger than life. ---\n\nShot: The Mountain Warden: a colossal bronze-and-stone guardian seated in a mountain pass, moss on its shoulders, eyes of banked gold light, one open palm barring the road. Centred, cloud sea below, negative space at the edges.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:36:44.374Z",
+      "bytes": 3143793,
+      "web": [
+        "art/boss-legend-768.webp",
+        "art/boss-legend-384.webp"
+      ]
     },
     {
       "id": "card-frame-common",
@@ -249,7 +372,14 @@
       "prompt": "A trading-card FRAME only, viewed straight on, filling the square: plain slate-grey border, thin single rule, matte, no ornament. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.",
       "size": "1024x1024",
       "out": "art/out/card-frame-common.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A trading-card FRAME only, viewed straight on, filling the square: plain slate-grey border, thin single rule, matte, no ornament. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:03:22.446Z",
+      "bytes": 1114893,
+      "web": [
+        "art/card-frame-common-768.webp",
+        "art/card-frame-common-384.webp"
+      ]
     },
     {
       "id": "card-frame-uncommon",
@@ -258,7 +388,14 @@
       "prompt": "A trading-card FRAME only, viewed straight on, filling the square: jade-green border with a simple corner motif and a faint inner glow. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.",
       "size": "1024x1024",
       "out": "art/out/card-frame-uncommon.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A trading-card FRAME only, viewed straight on, filling the square: jade-green border with a simple corner motif and a faint inner glow. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:04:47.750Z",
+      "bytes": 1914295,
+      "web": [
+        "art/card-frame-uncommon-768.webp",
+        "art/card-frame-uncommon-384.webp"
+      ]
     },
     {
       "id": "card-frame-rare",
@@ -267,7 +404,14 @@
       "prompt": "A trading-card FRAME only, viewed straight on, filling the square: deep blue border with interlocking geometric corners and a soft light bloom. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.",
       "size": "1024x1024",
       "out": "art/out/card-frame-rare.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A trading-card FRAME only, viewed straight on, filling the square: deep blue border with interlocking geometric corners and a soft light bloom. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:06:08.307Z",
+      "bytes": 1623283,
+      "web": [
+        "art/card-frame-rare-768.webp",
+        "art/card-frame-rare-384.webp"
+      ]
     },
     {
       "id": "card-frame-epic",
@@ -276,7 +420,14 @@
       "prompt": "A trading-card FRAME only, viewed straight on, filling the square: violet border with layered filigree corners and a subtle radiant aura. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.",
       "size": "1024x1024",
       "out": "art/out/card-frame-epic.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A trading-card FRAME only, viewed straight on, filling the square: violet border with layered filigree corners and a subtle radiant aura. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:07:27.693Z",
+      "bytes": 1542445,
+      "web": [
+        "art/card-frame-epic-768.webp",
+        "art/card-frame-epic-384.webp"
+      ]
     },
     {
       "id": "card-frame-legendary",
@@ -285,7 +436,14 @@
       "prompt": "A trading-card FRAME only, viewed straight on, filling the square: gold border with elaborate cloud-scroll corners, inner light and a warm halo. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.",
       "size": "1024x1024",
       "out": "art/out/card-frame-legendary.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A trading-card FRAME only, viewed straight on, filling the square: gold border with elaborate cloud-scroll corners, inner light and a warm halo. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:08:54.635Z",
+      "bytes": 1822219,
+      "web": [
+        "art/card-frame-legendary-768.webp",
+        "art/card-frame-legendary-384.webp"
+      ]
     },
     {
       "id": "relic-chile-ge",
@@ -294,7 +452,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a weathered bronze grassland horn lying on dark ground, wind-bent grass etched into its surface. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-chile-ge.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a weathered bronze grassland horn lying on dark ground, wind-bent grass etched into its surface. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:15:52.570Z",
+      "bytes": 2025087,
+      "web": [
+        "art/relic-chile-ge-768.webp",
+        "art/relic-chile-ge-384.webp"
+      ]
     },
     {
       "id": "relic-yin-hu-shang",
@@ -303,7 +468,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a lacquer hand-mirror with a lake-surface finish, half bright and half misted. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-yin-hu-shang.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a lacquer hand-mirror with a lake-surface finish, half bright and half misted. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:17:08.878Z",
+      "bytes": 2105397,
+      "web": [
+        "art/relic-yin-hu-shang-768.webp",
+        "art/relic-yin-hu-shang-384.webp"
+      ]
     },
     {
       "id": "relic-chun-ye-xi-yu",
@@ -312,7 +484,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a celadon rain-catcher bowl with a single ring of water still trembling in it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-chun-ye-xi-yu.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a celadon rain-catcher bowl with a single ring of water still trembling in it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:18:17.482Z",
+      "bytes": 2147496,
+      "web": [
+        "art/relic-chun-ye-xi-yu-768.webp",
+        "art/relic-chun-ye-xi-yu-384.webp"
+      ]
     },
     {
       "id": "relic-ci-wu-ye-ti",
@@ -321,7 +500,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a carved dark-wood crow perched on a broken branch, one wing folded over an empty nest. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-ci-wu-ye-ti.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a carved dark-wood crow perched on a broken branch, one wing folded over an empty nest. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:19:28.305Z",
+      "bytes": 2098253,
+      "web": [
+        "art/relic-ci-wu-ye-ti-768.webp",
+        "art/relic-ci-wu-ye-ti-384.webp"
+      ]
     },
     {
       "id": "relic-song-du-shaofu",
@@ -330,7 +516,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: two halves of a jade travel-token that fit together, resting slightly apart. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-song-du-shaofu.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: two halves of a jade travel-token that fit together, resting slightly apart. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:20:35.762Z",
+      "bytes": 2159000,
+      "web": [
+        "art/relic-song-du-shaofu-768.webp",
+        "art/relic-song-du-shaofu-384.webp"
+      ]
     },
     {
       "id": "relic-guo-gu-ren-zhuang",
@@ -339,7 +532,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a chipped farmhouse rice bowl with a sprig of dried chrysanthemum across it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-guo-gu-ren-zhuang.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a chipped farmhouse rice bowl with a sprig of dried chrysanthemum across it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:21:40.994Z",
+      "bytes": 2163540,
+      "web": [
+        "art/relic-guo-gu-ren-zhuang-768.webp",
+        "art/relic-guo-gu-ren-zhuang-384.webp"
+      ]
     },
     {
       "id": "relic-qi-bu-shi",
@@ -348,7 +548,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a small iron cooking pot, still warm, with seven scorched footprints worn into the stone beneath. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-qi-bu-shi.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a small iron cooking pot, still warm, with seven scorched footprints worn into the stone beneath. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:22:47.745Z",
+      "bytes": 2418387,
+      "web": [
+        "art/relic-qi-bu-shi-768.webp",
+        "art/relic-qi-bu-shi-384.webp"
+      ]
     },
     {
       "id": "relic-shui-diao-ge-tou",
@@ -357,7 +564,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a pewter wine cup tipped on its side with a full moon reflected in the spilled wine. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-shui-diao-ge-tou.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a pewter wine cup tipped on its side with a full moon reflected in the spilled wine. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:24:07.632Z",
+      "bytes": 2327355,
+      "web": [
+        "art/relic-shui-diao-ge-tou-768.webp",
+        "art/relic-shui-diao-ge-tou-384.webp"
+      ]
     },
     {
       "id": "relic-yu-mei-ren",
@@ -366,7 +580,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a broken jade balustrade fragment with a single carved poppy flower, river water running past it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-yu-mei-ren.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a broken jade balustrade fragment with a single carved poppy flower, river water running past it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:25:24.104Z",
+      "bytes": 2468808,
+      "web": [
+        "art/relic-yu-mei-ren-768.webp",
+        "art/relic-yu-mei-ren-384.webp"
+      ]
     },
     {
       "id": "relic-tian-jing-sha",
@@ -375,7 +596,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a traveller’s worn wooden saddle-flask hung on a bare withered branch at dusk. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-tian-jing-sha.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a traveller’s worn wooden saddle-flask hung on a bare withered branch at dusk. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:26:39.983Z",
+      "bytes": 2193587,
+      "web": [
+        "art/relic-tian-jing-sha-768.webp",
+        "art/relic-tian-jing-sha-384.webp"
+      ]
     },
     {
       "id": "relic-chu-sai",
@@ -384,7 +612,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a rusted frontier gate-ring set into weathered stone, moonlight across it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-chu-sai.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a rusted frontier gate-ring set into weathered stone, moonlight across it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:27:47.998Z",
+      "bytes": 2451807,
+      "web": [
+        "art/relic-chu-sai-768.webp",
+        "art/relic-chu-sai-384.webp"
+      ]
     },
     {
       "id": "relic-chun-wang",
@@ -393,7 +628,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a bent bronze hairpin lying among spring grass growing through cracked paving. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-chun-wang.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a bent bronze hairpin lying among spring grass growing through cracked paving. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:29:01.221Z",
+      "bytes": 2497310,
+      "web": [
+        "art/relic-chun-wang-768.webp",
+        "art/relic-chun-wang-384.webp"
+      ]
     },
     {
       "id": "relic-guo-ling-ding-yang",
@@ -402,7 +644,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a salt-stained bamboo writing slip, its cords frayed, resting on wet dark rock. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-guo-ling-ding-yang.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a salt-stained bamboo writing slip, its cords frayed, resting on wet dark rock. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:30:12.397Z",
+      "bytes": 2391357,
+      "web": [
+        "art/relic-guo-ling-ding-yang-768.webp",
+        "art/relic-guo-ling-ding-yang-384.webp"
+      ]
     },
     {
       "id": "relic-man-jiang-hong",
@@ -411,7 +660,14 @@
       "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a general’s iron wrist-guard with rain beading on it, leaning against a stone parapet. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
       "size": "1024x1024",
       "out": "art/out/relic-man-jiang-hong.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nShot: A single museum-lit artefact on a near-black ground with a warm gold rim light: a general’s iron wrist-guard with rain beading on it, leaning against a stone parapet. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:31:27.970Z",
+      "bytes": 2471819,
+      "web": [
+        "art/relic-man-jiang-hong-768.webp",
+        "art/relic-man-jiang-hong-384.webp"
+      ]
     },
     {
       "id": "scene-mystery-1-1",
@@ -424,7 +680,15 @@
       "fallback": "map-mystery",
       "size": "1536x1024",
       "out": "art/out/scene-mystery-1-1.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: Contemporary Klang / Kuala Lumpur after dark. Wet five-foot-ways, kopitiam shutters, neon reflected in puddles, monsoon drains, KTM overpasses, old shophouse tiles. Palette lean: Slate and Ink dominant, Jade as neon, Cinnabar as tail-lights. High contrast, rain-streak texture, deep shadow with a single readable light source. Mood: alert, curious, a little noir — not frightening.\n\nCharacter appearing in this shot - keep exactly consistent: a Malaysian Chinese woman in her sixties, short permed grey hair, reading glasses pushed up on her head, floral cotton blouse over dark trousers, rubber sandals, a cloth money-pouch at her waist; watchful, tired, arms often folded\n\nShot: Night, heavy rain. Looking over the player’s shoulder from the street toward the half-open doorway of an old shophouse; warm yellow light spills out onto wet tiles and a thin sheet of water runs from inside across the threshold. An older woman stands just inside the doorway in silhouette. Bottom third kept dark and low-detail.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:38:11.931Z",
+      "bytes": 2278491,
+      "web": [
+        "art/scene-mystery-1-1-1536.webp",
+        "art/scene-mystery-1-1-768.webp",
+        "art/scene-mystery-1-1-384.webp"
+      ]
     },
     {
       "id": "scene-mystery-1-2",
@@ -434,7 +698,15 @@
       "fallback": "map-mystery",
       "size": "1536x1024",
       "out": "art/out/scene-mystery-1-2.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: Contemporary Klang / Kuala Lumpur after dark. Wet five-foot-ways, kopitiam shutters, neon reflected in puddles, monsoon drains, KTM overpasses, old shophouse tiles. Palette lean: Slate and Ink dominant, Jade as neon, Cinnabar as tail-lights. High contrast, rain-streak texture, deep shadow with a single readable light source. Mood: alert, curious, a little noir — not frightening.\n\nShot: Morning after rain, inside the shop doorway. Close on a brand-new white folding umbrella propped behind an old wooden door — conspicuously dry, while everything around it is dark with damp. Shelves and stacked goods blurred behind. Bottom third kept plain and low-detail.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:39:21.969Z",
+      "bytes": 2233027,
+      "web": [
+        "art/scene-mystery-1-2-1536.webp",
+        "art/scene-mystery-1-2-768.webp",
+        "art/scene-mystery-1-2-384.webp"
+      ]
     },
     {
       "id": "scene-mystery-1-3",
@@ -447,7 +719,15 @@
       "fallback": "map-mystery",
       "size": "1536x1024",
       "out": "art/out/scene-mystery-1-3.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: Contemporary Klang / Kuala Lumpur after dark. Wet five-foot-ways, kopitiam shutters, neon reflected in puddles, monsoon drains, KTM overpasses, old shophouse tiles. Palette lean: Slate and Ink dominant, Jade as neon, Cinnabar as tail-lights. High contrast, rain-streak texture, deep shadow with a single readable light source. Mood: alert, curious, a little noir — not frightening.\n\nCharacter appearing in this shot - keep exactly consistent: a Malaysian Chinese woman in her sixties, short permed grey hair, reading glasses pushed up on her head, floral cotton blouse over dark trousers, rubber sandals, a cloth money-pouch at her waist; watchful, tired, arms often folded\n\nShot: Late afternoon, the rain stopped, the street steaming. A black saloon car parked at the kerb outside the shophouse, seen from the five-foot-way; a figure barely visible behind the windscreen. The older woman stands in the shop doorway in the foreground, watching the car. Bottom third kept low-detail.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:40:46.254Z",
+      "bytes": 2803929,
+      "web": [
+        "art/scene-mystery-1-3-1536.webp",
+        "art/scene-mystery-1-3-768.webp",
+        "art/scene-mystery-1-3-384.webp"
+      ]
     },
     {
       "id": "scene-scifi-1-1",
@@ -460,7 +740,15 @@
       "fallback": "map-scifi",
       "size": "1536x1024",
       "out": "art/out/scene-scifi-1-1.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: A Malaysian-flavoured near-future: orbital kampung platforms, solar-sail trading junks, a Straits archipelago seen from above, biotech mangroves. Hardware looks built and repaired, not chrome. Palette lean: Jade and Slate dominant with Gold instrument glow, Cinnabar as warning light. Mood: wonder and competence.\n\nCharacter appearing in this shot - keep exactly consistent: the ship-mind avatar: a floating lantern-like construct of woven brass ribs and jade-green light, roughly head-sized, with no face, trailing thin solar-sail filaments\n\nShot: Interior of an ageing solar-sail junk. Looking over the player’s shoulder at a heavy circular hatch, shut, with worn hand-polished edges; warm instrument glow from a bank of repaired panels to one side, cold planet-light from a porthole to the other. A small floating lantern-like ship-mind construct hovers beside the hatch. Bottom third low-detail.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:41:58.846Z",
+      "bytes": 2359430,
+      "web": [
+        "art/scene-scifi-1-1-1536.webp",
+        "art/scene-scifi-1-1-768.webp",
+        "art/scene-scifi-1-1-384.webp"
+      ]
     },
     {
       "id": "scene-scifi-1-2",
@@ -474,7 +762,15 @@
       "fallback": "map-scifi",
       "size": "1536x1024",
       "out": "art/out/scene-scifi-1-2.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: A Malaysian-flavoured near-future: orbital kampung platforms, solar-sail trading junks, a Straits archipelago seen from above, biotech mangroves. Hardware looks built and repaired, not chrome. Palette lean: Jade and Slate dominant with Gold instrument glow, Cinnabar as warning light. Mood: wonder and competence.\n\nCharacter appearing in this shot - keep exactly consistent: a weathered Southeast Asian spacer captain in her fifties, silver-streaked hair in a tight braid, a patched teal flight jacket over a batik-print undershirt, one prosthetic forearm in brushed brass, salt-stained boots\n\nCharacter appearing in this shot - keep exactly consistent: the ship-mind avatar: a floating lantern-like construct of woven brass ribs and jade-green light, roughly head-sized, with no face, trailing thin solar-sail filaments\n\nShot: The junk’s cramped command nook at night. The captain stands with her back half-turned, arms folded, lit from below by a console; the floating ship-mind construct hangs dim and quiet between her and the viewer. Dense with cables, patched panels and stowed cargo. Bottom third kept plain.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:44:27.740Z",
+      "bytes": 2492558,
+      "web": [
+        "art/scene-scifi-1-2-1536.webp",
+        "art/scene-scifi-1-2-768.webp",
+        "art/scene-scifi-1-2-384.webp"
+      ]
     },
     {
       "id": "scene-scifi-1-3",
@@ -484,7 +780,15 @@
       "fallback": "map-scifi",
       "size": "1536x1024",
       "out": "art/out/scene-scifi-1-3.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: A Malaysian-flavoured near-future: orbital kampung platforms, solar-sail trading junks, a Straits archipelago seen from above, biotech mangroves. Hardware looks built and repaired, not chrome. Palette lean: Jade and Slate dominant with Gold instrument glow, Cinnabar as warning light. Mood: wonder and competence.\n\nShot: The dark rear passage of the junk, looking down its length toward a sealed cargo hatch. One thin seam of jade light escapes from around its edge. Everything else is silhouette and cold reflection. A hand rests on the hatch in the near foreground. Bottom third very dark.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:45:35.935Z",
+      "bytes": 1766943,
+      "web": [
+        "art/scene-scifi-1-3-1536.webp",
+        "art/scene-scifi-1-3-768.webp",
+        "art/scene-scifi-1-3-384.webp"
+      ]
     },
     {
       "id": "scene-wuxia-1-1",
@@ -497,7 +801,15 @@
       "fallback": "map-wuxia",
       "size": "1536x1024",
       "out": "art/out/scene-wuxia-1-1.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 武侠 transplanted to the Straits: limestone karst, rubber estates, river towns, tin-mining country, Peranakan courtyards. Flowing robes, bamboo, mist, ink-wash mountains bleeding into painted foreground. Palette lean: Ink and Paper dominant — closest to 水墨 — with Cinnabar sashes and Jade river water. Mood: poised, mythic, a held breath.\n\nCharacter appearing in this shot - keep exactly consistent: an elderly Straits-Chinese martial teacher, long thin beard, dark indigo robe with cinnabar sash, bare feet, carrying a bamboo staff he never leans on; economical, still, watching\n\nShot: Dawn beside a still limestone-pool at the foot of a karst peak, mist to the knees. An elderly teacher in dark indigo robe stands at the water’s edge with his back to the viewer, watching the surface. A second, smaller set of footprints waits on the flagstones. Ink-wash mountains behind. Bottom third low-detail water.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:46:42.517Z",
+      "bytes": 3176769,
+      "web": [
+        "art/scene-wuxia-1-1-1536.webp",
+        "art/scene-wuxia-1-1-768.webp",
+        "art/scene-wuxia-1-1-384.webp"
+      ]
     },
     {
       "id": "scene-wuxia-1-2",
@@ -510,7 +822,15 @@
       "fallback": "map-wuxia",
       "size": "1536x1024",
       "out": "art/out/scene-wuxia-1-2.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 武侠 transplanted to the Straits: limestone karst, rubber estates, river towns, tin-mining country, Peranakan courtyards. Flowing robes, bamboo, mist, ink-wash mountains bleeding into painted foreground. Palette lean: Ink and Paper dominant — closest to 水墨 — with Cinnabar sashes and Jade river water. Mood: poised, mythic, a held breath.\n\nCharacter appearing in this shot - keep exactly consistent: a fourteen-year-old girl disciple, hair in two practical buns, pale jade training robe with sleeves bound at the wrists, a wooden practice sword slung across her back, permanently mid-argument\n\nShot: Mid-morning at the same water’s edge. A teenage girl disciple in pale jade training robes is caught mid-step, sleeve flaring, having just moved first; the water beneath her is disturbed into rings. Composition leaves the opposite position empty for the player. Bottom third kept plain.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:47:52.898Z",
+      "bytes": 2857531,
+      "web": [
+        "art/scene-wuxia-1-2-1536.webp",
+        "art/scene-wuxia-1-2-768.webp",
+        "art/scene-wuxia-1-2-384.webp"
+      ]
     },
     {
       "id": "scene-wuxia-1-3",
@@ -520,7 +840,15 @@
       "fallback": "map-wuxia",
       "size": "1536x1024",
       "out": "art/out/scene-wuxia-1-3.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 武侠 transplanted to the Straits: limestone karst, rubber estates, river towns, tin-mining country, Peranakan courtyards. Flowing robes, bamboo, mist, ink-wash mountains bleeding into painted foreground. Palette lean: Ink and Paper dominant — closest to 水墨 — with Cinnabar sashes and Jade river water. Mood: poised, mythic, a held breath.\n\nShot: A dim hall in a Peranakan courtyard school. A hanging cloth panel with four horizontal bands of blank embroidery; the third band is conspicuously empty, its threads cleanly cut away. Low lantern light rakes across the fabric. No writing on the panel at all. Bottom third low-detail.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:49:02.361Z",
+      "bytes": 2445911,
+      "web": [
+        "art/scene-wuxia-1-3-1536.webp",
+        "art/scene-wuxia-1-3-768.webp",
+        "art/scene-wuxia-1-3-384.webp"
+      ]
     },
     {
       "id": "scene-legend-1-1",
@@ -533,7 +861,15 @@
       "fallback": "map-legend",
       "size": "1536x1024",
       "out": "art/out/scene-legend-1-1.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 西游记 and 三国 energy, filtered through Southeast Asia. Mythic beasts, cloud seas, temple gates, celestial bureaucracy, bronze vessels. Stylised and graphic, closer to 年画 and Dunhuang colour than to realism. Palette lean: Cinnabar and Gold dominant on Paper, Jade for jade and water. Mood: grand, funny, larger than life. ---\n\nCharacter appearing in this shot - keep exactly consistent: a stone monkey spirit the size of a child, granite-grey fur with gold-flecked eyes, a ragged cinnabar cape, a bronze hoop earring, standing in an unearned heroic pose\n\nShot: A mythic crossroads in a cloud sea at sunrise. Two stone roads fork — one climbing toward a bronze mountain gate, one descending into cloud. A small grey stone monkey in a ragged cinnabar cape is already striding down the wrong one, chin up. A blank folded sheet of paper is held in the near foreground. 年画 colour. Bottom third cloud.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:50:11.087Z",
+      "bytes": 2496418,
+      "web": [
+        "art/scene-legend-1-1-1536.webp",
+        "art/scene-legend-1-1-768.webp",
+        "art/scene-legend-1-1-384.webp"
+      ]
     },
     {
       "id": "scene-legend-1-2",
@@ -547,7 +883,15 @@
       "fallback": "map-legend",
       "size": "1536x1024",
       "out": "art/out/scene-legend-1-2.png",
-      "status": "pending"
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: 西游记 and 三国 energy, filtered through Southeast Asia. Mythic beasts, cloud seas, temple gates, celestial bureaucracy, bronze vessels. Stylised and graphic, closer to 年画 and Dunhuang colour than to realism. Palette lean: Cinnabar and Gold dominant on Paper, Jade for jade and water. Mood: grand, funny, larger than life. ---\n\nCharacter appearing in this shot - keep exactly consistent: a very short, very round local earth deity with a long white beard, a gold-trimmed crimson robe, a gnarled walking staff and an expression of permanent mild grievance\n\nCharacter appearing in this shot - keep exactly consistent: a stone monkey spirit the size of a child, granite-grey fur with gold-flecked eyes, a ragged cinnabar cape, a bronze hoop earring, standing in an unearned heroic pose\n\nShot: A tiny weathered roadside shrine at the foot of a mountain, its plaque blank and moss-covered. A very short round earth deity in a crimson robe stands in the doorway leaning on a gnarled staff, mildly aggrieved. The stone monkey lurks at the edge of frame, unimpressed. Warm evening light. Bottom third low-detail.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T20:51:27.779Z",
+      "bytes": 2579610,
+      "web": [
+        "art/scene-legend-1-2-1536.webp",
+        "art/scene-legend-1-2-768.webp",
+        "art/scene-legend-1-2-384.webp"
+      ]
     },
     {
       "id": "scene-legend-1-3",

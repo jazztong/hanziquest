@@ -242,3 +242,9 @@ Honest list of what is not done. Fuller detail at the end of
    correct exam dates; the paper shape is a guess.
 8. **The 2028 统考 date is projected**, not published. Seeded as `2028-10-24` and
    editable.
+9. **Generated art drifts cinematic.** The full pass is consistent, text-free and
+   age-appropriate, but reads more like rendered key art than the "painterly,
+   cel-shaded" direction in `art/style.md`. Character sheets came out
+   illustrative and scenes came out photoreal, so the two sit in slightly
+   different registers. Noted in `art/style.md` section 5b with the lever to
+   pull it back.
