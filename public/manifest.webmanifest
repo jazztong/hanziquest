@@ -1,0 +1,16 @@
+{
+  "name": "汉字任务 HanziQuest",
+  "short_name": "汉字任务",
+  "description": "A story-driven 华文 game for the UEC 初中 track.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#131a26",
+  "theme_color": "#131a26",
+  "lang": "zh-Hans",
+  "categories": ["education", "games"],
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

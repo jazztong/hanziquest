@@ -1,0 +1,211 @@
+@import 'tailwindcss';
+
+/*
+  Design tokens mirror art/style.md so generated art and UI chrome share one
+  palette. If you change a colour here, change it there too.
+*/
+@theme {
+  --color-ink: #131a26;
+  --color-ink-soft: #263243;
+  --color-paper: #f7f1e3;
+  --color-paper-dim: #ebe3d1;
+  --color-jade: #1f8a80;
+  --color-jade-bright: #2cb3a6;
+  --color-cinnabar: #c8442f;
+  --color-gold: #e0a33e;
+  --color-slate: #48596b;
+  --color-slate-soft: #6b7d90;
+
+  --font-display: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+  --font-hanzi: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-ui: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-card: 14px;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #1d2838 0%, transparent 60%),
+    var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+/* Chinese text always gets the hanzi stack and a little more air. */
+.zh {
+  font-family: var(--font-hanzi);
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+}
+
+.zh-display {
+  font-family: var(--font-display);
+  line-height: 1.7;
+}
+
+/* The paper surface that story text and cards sit on. */
+.surface {
+  background: linear-gradient(180deg, #1b2534 0%, #161e2b 100%);
+  border: 1px solid #2a3648;
+  border-radius: var(--radius-card);
+}
+
+.surface-paper {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border-radius: var(--radius-card);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.35);
+}
+
+/* Karaoke highlight: the active line lifts, the rest recede. */
+.line-active {
+  color: var(--color-paper);
+}
+.line-idle {
+  color: #8b9bad;
+}
+.syl-on {
+  background: linear-gradient(180deg, transparent 60%, rgb(31 138 128 / 0.55) 60%);
+  border-radius: 3px;
+}
+
+/* Tap-to-gloss target. Generous hit area on a phone. */
+.tappable {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0 1px;
+  transition: background 120ms ease;
+}
+.tappable:hover,
+.tappable:focus-visible {
+  background: rgb(224 163 62 / 0.25);
+  outline: none;
+}
+.tappable-target {
+  background: rgb(200 68 47 / 0.22);
+  box-shadow: inset 0 -2px 0 var(--color-cinnabar);
+}
+
+button {
+  font-family: inherit;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.15rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition:
+    transform 80ms ease,
+    filter 120ms ease;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--color-jade);
+  color: #05100f;
+}
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+.btn-ghost {
+  background: transparent;
+  border-color: #33415a;
+  color: var(--color-paper);
+}
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--color-jade);
+}
+.btn-choice {
+  width: 100%;
+  text-align: left;
+  justify-content: flex-start;
+  background: #1b2534;
+  border: 1px solid #2f3d52;
+  padding: 0.9rem 1rem;
+  color: var(--color-paper);
+}
+.btn-choice:hover:not(:disabled) {
+  border-color: var(--color-jade);
+  background: #1f2b3c;
+}
+.btn-choice.correct {
+  border-color: var(--color-jade);
+  background: rgb(31 138 128 / 0.18);
+}
+.btn-choice.wrong {
+  border-color: var(--color-cinnabar);
+  background: rgb(200 68 47 / 0.14);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border: 1px solid #33415a;
+  color: var(--color-slate-soft);
+}
+
+/* Rarity, shared by cards and relics. */
+.r-common { --rarity: #6b7d90; }
+.r-uncommon { --rarity: #2cb3a6; }
+.r-rare { --rarity: #4f8ef7; }
+.r-epic { --rarity: #9d6bd8; }
+.r-legendary { --rarity: #e0a33e; }
+
+.card-face {
+  border: 1px solid color-mix(in srgb, var(--rarity) 55%, #2a3648);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
+  background:
+    radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--rarity) 18%, transparent) 0%, transparent 60%),
+    linear-gradient(180deg, #1d2735 0%, #151d29 100%);
+}
+
+.progress {
+  height: 8px;
+  border-radius: 999px;
+  background: #23304200;
+  box-shadow: inset 0 0 0 1px #2f3d52;
+  overflow: hidden;
+}
+.progress > i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-jade), var(--color-jade-bright));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

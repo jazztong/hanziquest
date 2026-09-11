@@ -1,0 +1,47 @@
+{
+  "name": "hanzi-quest",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Story-driven 华文 learning game for the UEC 初中 track",
+  "scripts": {
+    "dev": "npm run db:setup && next dev",
+    "build": "next build",
+    "start": "next start",
+    "setup": "npm run db:setup",
+    "db:setup": "tsx scripts/db-setup.ts",
+    "db:reset": "tsx scripts/db-setup.ts --reset",
+    "seed": "tsx scripts/seed.ts",
+    "gen-art": "tsx scripts/gen-art.ts",
+    "gen-audio": "tsx scripts/gen-audio.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.15.4",
+    "drizzle-orm": "^0.38.4",
+    "framer-motion": "^11.15.0",
+    "hanzi-writer": "^3.7.3",
+    "next": "^15.1.6",
+    "pinyin-pro": "^3.26.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "ts-fsrs": "^4.6.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^4.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}

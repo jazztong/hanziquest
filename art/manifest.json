@@ -1,0 +1,432 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "avatar-01",
+      "type": "avatar",
+      "genre": null,
+      "prompt": "Head-and-shoulders portrait of a quiet, watchful teenager with short dark hair and a heavy canvas satchel, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
+      "size": "1024x1024",
+      "out": "art/out/avatar-01.png",
+      "status": "pending"
+    },
+    {
+      "id": "avatar-02",
+      "type": "avatar",
+      "genre": null,
+      "prompt": "Head-and-shoulders portrait of a fast-talking teenager with an undercut and a windbreaker tied at the waist, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
+      "size": "1024x1024",
+      "out": "art/out/avatar-02.png",
+      "status": "pending"
+    },
+    {
+      "id": "avatar-03",
+      "type": "avatar",
+      "genre": null,
+      "prompt": "Head-and-shoulders portrait of a studious teenager with round glasses, a pencil behind one ear, sleeves rolled, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
+      "size": "1024x1024",
+      "out": "art/out/avatar-03.png",
+      "status": "pending"
+    },
+    {
+      "id": "avatar-04",
+      "type": "avatar",
+      "genre": null,
+      "prompt": "Head-and-shoulders portrait of a wiry teenager in a worn hoodie with chalk-dusted hands and scuffed trainers, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
+      "size": "1024x1024",
+      "out": "art/out/avatar-04.png",
+      "status": "pending"
+    },
+    {
+      "id": "avatar-05",
+      "type": "avatar",
+      "genre": null,
+      "prompt": "Head-and-shoulders portrait of a calm teenager with long hair tied back and oversized headphones round the neck, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
+      "size": "1024x1024",
+      "out": "art/out/avatar-05.png",
+      "status": "pending"
+    },
+    {
+      "id": "avatar-06",
+      "type": "avatar",
+      "genre": null,
+      "prompt": "Head-and-shoulders portrait of a stubborn teenager with a squared jaw, cropped hair and a taped-up wrist, Southeast Asian, aged about thirteen, three-quarter view, neutral confident expression, looking slightly off-camera. Plain warm-grey studio ground with a soft vignette. Readable as a small icon: strong silhouette, one clear colour accent, no busy background.",
+      "size": "1024x1024",
+      "out": "art/out/avatar-06.png",
+      "status": "pending"
+    },
+    {
+      "id": "char-mystery-auntie",
+      "type": "character",
+      "genre": "mystery",
+      "description": "a Malaysian Chinese woman in her sixties, short permed grey hair, reading glasses pushed up on her head, floral cotton blouse over dark trousers, rubber sandals, a cloth money-pouch at her waist; watchful, tired, arms often folded",
+      "prompt": "Character reference sheet: a Malaysian Chinese woman in her sixties, short permed grey hair, reading glasses pushed up on her head, floral cotton blouse over dark trousers, rubber sandals, a cloth money-pouch at her waist; watchful, tired, arms often folded. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
+      "size": "1024x1024",
+      "out": "art/out/char-mystery-auntie.png",
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: Contemporary Klang / Kuala Lumpur after dark. Wet five-foot-ways, kopitiam shutters, neon reflected in puddles, monsoon drains, KTM overpasses, old shophouse tiles. Palette lean: Slate and Ink dominant, Jade as neon, Cinnabar as tail-lights. High contrast, rain-streak texture, deep shadow with a single readable light source. Mood: alert, curious, a little noir — not frightening.\n\nShot: Character reference sheet: a Malaysian Chinese woman in her sixties, short permed grey hair, reading glasses pushed up on her head, floral cotton blouse over dark trousers, rubber sandals, a cloth money-pouch at her waist; watchful, tired, arms often folded. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:40:34.061Z",
+      "web": [
+        "art/char-mystery-auntie-768.webp",
+        "art/char-mystery-auntie-384.webp"
+      ],
+      "bytes": 1893495
+    },
+    {
+      "id": "char-mystery-son",
+      "type": "character",
+      "genre": "mystery",
+      "description": "a Malaysian Chinese man in his thirties, close-cropped hair, plain dark polo shirt, a watch worn face-inward, standing very still with his hands in his pockets; unreadable rather than threatening",
+      "prompt": "Character reference sheet: a Malaysian Chinese man in his thirties, close-cropped hair, plain dark polo shirt, a watch worn face-inward, standing very still with his hands in his pockets; unreadable rather than threatening. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
+      "size": "1024x1024",
+      "out": "art/out/char-mystery-son.png",
+      "status": "done",
+      "lastPrompt": "Painterly digital illustration with clean, confident linework and flat-to-soft cel shading. Limited, deliberate palette. Strong silhouette reading. Cinematic composition with clear depth separation between foreground, midground and background. Textured, slightly grainy paper finish. Warm, directional key light with cool ambient fill. Age-appropriate for a 13-year-old reader: adventurous and atmospheric, never cute-childish and never grim. No text, no letterforms, no glyphs, no signage, no numerals, no logos, no captions, no watermark.\n\nGenre direction: Contemporary Klang / Kuala Lumpur after dark. Wet five-foot-ways, kopitiam shutters, neon reflected in puddles, monsoon drains, KTM overpasses, old shophouse tiles. Palette lean: Slate and Ink dominant, Jade as neon, Cinnabar as tail-lights. High contrast, rain-streak texture, deep shadow with a single readable light source. Mood: alert, curious, a little noir — not frightening.\n\nShot: Character reference sheet: a Malaysian Chinese man in his thirties, close-cropped hair, plain dark polo shirt, a watch worn face-inward, standing very still with his hands in his pockets; unreadable rather than threatening. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.\n\nAbsolutely no text, letters, Chinese characters, numerals, signage, labels, logos, captions or watermarks anywhere in the image. Any surface that would normally carry writing must be blank, abstracted or turned away.",
+      "generatedAt": "2026-09-11T19:42:12.532Z",
+      "bytes": 1786795,
+      "web": [
+        "art/char-mystery-son-768.webp",
+        "art/char-mystery-son-384.webp"
+      ]
+    },
+    {
+      "id": "map-mystery",
+      "type": "map",
+      "genre": "mystery",
+      "prompt": "A stylised bird’s-eye map of a rain-soaked Malaysian river town at night: rows of shophouses with five-foot-ways, a wide brown river, a railway bridge, monsoon drains, scattered neon reflections in standing water. Illustrated map style, no labels, no compass rose, no text of any kind.",
+      "size": "1536x1024",
+      "out": "art/out/map-mystery.png",
+      "status": "pending"
+    },
+    {
+      "id": "boss-mystery",
+      "type": "boss",
+      "genre": "mystery",
+      "prompt": "The Examiner: an imposing but not frightening figure in a dark raincoat standing under a single street lamp in heavy rain, face in shadow under the brim of a hat, holding a closed folder. Centred, negative space at the edges, water streaming through the light cone.",
+      "size": "1024x1024",
+      "out": "art/out/boss-mystery.png",
+      "status": "pending"
+    },
+    {
+      "id": "char-scifi-captain",
+      "type": "character",
+      "genre": "scifi",
+      "description": "a weathered Southeast Asian spacer captain in her fifties, silver-streaked hair in a tight braid, a patched teal flight jacket over a batik-print undershirt, one prosthetic forearm in brushed brass, salt-stained boots",
+      "prompt": "Character reference sheet: a weathered Southeast Asian spacer captain in her fifties, silver-streaked hair in a tight braid, a patched teal flight jacket over a batik-print undershirt, one prosthetic forearm in brushed brass, salt-stained boots. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
+      "size": "1024x1024",
+      "out": "art/out/char-scifi-captain.png",
+      "status": "pending"
+    },
+    {
+      "id": "char-scifi-ship",
+      "type": "character",
+      "genre": "scifi",
+      "description": "the ship-mind avatar: a floating lantern-like construct of woven brass ribs and jade-green light, roughly head-sized, with no face, trailing thin solar-sail filaments",
+      "prompt": "Character reference sheet: the ship-mind avatar: a floating lantern-like construct of woven brass ribs and jade-green light, roughly head-sized, with no face, trailing thin solar-sail filaments. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
+      "size": "1024x1024",
+      "out": "art/out/char-scifi-ship.png",
+      "status": "pending"
+    },
+    {
+      "id": "map-scifi",
+      "type": "map",
+      "genre": "scifi",
+      "prompt": "A stylised orbital map: a ring of stilted kampung platforms hanging above a cloud-wrapped tropical archipelago, linked by tether lines, with solar-sail junks under way between them. Illustrated map style, no labels, no text of any kind.",
+      "size": "1536x1024",
+      "out": "art/out/map-scifi.png",
+      "status": "pending"
+    },
+    {
+      "id": "boss-scifi",
+      "type": "boss",
+      "genre": "scifi",
+      "prompt": "The Gatekeeper: a vast dormant orbital customs construct, a wheel of brass and jade lenses, each lens an unopened eye, hanging against a cloud-lit planet. Centred, sense of enormous scale, negative space at the edges.",
+      "size": "1024x1024",
+      "out": "art/out/boss-scifi.png",
+      "status": "pending"
+    },
+    {
+      "id": "char-wuxia-shifu",
+      "type": "character",
+      "genre": "wuxia",
+      "description": "an elderly Straits-Chinese martial teacher, long thin beard, dark indigo robe with cinnabar sash, bare feet, carrying a bamboo staff he never leans on; economical, still, watching",
+      "prompt": "Character reference sheet: an elderly Straits-Chinese martial teacher, long thin beard, dark indigo robe with cinnabar sash, bare feet, carrying a bamboo staff he never leans on; economical, still, watching. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
+      "size": "1024x1024",
+      "out": "art/out/char-wuxia-shifu.png",
+      "status": "pending"
+    },
+    {
+      "id": "char-wuxia-sister",
+      "type": "character",
+      "genre": "wuxia",
+      "description": "a fourteen-year-old girl disciple, hair in two practical buns, pale jade training robe with sleeves bound at the wrists, a wooden practice sword slung across her back, permanently mid-argument",
+      "prompt": "Character reference sheet: a fourteen-year-old girl disciple, hair in two practical buns, pale jade training robe with sleeves bound at the wrists, a wooden practice sword slung across her back, permanently mid-argument. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
+      "size": "1024x1024",
+      "out": "art/out/char-wuxia-sister.png",
+      "status": "pending"
+    },
+    {
+      "id": "map-wuxia",
+      "type": "map",
+      "genre": "wuxia",
+      "prompt": "A stylised ink-wash map of a Straits martial world: limestone karst peaks rising from mist, a winding river, a walled river town, rubber estates in neat rows, a mountain temple. Traditional 山水 map feel, no labels, no seals, no text of any kind.",
+      "size": "1536x1024",
+      "out": "art/out/map-wuxia.png",
+      "status": "pending"
+    },
+    {
+      "id": "boss-wuxia",
+      "type": "boss",
+      "genre": "wuxia",
+      "prompt": "The Silent Master: a tall robed figure standing on still water at dawn, one sleeve raised, mist to the knees, face calm and unreadable. Centred, ink-wash mountains far behind, negative space at the edges.",
+      "size": "1024x1024",
+      "out": "art/out/boss-wuxia.png",
+      "status": "pending"
+    },
+    {
+      "id": "char-legend-monkey",
+      "type": "character",
+      "genre": "legend",
+      "description": "a stone monkey spirit the size of a child, granite-grey fur with gold-flecked eyes, a ragged cinnabar cape, a bronze hoop earring, standing in an unearned heroic pose",
+      "prompt": "Character reference sheet: a stone monkey spirit the size of a child, granite-grey fur with gold-flecked eyes, a ragged cinnabar cape, a bronze hoop earring, standing in an unearned heroic pose. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
+      "size": "1024x1024",
+      "out": "art/out/char-legend-monkey.png",
+      "status": "pending"
+    },
+    {
+      "id": "char-legend-earthgod",
+      "type": "character",
+      "genre": "legend",
+      "description": "a very short, very round local earth deity with a long white beard, a gold-trimmed crimson robe, a gnarled walking staff and an expression of permanent mild grievance",
+      "prompt": "Character reference sheet: a very short, very round local earth deity with a long white beard, a gold-trimmed crimson robe, a gnarled walking staff and an expression of permanent mild grievance. Three views side by side on one plain cream background — full-body three-quarter, full-body front, full-body profile. Identical lighting and proportions across all three. Neutral standing pose, no props being used, no background scenery, no text or annotation marks of any kind.",
+      "size": "1024x1024",
+      "out": "art/out/char-legend-earthgod.png",
+      "status": "pending"
+    },
+    {
+      "id": "map-legend",
+      "type": "map",
+      "genre": "legend",
+      "prompt": "A stylised mythic map: a cloud sea with islands of rock and temple gates, a great bronze mountain, a celestial road winding upward, enormous beasts half-hidden in cloud. 年画 colour, decorative border of abstract cloud motifs, no labels, no text of any kind.",
+      "size": "1536x1024",
+      "out": "art/out/map-legend.png",
+      "status": "pending"
+    },
+    {
+      "id": "boss-legend",
+      "type": "boss",
+      "genre": "legend",
+      "prompt": "The Mountain Warden: a colossal bronze-and-stone guardian seated in a mountain pass, moss on its shoulders, eyes of banked gold light, one open palm barring the road. Centred, cloud sea below, negative space at the edges.",
+      "size": "1024x1024",
+      "out": "art/out/boss-legend.png",
+      "status": "pending"
+    },
+    {
+      "id": "card-frame-common",
+      "type": "card",
+      "genre": null,
+      "prompt": "A trading-card FRAME only, viewed straight on, filling the square: plain slate-grey border, thin single rule, matte, no ornament. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.",
+      "size": "1024x1024",
+      "out": "art/out/card-frame-common.png",
+      "status": "pending"
+    },
+    {
+      "id": "card-frame-uncommon",
+      "type": "card",
+      "genre": null,
+      "prompt": "A trading-card FRAME only, viewed straight on, filling the square: jade-green border with a simple corner motif and a faint inner glow. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.",
+      "size": "1024x1024",
+      "out": "art/out/card-frame-uncommon.png",
+      "status": "pending"
+    },
+    {
+      "id": "card-frame-rare",
+      "type": "card",
+      "genre": null,
+      "prompt": "A trading-card FRAME only, viewed straight on, filling the square: deep blue border with interlocking geometric corners and a soft light bloom. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.",
+      "size": "1024x1024",
+      "out": "art/out/card-frame-rare.png",
+      "status": "pending"
+    },
+    {
+      "id": "card-frame-epic",
+      "type": "card",
+      "genre": null,
+      "prompt": "A trading-card FRAME only, viewed straight on, filling the square: violet border with layered filigree corners and a subtle radiant aura. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.",
+      "size": "1024x1024",
+      "out": "art/out/card-frame-epic.png",
+      "status": "pending"
+    },
+    {
+      "id": "card-frame-legendary",
+      "type": "card",
+      "genre": null,
+      "prompt": "A trading-card FRAME only, viewed straight on, filling the square: gold border with elaborate cloud-scroll corners, inner light and a warm halo. The entire centre is an empty flat cream panel with nothing in it — no character, no illustration, no icon, no text, no numerals. Only the decorative border is drawn. Transparent-looking flat background outside the frame.",
+      "size": "1024x1024",
+      "out": "art/out/card-frame-legendary.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-chile-ge",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a weathered bronze grassland horn lying on dark ground, wind-bent grass etched into its surface. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-chile-ge.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-yin-hu-shang",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a lacquer hand-mirror with a lake-surface finish, half bright and half misted. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-yin-hu-shang.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-chun-ye-xi-yu",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a celadon rain-catcher bowl with a single ring of water still trembling in it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-chun-ye-xi-yu.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-ci-wu-ye-ti",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a carved dark-wood crow perched on a broken branch, one wing folded over an empty nest. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-ci-wu-ye-ti.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-song-du-shaofu",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: two halves of a jade travel-token that fit together, resting slightly apart. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-song-du-shaofu.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-guo-gu-ren-zhuang",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a chipped farmhouse rice bowl with a sprig of dried chrysanthemum across it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-guo-gu-ren-zhuang.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-qi-bu-shi",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a small iron cooking pot, still warm, with seven scorched footprints worn into the stone beneath. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-qi-bu-shi.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-shui-diao-ge-tou",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a pewter wine cup tipped on its side with a full moon reflected in the spilled wine. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-shui-diao-ge-tou.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-yu-mei-ren",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a broken jade balustrade fragment with a single carved poppy flower, river water running past it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-yu-mei-ren.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-tian-jing-sha",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a traveller’s worn wooden saddle-flask hung on a bare withered branch at dusk. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-tian-jing-sha.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-chu-sai",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a rusted frontier gate-ring set into weathered stone, moonlight across it. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-chu-sai.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-chun-wang",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a bent bronze hairpin lying among spring grass growing through cracked paving. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-chun-wang.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-guo-ling-ding-yang",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a salt-stained bamboo writing slip, its cords frayed, resting on wet dark rock. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-guo-ling-ding-yang.png",
+      "status": "pending"
+    },
+    {
+      "id": "relic-man-jiang-hong",
+      "type": "relic",
+      "genre": null,
+      "prompt": "A single museum-lit artefact on a near-black ground with a warm gold rim light: a general’s iron wrist-guard with rain beading on it, leaning against a stone parapet. Centred, three-quarter view, shallow depth of field, faint dust motes in the light. Absolutely no writing, no inscription, no carved characters, no seal marks — any surface that would normally carry text is worn smooth or turned away.",
+      "size": "1024x1024",
+      "out": "art/out/relic-man-jiang-hong.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-mystery-1-1",
+      "type": "scene",
+      "genre": "mystery",
+      "prompt": "Night, heavy rain. Looking over the player’s shoulder from the street toward the half-open doorway of an old shophouse; warm yellow light spills out onto wet tiles and a thin sheet of water runs from inside across the threshold. An older woman stands just inside the doorway in silhouette. Bottom third kept dark and low-detail.",
+      "refs": [
+        "char-mystery-auntie"
+      ],
+      "fallback": "map-mystery",
+      "size": "1536x1024",
+      "out": "art/out/scene-mystery-1-1.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-mystery-1-2",
+      "type": "scene",
+      "genre": "mystery",
+      "prompt": "Morning after rain, inside the shop doorway. Close on a brand-new white folding umbrella propped behind an old wooden door — conspicuously dry, while everything around it is dark with damp. Shelves and stacked goods blurred behind. Bottom third kept plain and low-detail.",
+      "fallback": "map-mystery",
+      "size": "1536x1024",
+      "out": "art/out/scene-mystery-1-2.png",
+      "status": "pending"
+    },
+    {
+      "id": "scene-mystery-1-3",
+      "type": "scene",
+      "genre": "mystery",
+      "prompt": "Late afternoon, the rain stopped, the street steaming. A black saloon car parked at the kerb outside the shophouse, seen from the five-foot-way; a figure barely visible behind the windscreen. The older woman stands in the shop doorway in the foreground, watching the car. Bottom third kept low-detail.",
+      "refs": [
+        "char-mystery-auntie"
+      ],
+      "fallback": "map-mystery",
+      "size": "1536x1024",
+      "out": "art/out/scene-mystery-1-3.png",
+      "status": "pending"
+    }
+  ]
+}

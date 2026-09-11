@@ -1,0 +1,252 @@
+'use client';
+
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import ItemCard, { type Feedback } from '@/components/ItemCard';
+import type { PublicItem } from '@/lib/items/public';
+
+interface Stage {
+  id: string;
+  titleZh: string;
+  titleEn: string;
+  blurb: string;
+  count: number;
+  minutes: number;
+}
+
+interface BaselineResult {
+  skills: {
+    skill: string;
+    hskLevel: number;
+    percentOfTarget: number;
+    accuracy: number;
+    summaryEn: string;
+  }[];
+  estimatedChars: number;
+  gaps: { tag: string; label: string; labelEn: string; misses: number }[];
+  storyBand: number;
+  overallPercent: number;
+  minutesTaken: number;
+}
+
+export default function Prologue() {
+  const router = useRouter();
+  const [runId, setRunId] = useState('');
+  const [item, setItem] = useState<PublicItem | null>(null);
+  const [stage, setStage] = useState<Stage | null>(null);
+  const [stages, setStages] = useState<Stage[]>([]);
+  const [stageIndex, setStageIndex] = useState(0);
+  const [progress, setProgress] = useState({ done: 0, total: 1, pct: 0 });
+  const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const [result, setResult] = useState<BaselineResult | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [showStageCard, setShowStageCard] = useState(true);
+  const [resumed, setResumed] = useState(false);
+  const startedAt = useRef(Date.now());
+
+  useEffect(() => {
+    (async () => {
+      const res = await fetch('/api/baseline/start', { method: 'POST' });
+      const b = await res.json();
+      setRunId(b.runId);
+      setItem(b.item);
+      setStage(b.stage);
+      setStages(b.stages);
+      setStageIndex(b.stageIndex);
+      setProgress(b.progress);
+      setResumed(b.resumed);
+    })();
+  }, []);
+
+  const answer = useCallback(
+    async (value: string) => {
+      if (!runId || busy) return;
+      setBusy(true);
+      const res = await fetch('/api/baseline/answer', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ runId, value, elapsedMs: Date.now() - startedAt.current }),
+      });
+      const b = await res.json();
+      setBusy(false);
+      if (b.error) return;
+      setFeedback(b.feedback);
+      setProgress(b.progress);
+
+      // Hold the feedback long enough to read it, then move on. A wrong answer
+      // gets longer, because that is when the explanation matters.
+      const delay = b.feedback.correct === false ? 2600 : 1100;
+      setTimeout(() => {
+        setFeedback(null);
+        startedAt.current = Date.now();
+        if (b.done) {
+          setResult(b.result);
+          return;
+        }
+        if (b.stageChanged) {
+          setStage(b.stage);
+          setStageIndex(b.stageIndex);
+          setShowStageCard(true);
+        }
+        setItem(b.item);
+      }, delay);
+    },
+    [runId, busy],
+  );
+
+  if (result) return <ResultScreen result={result} onGo={() => router.push('/play')} />;
+
+  if (!item && !stage) {
+    return (
+      <main className="min-h-dvh grid place-items-center">
+        <p className="text-[var(--color-slate-soft)]">Opening the prologue…</p>
+      </main>
+    );
+  }
+
+  return (
+    <main className="min-h-dvh px-4 py-5 max-w-2xl mx-auto pb-24">
+      <header className="mb-5">
+        <div className="flex items-center justify-between text-xs text-[var(--color-slate-soft)] mb-2">
+          <span className="uppercase tracking-wider">
+            Prologue · {stage?.titleEn ?? ''}
+          </span>
+          <span>
+            {progress.done} / {progress.total}
+          </span>
+        </div>
+        <div className="progress">
+          <i style={{ width: `${progress.pct}%` }} />
+        </div>
+      </header>
+
+      <AnimatePresence mode="wait">
+        {showStageCard && stage ? (
+          <motion.section
+            key={`stage-${stageIndex}`}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            className="surface p-7 text-center"
+          >
+            {resumed && stageIndex > 0 && (
+              <p className="pill mb-4">Picking up where you stopped</p>
+            )}
+            <div className="zh-display text-4xl text-[var(--color-gold)]">{stage.titleZh}</div>
+            <h2 className="text-xl font-bold mt-2">{stage.titleEn}</h2>
+            <p className="text-sm text-[var(--color-slate-soft)] mt-3 leading-relaxed max-w-sm mx-auto">
+              {stage.blurb}
+            </p>
+            <p className="text-xs text-[var(--color-slate)] mt-4">
+              {stage.count} {stage.count === 1 ? 'task' : 'tasks'} · about {stage.minutes} min
+            </p>
+            <button
+              className="btn btn-primary mt-6 px-8"
+              onClick={() => {
+                setShowStageCard(false);
+                startedAt.current = Date.now();
+              }}
+            >
+              Go
+            </button>
+            {stageIndex > 0 && (
+              <p className="text-[11px] text-[var(--color-slate)] mt-4">
+                You can close this and come back — nothing is lost.
+              </p>
+            )}
+          </motion.section>
+        ) : item ? (
+          <ItemCard key={item.id} item={item} feedback={feedback} onAnswer={answer} busy={busy} />
+        ) : null}
+      </AnimatePresence>
+    </main>
+  );
+}
+
+const SKILL_LABEL: Record<string, string> = {
+  recognition: '识字 Recognition',
+  pinyinTone: '拼音声调 Pinyin & tones',
+  vocabulary: '词语 Vocabulary',
+  readAloud: '朗读 Reading aloud',
+  comprehension: '阅读理解 Comprehension',
+  handwriting: '书写 Handwriting',
+  languageKnowledge: '语文基础 Language knowledge',
+  writing: '写作 Writing',
+};
+
+function ResultScreen({ result, onGo }: { result: BaselineResult; onGo: () => void }) {
+  return (
+    <main className="min-h-dvh px-4 py-8 max-w-2xl mx-auto pb-24">
+      <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
+        <p className="pill">Prologue complete · {result.minutesTaken} min</p>
+        <h1 className="text-3xl font-bold mt-3">Here is where you actually are.</h1>
+        <p className="text-sm text-[var(--color-slate-soft)] mt-2 leading-relaxed">
+          Nothing here is a grade. It is the starting map — every chapter from now on is pitched at
+          these numbers, and they move every week.
+        </p>
+
+        <div className="surface p-5 mt-6">
+          <div className="flex items-baseline gap-3">
+            <span className="text-5xl font-bold text-[var(--color-jade-bright)]">
+              {result.estimatedChars}
+            </span>
+            <span className="text-sm text-[var(--color-slate-soft)]">
+              characters you can read on sight
+            </span>
+          </div>
+          <div className="progress mt-4">
+            <i style={{ width: `${Math.min(100, (result.estimatedChars / 2500) * 100)}%` }} />
+          </div>
+          <p className="text-xs text-[var(--color-slate)] mt-2">
+            初一 assumes about 2,500 — that is the gap this game exists to close.
+          </p>
+        </div>
+
+        <h2 className="text-lg font-bold mt-8 mb-3">Skill by skill</h2>
+        <div className="space-y-2.5">
+          {result.skills.map((s) => (
+            <div key={s.skill} className="surface p-4">
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-sm font-semibold">{SKILL_LABEL[s.skill] ?? s.skill}</span>
+                <span className="text-xs text-[var(--color-slate-soft)] whitespace-nowrap">
+                  HSK {s.hskLevel} · {Math.round(s.percentOfTarget)}% of 初一
+                </span>
+              </div>
+              <div className="progress mt-2">
+                <i style={{ width: `${Math.min(100, s.percentOfTarget)}%` }} />
+              </div>
+              <p className="text-xs text-[var(--color-slate-soft)] mt-2 leading-relaxed">
+                {s.summaryEn}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {result.gaps.length > 0 && (
+          <>
+            <h2 className="text-lg font-bold mt-8 mb-1">What to fix first</h2>
+            <p className="text-xs text-[var(--color-slate-soft)] mb-3">
+              Ranked by how much it costs you in the 统考, not by how often you got it wrong.
+            </p>
+            <ol className="space-y-2">
+              {result.gaps.slice(0, 6).map((g, i) => (
+                <li key={g.tag} className="surface p-3 flex items-center gap-3">
+                  <span className="text-[var(--color-gold)] font-bold w-5">{i + 1}</span>
+                  <span className="flex-1">
+                    <span className="zh text-sm">{g.label}</span>
+                    <span className="block text-xs text-[var(--color-slate-soft)]">{g.labelEn}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </>
+        )}
+
+        <button className="btn btn-primary w-full mt-8 py-3.5" onClick={onGo}>
+          Start chapter one
+        </button>
+      </motion.div>
+    </main>
+  );
+}
