@@ -108,6 +108,10 @@ function Panel({ children }: { children: React.ReactNode }) {
 
 function Intro({ quest, onGo }: { quest: Quest; onGo: () => void }) {
   const pct = Math.round(quest.stats.knownShare * 100);
+  // Before the prologue there are no cards, so knownShare is 0. Telling a
+  // student he can read 0% of his own lesson is both untrue and discouraging -
+  // it means "not measured yet", not "knows nothing".
+  const measured = quest.stats.knownShare > 0;
   return (
     <Panel>
       <div className="surface p-6">
@@ -115,11 +119,13 @@ function Intro({ quest, onGo }: { quest: Quest; onGo: () => void }) {
         <h1 className="zh-display text-2xl mt-3">{quest.title}</h1>
         <div className="grid grid-cols-3 gap-3 mt-5 text-center">
           <Stat n={quest.stats.chars} label="字" sub="in the lesson" />
-          <Stat n={`${pct}%`} label="you can read" sub="already" />
+          <Stat n={measured ? `${pct}%` : '—'} label="you can read" sub={measured ? 'already' : 'do the prologue'} />
           <Stat n={quest.preTeach.length} label="new words" sub="to meet first" />
         </div>
         <p className="text-sm text-[var(--color-slate-soft)] mt-5 leading-relaxed">
-          {pct >= 90
+          {!measured
+            ? 'Your reading level has not been measured yet, so this quest is pitched at the lesson rather than at you. Finish the prologue and it will fit better.'
+            : pct >= 90
             ? 'You can already read most of this. The quest is about meaning and detail, not decoding.'
             : pct >= 75
               ? 'A fair bit of this is new. Meet the words first and the reading gets much easier.'
