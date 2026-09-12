@@ -16,6 +16,8 @@ export interface CharEntry {
   freq: number;
   radical: string;
   gloss: string;
+  /** False when the dictionary offers no usable meaning - see build-glosses.ts. */
+  teachable: boolean;
 }
 
 export interface WordEntry {

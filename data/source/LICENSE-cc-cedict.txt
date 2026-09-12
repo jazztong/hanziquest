@@ -1,0 +1,12 @@
+char-glosses.json is derived from CC-CEDICT.
+
+CC-CEDICT is licensed under the Creative Commons Attribution-ShareAlike 4.0
+International License (CC BY-SA 4.0).
+  https://creativecommons.org/licenses/by-sa/4.0/
+  https://cc-cedict.org/
+
+This file contains an extracted and reformatted subset: one short English
+gloss for each of the characters in the HSK 3.0 character list. As a
+derivative work it is distributed under the same CC BY-SA 4.0 terms.
+
+Extracted 2998 character entries on 2026-09-12.

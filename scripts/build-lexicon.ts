@@ -40,6 +40,13 @@ export interface CharEntry {
   freq: number;
   radical: string;
   gloss: string;
+  /**
+   * False when the dictionary has no usable meaning for this character - only
+   * surnames, variants and cross-references. Recognition items skip these:
+   * asking "what does 兮 mean?" with the key "variant of X" is a question with
+   * no real answer.
+   */
+  teachable: boolean;
 }
 
 export interface WordEntry {
@@ -72,6 +79,13 @@ function build() {
   const hanziByBand: Record<string, string[]> = JSON.parse(
     fs.readFileSync(path.join(SRC, 'hsk-hanzi.json'), 'utf8'),
   );
+  // Character glosses come from CC-CEDICT via scripts/build-glosses.ts, NOT
+  // from the HSK word file. The word file is a vocabulary list: it covers only
+  // about half the character set, and where it does cover a character its first
+  // form is often the surname reading (也 → "surname Ye").
+  const glosses: Record<string, { gloss: string; teachable: boolean }> = JSON.parse(
+    fs.readFileSync(path.join(SRC, 'char-glosses.json'), 'utf8'),
+  );
 
   // ---- characters ---------------------------------------------------------
   // Band comes from the official 汉字表, which is authoritative for characters.
@@ -95,13 +109,15 @@ function build() {
       toneType: 'symbol',
       type: 'array',
     }) as string[];
+    const g = glosses[c];
     chars.push({
       c,
       py: [...new Set(readings)].filter(Boolean),
       band,
       freq: e?.q ?? 99999,
       radical: e?.r ?? '',
-      gloss: e ? firstGloss(e) : '',
+      gloss: g?.gloss ?? (e ? firstGloss(e) : ''),
+      teachable: g?.teachable ?? false,
     });
   }
   chars.sort((a, b) => a.band - b.band || a.freq - b.freq);
@@ -131,8 +147,12 @@ function build() {
   fs.writeFileSync(file, JSON.stringify(out));
 
   const poly = chars.filter((c) => c.py.length > 1).length;
+  const noGloss = chars.filter((c) => !c.gloss).length;
+  const unteachable = chars.filter((c) => !c.teachable).length;
   console.log(`lexicon.json written -> ${file}`);
   console.log(`  characters : ${chars.length}  (${poly} 多音字)`);
+  console.log(`  no gloss   : ${noGloss}`);
+  console.log(`  unteachable: ${unteachable} (skipped by recognition items)`);
   console.log(`  words      : ${words.length}`);
   for (let b = 1; b <= 7; b++) {
     const cc = chars.filter((c) => c.band === b).length;

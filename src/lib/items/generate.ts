@@ -52,19 +52,53 @@ const glossOf = (e: CharEntry | WordEntry) => (e.gloss || '').split(';')[0].trim
 // Character recognition
 // ---------------------------------------------------------------------------
 
+/** Senses of a character, for checking that a distractor is not also correct. */
+function sensesOf(entry: CharEntry): string[] {
+  return (entry.gloss ?? '')
+    .split(/[;,]/)
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+/** Close enough that a learner could not tell them apart. */
+function meansTheSame(a: string, b: string): boolean {
+  const norm = (x: string) =>
+    x.toLowerCase().replace(/^to\s+/, '').replace(/^\(.*?\)\s*/, '').replace(/[^a-z\s]/g, '').trim();
+  const x = norm(a);
+  const y = norm(b);
+  if (!x || !y) return false;
+  if (x === y) return true;
+  return x.length > 3 && y.length > 3 && (x.includes(y) || y.includes(x));
+}
+
 /**
  * See a character, pick its English meaning.
  *
- * Distractors come from the same band so the item tests recognition of THIS
- * character rather than "which of these four words looks like a beginner word".
+ * Two correctness rules, both added after scripts/audit-recognition.ts found
+ * real wrong items:
+ *
+ *  - Characters with no teachable meaning are skipped. A question keyed on
+ *    "variant of 从" has no answer a learner can reason to.
+ *  - A distractor is rejected if it is ALSO a sense of the target character.
+ *    Otherwise the item has two right answers and marks a correct one wrong -
+ *    the only failure here that actively teaches something false.
+ *
+ * Distractors otherwise come from the same band, so the item tests recognition
+ * of THIS character rather than "which of these looks like a beginner word".
  */
 export function charRecogniseItem(entry: CharEntry): Item | null {
+  if (!entry.teachable) return null;
   const key = glossOf(entry);
   if (!key) return null;
 
-  const pool = charsInBand(entry.band).filter(
-    (c) => c.c !== entry.c && glossOf(c) && glossOf(c) !== key,
-  );
+  const targetSenses = sensesOf(entry);
+  const pool = charsInBand(entry.band).filter((c) => {
+    if (c.c === entry.c || !c.teachable) return false;
+    const g = glossOf(c);
+    if (!g || g === key) return false;
+    // Reject any distractor that is also a meaning of the target.
+    return !targetSenses.some((s) => meansTheSame(s, g));
+  });
   if (pool.length < 3) return null;
 
   const distractors = pick(pool, 3);
@@ -186,7 +220,7 @@ function addTone(base: string, tone: number): string | null {
 
 /** Hear a syllable, pick the character. */
 export function listenCharItem(entry: CharEntry): Item | null {
-  if (isPolyphonic(entry.c)) return null;
+  if (isPolyphonic(entry.c) || !entry.teachable) return null;
   const base = pinyin(entry.c, { toneType: 'none' });
   const homophones = CHARS.filter(
     (c) => c.c !== entry.c && c.band <= entry.band + 1 && pinyin(c.c, { toneType: 'none' }) === base,

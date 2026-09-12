@@ -16,6 +16,7 @@ import {
   lookupChar,
   pinyinOf,
 } from '@/lib/lexicon';
+import { charRecogniseItem } from '@/lib/items/generate';
 
 describe('lexicon data', () => {
   it('loads the HSK 3.0 inventories', () => {
@@ -179,6 +180,90 @@ describe('rarity', () => {
     });
     for (let i = 1; i < byBand.length; i++) {
       expect(byBand[i]).toBeGreaterThanOrEqual(byBand[i - 1]);
+    }
+  });
+});
+
+describe('character glosses', () => {
+  // These guard a real bug. Glosses originally came from the HSK *word* file,
+  // which covers only half the character set and lists the surname reading
+  // first - so 也 was keyed "surname Ye" and 1,442 characters had no gloss at
+  // all, on the highest-weighted stage of the whole prologue.
+  it('gives almost every character a gloss', () => {
+    const missing = CHARS.filter((c) => !c.gloss?.trim());
+    expect(missing.length).toBeLessThanOrEqual(2);
+  });
+
+  it('gives common characters their common meaning, not their surname', () => {
+    const expected: Record<string, RegExp> = {
+      也: /also|too/i,
+      都: /all|both/i,
+      过: /cross|pass|go over/i,
+      儿: /child|son/i,
+      房: /house|room/i,
+      工: /work|labor|labour/i,
+      明: /bright/i,
+      朋: /friend/i,
+      年: /year/i,
+      车: /car|vehicle|cart/i,
+    };
+    for (const [ch, re] of Object.entries(expected)) {
+      const gloss = lookupChar(ch)?.gloss ?? '';
+      expect({ ch, gloss, ok: re.test(gloss) }).toEqual({ ch, gloss, ok: true });
+    }
+  });
+
+  it('marks characters with no usable meaning as unteachable', () => {
+    const artefact = /^(surname|variant of|old variant|used in|see |abbr)/i;
+    const wrong = CHARS.filter((c) => c.teachable && artefact.test(c.gloss));
+    expect(wrong.map((c) => `${c.c}="${c.gloss}"`)).toEqual([]);
+  });
+
+  it('keeps glosses short enough to read on a phone', () => {
+    const tooLong = CHARS.filter((c) => c.gloss.length > 50);
+    expect(tooLong.map((c) => c.c)).toEqual([]);
+  });
+});
+
+describe('recognition items are answerable and have one right answer', () => {
+  const sample = CHARS.slice(0, 400);
+
+  it('never keys an item on a dictionary artefact', () => {
+    const artefact = /^(surname|variant of|old variant|used in|see |abbr)/i;
+    for (const entry of sample) {
+      const item = charRecogniseItem(entry);
+      if (!item) continue;
+      const key = item.payload.options!.find((o) => o.id === 'k')!.en!;
+      expect({ c: entry.c, key, ok: !artefact.test(key) }).toEqual({ c: entry.c, key, ok: true });
+    }
+  });
+
+  it('never offers a distractor that is also a meaning of the target', () => {
+    const norm = (x: string) =>
+      x.toLowerCase().replace(/^to\s+/, '').replace(/[^a-z\s]/g, '').trim();
+    for (const entry of sample) {
+      const item = charRecogniseItem(entry);
+      if (!item) continue;
+      const opts = item.payload.options!;
+      const senses = entry.gloss.split(/[;,]/).map((s) => norm(s)).filter(Boolean);
+      for (const o of opts.filter((x) => x.id !== 'k')) {
+        const d = norm(o.en ?? '');
+        const clash = senses.some((s) => s === d || (s.length > 3 && d.length > 3 && (s.includes(d) || d.includes(s))));
+        expect({ c: entry.c, distractor: o.en, clash }).toEqual({ c: entry.c, distractor: o.en, clash: false });
+      }
+    }
+  });
+
+  it('always offers exactly four distinct options', () => {
+    for (const entry of sample) {
+      const item = charRecogniseItem(entry);
+      if (!item) continue;
+      const ens = item.payload.options!.map((o) => o.en);
+      expect({ c: entry.c, n: ens.length, distinct: new Set(ens).size }).toEqual({
+        c: entry.c,
+        n: 4,
+        distinct: 4,
+      });
     }
   });
 });
