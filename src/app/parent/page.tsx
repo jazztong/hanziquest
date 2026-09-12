@@ -325,6 +325,60 @@ function Lessons({ lessons, onChange }: { lessons: Dash['lessons']; onChange: ()
   const [text, setText] = useState('');
   const [result, setResult] = useState<{ vocab: { w: string; pinyin: string; gloss: string }[] } | null>(null);
   const [busy, setBusy] = useState(false);
+  const [reading, setReading] = useState(false);
+  const [ocrNote, setOcrNote] = useState('');
+
+  /**
+   * Photograph the page instead of typing it.
+   *
+   * The transcription lands in the same textarea rather than saving straight
+   * through, on purpose: OCR of printed Chinese is good but not perfect, and a
+   * mis-read character in a 课文 becomes a mis-taught character everywhere
+   * downstream. You get to read it before it counts.
+   */
+  async function readPhotos(files: FileList | null) {
+    if (!files?.length) return;
+    setReading(true);
+    setOcrNote('');
+    try {
+      const images = await Promise.all(
+        [...files].slice(0, 6).map(
+          (f) =>
+            new Promise<{ mediaType: string; base64: string }>((resolve, reject) => {
+              const fr = new FileReader();
+              fr.onload = () =>
+                resolve({
+                  mediaType: f.type || 'image/jpeg',
+                  base64: String(fr.result).split(',')[1] ?? '',
+                });
+              fr.onerror = () => reject(new Error('could not read the file'));
+              fr.readAsDataURL(f);
+            }),
+        ),
+      );
+      const res = await fetch('/api/lesson/ocr', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ images, hint: bookRef }),
+      });
+      const b = await res.json();
+      if (b.error) {
+        setOcrNote(b.error);
+      } else {
+        setText(b.text);
+        if (b.title && !title) setTitle(b.title);
+        if (b.bookRef && !bookRef) setBookRef(b.bookRef);
+        setOcrNote(
+          `Read ${b.chars} characters.` +
+            (b.unclear ? ` ${b.unclear} character(s) were unclear and marked 〓 — please fix those.` : '') +
+            ' Check it against the page before you add it.',
+        );
+      }
+    } catch {
+      setOcrNote('Could not read those images.');
+    }
+    setReading(false);
+  }
 
   async function upload() {
     setBusy(true);
@@ -345,7 +399,10 @@ function Lessons({ lessons, onChange }: { lessons: Dash['lessons']; onChange: ()
 
   return (
     <>
-      <Section title="Upload this week's 课文" sub="Paste the text. It stays on this machine.">
+      <Section
+        title="Upload this week's 课文"
+        sub="Photograph the page from your own book, or paste the text. It stays on this machine and is never sent anywhere except to transcribe a photo."
+      >
         <div className="space-y-3">
           <div className="flex gap-2">
             <input
@@ -361,11 +418,30 @@ function Lessons({ lessons, onChange }: { lessons: Dash['lessons']; onChange: ()
               className="zh flex-1 rounded-lg bg-[#111925] border border-[#2f3d52] px-3 py-2 text-sm outline-none focus:border-[var(--color-jade)]"
             />
           </div>
+          <div className="flex items-center gap-3 flex-wrap">
+            <label className="btn btn-ghost cursor-pointer text-sm">
+              📷 {reading ? 'Reading…' : 'Photograph the page'}
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                hidden
+                disabled={reading}
+                onChange={(e) => readPhotos(e.target.files)}
+              />
+            </label>
+            <span className="text-[11px] text-[var(--color-slate)]">
+              Up to 6 pages. Needs an ANTHROPIC_API_KEY; otherwise just paste below.
+            </span>
+          </div>
+          {ocrNote && (
+            <p className="text-xs text-[var(--color-gold)] leading-relaxed">{ocrNote}</p>
+          )}
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
             rows={8}
-            placeholder="把课文内容贴在这里……"
+            placeholder="把课文内容贴在这里，或者用上面的相机拍下课本那一页……"
             className="zh w-full rounded-lg bg-[#111925] border border-[#2f3d52] px-3 py-2 text-sm outline-none focus:border-[var(--color-jade)]"
           />
           <button className="btn btn-primary" disabled={busy || !text.trim()} onClick={upload}>
@@ -403,6 +479,9 @@ function Lessons({ lessons, onChange }: { lessons: Dash['lessons']; onChange: ()
                     {l.bookRef} {l.weekOf && `· ${l.weekOf}`} · {(l.vocab ?? []).length} words
                   </span>
                 </span>
+                <a href={`/lesson/${l.id}`} className="btn btn-ghost px-2 py-1 text-xs">
+                  Preview quest
+                </a>
                 <button
                   className="btn btn-ghost px-2 py-1 text-xs"
                   onClick={async () => {

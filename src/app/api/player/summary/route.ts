@@ -1,5 +1,5 @@
 import { and, eq, gte, sql } from 'drizzle-orm';
-import { db, cards, milestones, examDates, relicProgress, chapterProgress, reviews } from '@/lib/db';
+import { db, cards, milestones, examDates, relicProgress, chapterProgress, reviews, lessons } from '@/lib/db';
 import { requireUser, studentIdFor } from '@/lib/auth';
 import { knownChars, levelFromXp, profile, skills } from '@/lib/player';
 import { POEMS } from '@/content/poems';
@@ -47,7 +47,13 @@ export async function GET() {
       .filter((e) => e.date >= new Date().toISOString().slice(0, 10))
       .sort((a, b) => a.date.localeCompare(b.date))[0];
 
+    const lessonRows = await db
+      .select({ id: lessons.id, title: lessons.title, bookRef: lessons.bookRef, weekOf: lessons.weekOf })
+      .from(lessons)
+      .where(eq(lessons.userId, studentId));
+
     return {
+      lessons: lessonRows,
       profile: p && {
         ...p,
         ...levelFromXp(p.xp),

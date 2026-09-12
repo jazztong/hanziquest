@@ -35,6 +35,10 @@ const STAGE_LABELS = ['Locked', 'Heard', 'Understood', 'Recalled', 'Activated'];
 export default function Relics() {
   const [relics, setRelics] = useState<Relic[]>([]);
   const [openId, setOpenId] = useState<string | null>(null);
+  // He is in 初一. Later years are visible but folded away by default: seeing
+  // ten locked relics for years he has not started is discouraging, and hiding
+  // them entirely would hide the shape of what is coming.
+  const [showLater, setShowLater] = useState(false);
 
   useEffect(() => {
     fetch('/api/relics')
@@ -64,7 +68,11 @@ export default function Relics() {
 
   if (open) return <RelicDetail relic={open} onClose={() => setOpenId(null)} onProgress={bump} />;
 
-  const byYear = [1, 2, 3].map((y) => ({ year: y, items: relics.filter((r) => r.year === y) }));
+  const byYear = (showLater ? [1, 2, 3] : [1]).map((y) => ({
+    year: y,
+    items: relics.filter((r) => r.year === y),
+  }));
+  const laterCount = relics.filter((r) => r.year > 1).length;
 
   return (
     <main className="min-h-dvh px-4 py-5 max-w-3xl mx-auto pb-16">
@@ -76,6 +84,12 @@ export default function Relics() {
         These fourteen are the exact 默写 list named in the 初中统考 考试纲要. Not a selection — the
         list. Activate one by reciting it from memory.
       </p>
+
+      {!showLater && (
+        <p className="text-xs text-[var(--color-slate)] mb-5">
+          Showing 初一 only. The 统考 默写 list is 14 poems across all three years.
+        </p>
+      )}
 
       {byYear.map(({ year, items }) => (
         <section key={year} className="mb-8">
@@ -111,6 +125,17 @@ export default function Relics() {
           </div>
         </section>
       ))}
+
+      {!showLater && laterCount > 0 && (
+        <button className="btn btn-ghost w-full" onClick={() => setShowLater(true)}>
+          Show the {laterCount} from 初二 and 初三
+        </button>
+      )}
+      {showLater && (
+        <button className="btn btn-ghost w-full" onClick={() => setShowLater(false)}>
+          Just 初一
+        </button>
+      )}
     </main>
   );
 }

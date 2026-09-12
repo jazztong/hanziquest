@@ -12,6 +12,7 @@
  * these run 120-320字 across three difficulty steps.
  */
 import type { Item } from '@/lib/items/types';
+import { YEAR1_LANGUAGE_ITEMS } from './year1-language';
 
 const mk = (i: Omit<Item, 'source'> & { source?: Item['source'] }): Item => ({
   source: 'seed',
@@ -22,7 +23,7 @@ const mk = (i: Omit<Item, 'source'> & { source?: Item['source'] }): Item => ({
 // 语文基础知识 — 课程标准 1.6.x
 // ---------------------------------------------------------------------------
 
-export const LANGUAGE_KNOWLEDGE_ITEMS: Item[] = [
+const CORE_LANGUAGE_ITEMS: Item[] = [
   // --- 量词 -----------------------------------------------------------------
   mk({
     id: 'lk-mw-1',
@@ -121,7 +122,7 @@ export const LANGUAGE_KNOWLEDGE_ITEMS: Item[] = [
         '快 describes a quality, so it is 形容词. The trap: in English "fast" here feels adverbial, but in Chinese it sits after 得 as a complement and stays an adjective.',
       explainZh: '“快”表示性质状态，是形容词。它在“得”后面作补语。',
     },
-    tags: ['standard:1.6.7-词性', 'wc:形容词'],
+    tags: ['standard:1.6.7-形容词', 'wc:形容词'],
   }),
   mk({
     id: 'lk-wc-2',
@@ -145,7 +146,7 @@ export const LANGUAGE_KNOWLEDGE_ITEMS: Item[] = [
       explainEn: '张 is 量词. 和 is 连词 (conjunction), 走 is 动词 (verb), 很 is 副词 (adverb).',
       explainZh: '“张”是量词；“和”是连词，“走”是动词，“很”是副词。',
     },
-    tags: ['standard:1.6.7-词性', 'wc:量词'],
+    tags: ['standard:1.6.7-量词', 'wc:量词'],
   }),
   mk({
     id: 'lk-wc-3',
@@ -169,7 +170,7 @@ export const LANGUAGE_KNOWLEDGE_ITEMS: Item[] = [
       explainEn: '忽然 modifies the verb 下, so it is 副词. Compare 突然, which can be either 副词 or 形容词 — 忽然 can only be 副词.',
       explainZh: '“忽然”修饰动词，是副词。（“突然”则可作副词，也可作形容词。）',
     },
-    tags: ['standard:1.6.7-词性', 'wc:副词'],
+    tags: ['standard:1.6.7-副词', 'wc:副词'],
   }),
 
   // --- 标点符号 -------------------------------------------------------------
@@ -196,7 +197,7 @@ export const LANGUAGE_KNOWLEDGE_ITEMS: Item[] = [
         'Chinese uses 、 (顿号) between items in a list, not ，. This is one of the most common marks lost by students who write Chinese with English punctuation habits.',
       explainZh: '并列的词语之间用顿号“、”，不用逗号。',
     },
-    tags: ['standard:1.6.8-标点', 'punct:顿号'],
+    tags: ['standard:1.6.8-顿号', 'punct:顿号'],
   }),
   mk({
     id: 'lk-pt-2',
@@ -220,7 +221,7 @@ export const LANGUAGE_KNOWLEDGE_ITEMS: Item[] = [
       explainEn: 'A colon introduces direct speech after 说. The quote itself uses 「」 or “”.',
       explainZh: '“说”后面引出直接引语，用冒号。',
     },
-    tags: ['standard:1.6.8-标点', 'punct:冒号'],
+    tags: ['standard:1.6.8-冒号', 'punct:冒号'],
   }),
   mk({
     id: 'lk-pt-3',
@@ -244,7 +245,7 @@ export const LANGUAGE_KNOWLEDGE_ITEMS: Item[] = [
       explainEn: 'Book, film and article titles take 书名号《》. Quotation marks are for speech and for words used in a special sense.',
       explainZh: '书名、篇名、影片名用书名号《》。',
     },
-    tags: ['standard:1.6.8-标点', 'punct:书名号'],
+    tags: ['standard:1.6.8-书名号', 'punct:书名号'],
   }),
 
   // --- 修辞 -----------------------------------------------------------------
@@ -382,7 +383,8 @@ export const PASSAGES: Passage[] = [
         skill: 'comprehension',
         band: 2,
         year: 1,
-        standardRef: '4.3.1.1',
+        standardRef: '1.2.3',
+        examRef: '4.3.1.1',
         payload: {
           stem: '“我”为什么要站在学校门口等？',
           stemEn: 'Why did the narrator have to wait at the school gate?',
@@ -403,7 +405,8 @@ export const PASSAGES: Passage[] = [
         skill: 'comprehension',
         band: 2,
         year: 1,
-        standardRef: '4.3.4.1',
+        standardRef: '1.2.1',
+        examRef: '4.3.4.1',
         payload: {
           stem: '“他笑了笑，跑进雨里”——从这句话可以看出那个同学是怎样的人？',
           stemEn: 'What does this line tell you about the classmate?',
@@ -444,7 +447,8 @@ export const PASSAGES: Passage[] = [
         skill: 'comprehension',
         band: 3,
         year: 1,
-        standardRef: '4.3.3.1',
+        standardRef: '1.2.3',
+        examRef: '4.3.3.1',
         payload: {
           stem: '文中反复写“走廊还在”，作用是什么？',
           stemEn: 'Why does the writer repeat that the veranda is still there?',
@@ -470,7 +474,8 @@ export const PASSAGES: Passage[] = [
         skill: 'comprehension',
         band: 3,
         year: 1,
-        standardRef: '4.3',
+        standardRef: '1.2.2',
+        examRef: '4.3',
         payload: {
           stem: '这篇文章的中心思想是什么？',
           stemEn: 'What is the central idea of this piece?',
@@ -510,7 +515,8 @@ export const PASSAGES: Passage[] = [
         skill: 'comprehension',
         band: 4,
         year: 1,
-        standardRef: '4.3.4.2',
+        standardRef: '1.2.4',
+        examRef: '4.3.4.2',
         payload: {
           stem: '第二段“有的像洋葱，有的像奶油”用了什么说明方法？',
           stemEn: 'Which 说明方法 does paragraph two use?',
@@ -536,7 +542,8 @@ export const PASSAGES: Passage[] = [
         skill: 'comprehension',
         band: 4,
         year: 1,
-        standardRef: '4.2.1',
+        standardRef: '1.6.5',
+        examRef: '4.2.1',
         payload: {
           stem: '“香和臭并不在榴梿身上，而在闻的人身上”这句话的意思是：',
           stemEn: 'What does the final sentence mean?',
@@ -598,3 +605,16 @@ export const BASELINE_WRITING_PROMPT = {
     '我觉得……（你的感受）',
   ],
 };
+
+/**
+ * The full 初一 语文基础知识 bank.
+ *
+ * The hand-written core above plus src/content/year1-language.ts, which fills
+ * the clauses the curriculum audit found uncovered: 1.6.1 错别字, 1.6.3 音变,
+ * 1.6.6 成语格言, the remaining 词性 classes, the remaining 标点 marks, and
+ * 借代/引用. Run `npx tsx scripts/curriculum-audit.ts` after adding any item.
+ */
+export const LANGUAGE_KNOWLEDGE_ITEMS: Item[] = [
+  ...CORE_LANGUAGE_ITEMS,
+  ...YEAR1_LANGUAGE_ITEMS,
+];

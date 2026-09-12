@@ -28,6 +28,7 @@ interface Summary {
   chaptersCompleted: number;
   reviewsThisWeek: number;
   milestones: { id: string; title: string; titleEn: string; current: number; target: number; pct: number; achievedAt: number | null }[];
+  lessons: { id: string; title: string; bookRef: string; weekOf: string | null }[];
   nextExam: { label: string; date: string; daysAway: number; isPlaceholder: boolean } | null;
 }
 
@@ -64,6 +65,10 @@ export default function PlayHub() {
 
   const p = s.profile;
   const nextMilestone = s.milestones.filter((m) => !m.achievedAt).sort((a, b) => b.pct - a.pct)[0];
+  // Most recent by the week it is taught, falling back to upload order.
+  const latestLesson = [...(s.lessons ?? [])].sort((a, b) =>
+    (b.weekOf ?? '').localeCompare(a.weekOf ?? ''),
+  )[0];
 
   return (
     <main className="min-h-dvh pb-10">
@@ -116,6 +121,25 @@ export default function PlayHub() {
               <span className="text-[var(--color-jade)]" aria-hidden>→</span>
             </div>
           </Link>
+
+          {latestLesson && (
+            <Link
+              href={`/lesson/${latestLesson.id}`}
+              className="surface block p-5 mt-3 hover:border-[var(--color-jade)] transition"
+            >
+              <div className="flex items-center gap-4">
+                <div className="text-3xl" aria-hidden>📚</div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-bold">This week's 课文</div>
+                  <div className="zh text-sm text-[var(--color-slate-soft)] truncate">
+                    {latestLesson.title}
+                    {latestLesson.bookRef ? ` · ${latestLesson.bookRef}` : ''}
+                  </div>
+                </div>
+                <span className="text-[var(--color-jade)]" aria-hidden>→</span>
+              </div>
+            </Link>
+          )}
 
           <div className="grid grid-cols-3 gap-3 mt-3">
             <Link href="/deck" className="surface p-4 hover:border-[var(--color-jade)] transition">

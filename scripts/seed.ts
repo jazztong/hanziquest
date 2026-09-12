@@ -35,14 +35,18 @@ const EXAM_DATES = [
   { id: 'e-uec-2028', label: '初中统考 华文 (JY01)', kind: 'uec-junior', date: '2028-10-24', placeholder: 1 },
 ];
 
+/**
+ * Milestones, scoped to 初一 and the 初二 entry point.
+ *
+ * The 初三 and 统考 targets are real and still recorded in docs/research.md, but
+ * a 2028 goal on a thirteen-year-old's home screen in 2026 is not motivating -
+ * it is just a large number a long way off. They come back when he gets there.
+ */
 const MILESTONES = [
   { key: 'chars-500', title: '认识 500 字', titleEn: 'Recognise 500 characters', kind: 'chars', target: 500, due: '2026-12-31', arc: 'arc-1' },
   { key: 'chars-1000', title: '认识 1000 字', titleEn: 'Recognise 1,000 characters', kind: 'chars', target: 1000, due: '2027-06-30', arc: 'arc-2' },
-  { key: 'chars-1500', title: '认识 1500 字', titleEn: 'Recognise 1,500 characters', kind: 'chars', target: 1500, due: '2027-12-31', arc: 'arc-3' },
-  { key: 'chars-2500', title: '认识 2500 字', titleEn: 'Recognise 2,500 characters', kind: 'chars', target: 2500, due: '2028-09-30', arc: 'arc-4' },
-  { key: 'relics-4', title: '收集 4 件古诗文遗物', titleEn: 'Activate 4 poem relics (初一/初二 set)', kind: 'relics', target: 4, due: '2027-11-05', arc: 'arc-2' },
-  { key: 'relics-14', title: '收集全部 14 件遗物', titleEn: 'Activate all 14 poem relics (统考 默写 list)', kind: 'relics', target: 14, due: '2028-10-01', arc: 'arc-4' },
-  { key: 'essay-400', title: '完成第一篇 400 字作文', titleEn: 'First 400-character essay', kind: 'writing', target: 400, due: '2028-06-30', arc: 'arc-4' },
+  { key: 'relics-4', title: '收集 4 件初一古诗文遗物', titleEn: 'Activate the 4 初一 poem relics', kind: 'relics', target: 4, due: '2027-01-05', arc: 'arc-2' },
+  { key: 'essay-300', title: '完成第一篇 300 字作文', titleEn: 'First 300-character essay (初一 length)', kind: 'writing', target: 300, due: '2026-11-06', arc: 'arc-1' },
   { key: 'exam-final-2026', title: '期末考准备好', titleEn: '初一 期末考 ready', kind: 'exam', target: 70, due: '2026-11-06', arc: 'arc-1' },
   { key: 'entry-junior2', title: '升上初二', titleEn: '初二 entry ready', kind: 'exam', target: 75, due: '2027-01-05', arc: 'arc-2' },
 ];

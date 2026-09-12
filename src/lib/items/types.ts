@@ -69,8 +69,20 @@ export interface Item {
   skill: Skill;
   band: number;
   year: number;
-  /** Clause reference from the 课程标准, e.g. "1.6.9-比喻". */
+  /**
+   * Clause from the 课程标准 (2016) - what is being TAUGHT, e.g. "1.6.9".
+   * This is the 初一/初二/初三 syllabus numbering.
+   */
   standardRef?: string;
+  /**
+   * Clause from the 考试纲要 (2026) - how it is ASSESSED in the 统考, e.g. "3.4.1".
+   *
+   * Two documents, two numbering systems. Carrying both lets the parent
+   * dashboard say "初一 syllabus 1.6.9, examined as 统考 3.4 修辞" - and it was a
+   * real bug to conflate them: the curriculum audit could not see that the
+   * comprehension items covered 初一 clauses because they carried only 统考 refs.
+   */
+  examRef?: string;
   payload: ItemPayload;
   answer: ItemAnswer;
   source: 'seed' | 'claude' | 'lesson';
