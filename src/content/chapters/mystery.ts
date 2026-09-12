@@ -55,9 +55,9 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           artId: 'scene-mystery-1-1',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '下雨了。', 'It has started to rain.'),
-            L('l2', 'narrator', '你走到店门口。', 'You walk up to the shop doorway.'),
-            L('l3', 'narrator', '门没有关，也没有开。', 'The door is not shut, and not open either.'),
+            L('l1', 'narrator', '天一黑，雨就下了起来。', 'The moment it got dark, the rain started.'),
+            L('l2', 'narrator', '你走到店门口的时候，里面还亮着一盏灯。', 'By the time you reach the shop doorway, one light is still on inside.'),
+            L('l3', 'narrator', '那扇门没有关上，可是也没有开着，就那样停在中间。', 'The door is not shut, but not open either — it just hangs there, halfway.'),
           ],
         },
         {
@@ -76,8 +76,8 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           promptZh: '她说今天没有人来。你看门口，你看到什么？',
           promptEn: 'She says nobody came today. You look at the doorway. What do you see?',
           lines: [
-            L('l7', 'narrator', '门口有水。水是从里面出来的。', 'There is water at the doorway. It came from inside.'),
-            L('l8', 'narrator', '外面下雨，里面也有雨水。', 'It is raining outside — and there is rainwater inside too.'),
+            L('l7', 'narrator', '门口的地上有一片水，而那片水，是从里面流出来的。', 'There is a patch of water at the doorway — and that water ran out from inside.'),
+            L('l8', 'narrator', '外面在下雨，这不奇怪；奇怪的是，里面也有雨水。', 'It is raining outside, which is not strange. What is strange is that there is rainwater inside as well.'),
           ],
           choices: [
             {
@@ -114,9 +114,9 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           rejoin: 'n4',
           teaches: ['从', '里面', '出来'],
           lines: [
-            L('l9', 'narrator', '你再看一次。水是从里面出来的。', 'You look again. The water came out from inside.'),
+            L('l9', 'narrator', '你再看一次：那片水不是流进去的，是流出来的。', 'You look again: the water did not run in. It ran out.'),
             L('l10', 'narrator', '「从里面出来」——不是从外面进去。', '从里面出来 — "out from inside", not "in from outside".'),
-            L('l11', 'narrator', '所以，有人先进去了。', 'So somebody went in first.'),
+            L('l11', 'narrator', '所以，一定是先有人进去，水才跟着他出来。', 'So somebody must have gone in first, and the water followed them out.'),
           ],
         },
         {
@@ -147,8 +147,8 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           kind: 'narration',
           next: 'n6',
           lines: [
-            L('l15', 'auntie', '她不说话了。', 'She stops talking.'),
-            L('l16', 'narrator', '你看到门后面有一个白色的东西。', 'You see something white behind the door.'),
+            L('l15', 'auntie', '她忽然不说话了，只是盯着你看。', 'She stops talking all at once, and simply stares at you.'),
+            L('l16', 'narrator', '就在这个时候，你看到门后面有一个白色的东西。', 'And it is right then that you see something white behind the door.'),
           ],
         },
         {
@@ -195,9 +195,9 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           artId: 'scene-mystery-1-2',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '第二天，你又来了。', 'The next day, you come back.'),
-            L('l2', 'narrator', '门后面的白色东西是一把伞。', 'The white thing behind the door is an umbrella.'),
-            L('l3', 'narrator', '伞是白色的，很新。', 'The umbrella is white, and very new.'),
+            L('l1', 'narrator', '第二天下午雨停了，你又回到那条街上。', 'The next afternoon the rain has stopped, and you go back to that street.'),
+            L('l2', 'narrator', '门后面那个白色的东西，原来是一把伞。', 'That white thing behind the door turns out to be an umbrella.'),
+            L('l3', 'narrator', '伞是白色的，看上去很新，一点旧的样子也没有。', 'It is white, it looks new, and there is nothing worn about it at all.'),
           ],
         },
         {
@@ -217,8 +217,8 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           promptZh: '昨天下大雨。这把伞是干的。为什么？',
           promptEn: 'It rained hard yesterday. This umbrella is dry. Why?',
           lines: [
-            L('l8', 'narrator', '你看这把伞。', 'You look at the umbrella.'),
-            L('l9', 'narrator', '外面下了一天雨，可是伞是干的。', 'It rained all day outside, but the umbrella is dry.'),
+            L('l8', 'narrator', '你走过去，把那把伞拿起来看。', 'You go over and pick the umbrella up to look at it.'),
+            L('l9', 'narrator', '外面下了一天的雨，可是这把伞从上到下都是干的。', 'It rained all day outside, yet this umbrella is dry from top to bottom.'),
           ],
           choices: [
             {
@@ -254,9 +254,9 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           rejoin: 'n4',
           teaches: ['干', '湿', '用'],
           lines: [
-            L('l10', 'narrator', '想一想：下雨的时候，你用伞。', 'Think: when it rains, you use an umbrella.'),
-            L('l11', 'narrator', '用了伞，伞就是湿的。没用，伞就是干的。', 'Used, the umbrella is wet. Unused, it is dry.'),
-            L('l12', 'narrator', '这把伞是干的。', 'This umbrella is dry.'),
+            L('l10', 'narrator', '想一想：下雨的时候，人才会用伞。', 'Think: people only open an umbrella when it is raining.'),
+            L('l11', 'narrator', '用过的伞一定是湿的；没用过的伞，才会是干的。', 'An umbrella that has been used is wet. Only one that was never opened stays dry.'),
+            L('l12', 'narrator', '而这一把，从头到尾都是干的。', 'And this one is dry all the way through.'),
           ],
         },
         {
@@ -264,7 +264,7 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           kind: 'narration',
           next: 'n5',
           lines: [
-            L('l13', 'narrator', '伞是干的，可是门口有水。', 'The umbrella is dry, but there was water at the door.'),
+            L('l13', 'narrator', '伞是干的，门口却有水——这两件事放在一起，就说不通了。', 'The umbrella is dry, but there was water at the door — put those two together and they do not add up.'),
             L('l14', 'you', '「所以，那个人是坐车来的。」', '"So that person came by car."'),
           ],
         },
@@ -277,7 +277,7 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           passScore: 0.6,
           onPass: 'n6',
           onPartial: 'd2',
-          lines: [L('l15', 'narrator', '你问她。', 'You ask her.')],
+          lines: [L('l15', 'narrator', '你把伞放回去，然后问她。', 'You put the umbrella back, and then you ask her.')],
         },
         {
           id: 'd2',
@@ -296,7 +296,7 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
             'A dry umbrella, and a car nobody mentioned. Auntie Lim knows more than she is saying.',
           lines: [
             L('l18', 'auntie', '「有。一辆黑色的车。」', '"Yes. A black car."'),
-            L('l19', 'narrator', '她说完，就不说话了。', 'She says that, and then says nothing more.'),
+            L('l19', 'narrator', '她说完这一句，就低下头，再也不说话了。', 'She says that one line, lowers her head, and says nothing more.'),
           ],
         },
       ],
@@ -333,9 +333,9 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           artId: 'scene-mystery-1-3',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '雨停了。路上很安静。', 'The rain has stopped. The road is quiet.'),
-            L('l2', 'narrator', '一辆黑色的车停在店外面。', 'A black car is parked outside the shop.'),
-            L('l3', 'narrator', '车里有一个人。', 'There is someone in the car.'),
+            L('l1', 'narrator', '雨停了以后，整条路都安静了下来。', 'After the rain stops, the whole road goes quiet.'),
+            L('l2', 'narrator', '一辆黑色的车停在店外面，已经停了很久。', 'A black car is parked outside the shop, and it has been there a long time.'),
+            L('l3', 'narrator', '车里坐着一个人，你看不清楚他的脸。', 'Someone is sitting inside, and you cannot make out their face.'),
           ],
         },
         {
@@ -344,8 +344,8 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           next: 'n3',
           lines: [
             L('l4', 'auntie', '「我不认识他。」林阿姨说。', '"I do not know him," says Auntie Lim.'),
-            L('l5', 'narrator', '可是她在看车，一直在看。', 'But she is watching the car, watching it the whole time.'),
-            L('l6', 'narrator', '车里的人也在看她。', 'And the person in the car is watching her.'),
+            L('l5', 'narrator', '可是她一边说，一边看着那辆车，眼睛一直没有离开。', 'But as she says it she is watching that car, and her eyes never leave it.'),
+            L('l6', 'narrator', '而车里的那个人，也一直在看她。', 'And the person in the car is watching her right back.'),
           ],
         },
         {
@@ -354,8 +354,8 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           promptZh: '林阿姨说她不认识他。你相信吗？为什么？',
           promptEn: 'Auntie Lim says she does not know him. Do you believe her? Why?',
           lines: [
-            L('l7', 'narrator', '她说不认识，可是她一直在看那辆车。', 'She says she does not know him, but she keeps watching that car.'),
-            L('l8', 'narrator', '车里的人也在看她。', 'The person in the car is watching her back.'),
+            L('l7', 'narrator', '她说不认识，可是她的眼睛一直在那辆车上。', 'She says she does not know him, but her eyes stay on that car the whole time.'),
+            L('l8', 'narrator', '而车里的那个人，也一直在看她。', 'And the person in the car is watching her right back.'),
           ],
           choices: [
             {
@@ -392,9 +392,9 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           rejoin: 'n4',
           teaches: ['也', '一直', '对方'],
           lines: [
-            L('l9', 'narrator', '注意这个字：「也」。', 'Notice this character: 也.'),
+            L('l9', 'narrator', '注意句子里的这个字：「也」。', 'Notice this one character in the sentence: 也.'),
             L('l10', 'narrator', '「他也在看她」——因为她在看他，他也在看她。', '"He is ALSO watching her" — because she is watching him, and he is watching her too.'),
-            L('l11', 'narrator', '两个人一直在看对方。这不是不认识。', 'The two of them keep watching each other. That is not "not knowing".'),
+            L('l11', 'narrator', '两个人一直在看对方，这就不是「不认识」了。', 'The two of them keep watching each other — that is not what "not knowing someone" looks like.'),
           ],
         },
         {
@@ -402,7 +402,7 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           kind: 'narration',
           next: 'n5',
           lines: [
-            L('l12', 'narrator', '车开走了。', 'The car drives away.'),
+            L('l12', 'narrator', '车慢慢开走了，她才把眼睛收回来。', 'The car pulls away slowly, and only then does she look away.'),
             L('l13', 'auntie', '「你真的想知道吗？」她问你。', '"Do you really want to know?" she asks you.'),
           ],
         },
@@ -415,7 +415,7 @@ export const MYSTERY_CHAPTERS: SeedChapter[] = [
           passScore: 0.65,
           onPass: 'n6',
           onPartial: 'd2',
-          lines: [L('l14', 'narrator', '你要怎么回答她？', 'How will you answer her?')],
+          lines: [L('l14', 'narrator', '她等着你回答，你要怎么说？', 'She is waiting for your answer. What will you say?')],
         },
         {
           id: 'd2',

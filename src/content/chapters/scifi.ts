@@ -41,8 +41,8 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           artId: 'scene-scifi-1-1',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '这是你的第一天。', 'This is your first day.'),
-            L('l2', 'narrator', '你走到门前。门是关着的。', 'You walk up to the hatch. It is shut.'),
+            L('l1', 'narrator', '这是你上船的第一天，什么都还不懂。', 'It is your first day aboard, and you understand nothing yet.'),
+            L('l2', 'narrator', '你走到门前，那扇门关得很紧，一点缝也没有。', 'You walk up to the hatch. It is shut tight, without even a gap.'),
             L('l3', 'system', '「说出来。我就开。」', '"Say it. Then I will open."'),
           ],
         },
@@ -55,7 +55,7 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           passScore: 0.6,
           onPass: 'n3',
           onPartial: 'd1',
-          lines: [L('l4', 'narrator', '你要说什么？', 'What will you say?')],
+          lines: [L('l4', 'narrator', '船在等你开口，你要说什么？', 'The ship is waiting for you to speak. What will you say?')],
         },
         {
           id: 'd1',
@@ -64,7 +64,7 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           teaches: ['开门'],
           lines: [
             L('l5', 'system', '「我没听清楚。」', '"I did not hear that clearly."'),
-            L('l6', 'narrator', '你再说一次，慢一点。', 'You say it again, more slowly.'),
+            L('l6', 'narrator', '你深呼吸一下，再说一次，这次慢一点。', 'You take a breath and say it again, more slowly this time.'),
           ],
         },
         {
@@ -128,8 +128,8 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           kind: 'narration',
           next: 'n6',
           lines: [
-            L('l13', 'narrator', '你想了一下。', 'You think about that for a moment.'),
-            L('l14', 'narrator', '这不是一艘会听话的船。这是一艘会听字的船。', 'This is not a ship that obeys you. It is a ship that obeys words.'),
+            L('l13', 'narrator', '你站在原地想了一下，忽然明白了一件事。', 'You stand there thinking, and something suddenly makes sense.'),
+            L('l14', 'narrator', '这不是一艘听话的船，而是一艘听字的船——你说什么，它就做什么。', 'This is not a ship that obeys you — it is a ship that obeys words. Whatever you say, it does.'),
           ],
         },
         {
@@ -139,7 +139,7 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
             'The ship does exactly what you say — which is only useful once you can say it. Chapter two takes you further in.',
           lines: [
             L('l15', 'elder', '「明天你自己来。」', '"Tomorrow you come on your own."'),
-            L('l16', 'narrator', '门在你后面关上了。', 'The hatch closes behind you.'),
+            L('l16', 'narrator', '门在你后面慢慢关上了，一点声音也没有。', 'The hatch closes slowly behind you, without a sound.'),
           ],
         },
       ],
@@ -175,9 +175,9 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           artId: 'scene-scifi-1-2',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '第二天，你一个人来了。', 'The next day, you come alone.'),
-            L('l2', 'narrator', '你试了很多话。船都听了。', 'You try many commands. The ship takes them all.'),
-            L('l3', 'narrator', '可是有一句，它不能做。', 'But there is one it will not do.'),
+            L('l1', 'narrator', '第二天，船长不在，你一个人来到这里。', 'The next day the captain is away, and you come here on your own.'),
+            L('l2', 'narrator', '你试了很多句话，船一句一句都听了，也都做了。', 'You try one line after another, and the ship takes every one of them and acts.'),
+            L('l3', 'narrator', '可是有那么一句，不管你怎么说，它都不肯做。', 'But there is one line that, however you say it, it will not do.'),
           ],
         },
         {
@@ -196,8 +196,8 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           promptZh: '船说「我不知道」。一艘什么都记得的船，为什么会不知道？',
           promptEn: 'The ship says it does not know. A ship that remembers everything — why would it not know?',
           lines: [
-            L('l7', 'narrator', '这艘船记得每一天，每一句话。', 'This ship remembers every day and every word.'),
-            L('l8', 'narrator', '可是这一件事，它说它不知道。', 'But this one thing, it says it does not know.'),
+            L('l7', 'narrator', '这艘船记得每一天发生的事，也记得每一句说过的话。', 'This ship remembers everything that happened on every day, and every line ever spoken to it.'),
+            L('l8', 'narrator', '可是只有这一件事，它说它不知道。', 'Yet on this one thing alone, it says it does not know.'),
           ],
           choices: [
             {
@@ -235,8 +235,8 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           rejoin: 'n4',
           teaches: ['每', '不能', '不知道'],
           lines: [
-            L('l9', 'narrator', '「每一句话」——一句也不会忘。', '"Every single line" — it forgets none of them.'),
-            L('l10', 'narrator', '所以「不知道」不是忘了，是以前有人拿走了。', 'So "does not know" is not forgetting. Someone took it away before.'),
+            L('l9', 'narrator', '「每一句话」的意思是：一句也不会忘。', '"Every single line" — it forgets none of them.'),
+            L('l10', 'narrator', '所以它说「不知道」，不是忘了，而是以前有人把这件事拿走了。', 'So when it says "I do not know", it has not forgotten — someone took that away from it before.'),
           ],
         },
         {
@@ -257,7 +257,7 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           passScore: 0.6,
           onPass: 'n6',
           onPartial: 'd2',
-          lines: [L('l13', 'narrator', '你没有停。你问了。', 'You do not stop. You ask.')],
+          lines: [L('l13', 'narrator', '你知道不该再问，可是你还是问了。', 'You know you should stop asking, and you ask anyway.')],
         },
         {
           id: 'd2',
@@ -266,7 +266,7 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           teaches: ['对不对'],
           lines: [
             L('l14', 'elder', '「什么？」', '"What?"'),
-            L('l15', 'narrator', '你看着她，再问一次。', 'You look at her and ask again.'),
+            L('l15', 'narrator', '你看着她的眼睛，又问了一次。', 'You look her in the eye and ask again.'),
           ],
         },
         {
@@ -312,9 +312,9 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           artId: 'scene-scifi-1-3',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '船的后面有一个门。', 'There is a hatch at the back of the ship.'),
-            L('l2', 'narrator', '这个门一直是关着的。', 'That hatch has always been shut.'),
-            L('l3', 'narrator', '今天晚上，你走过去听。', 'Tonight, you go over and listen.'),
+            L('l1', 'narrator', '这艘船的后面还有一个门，你从来没有走过去。', 'There is another hatch at the back of this ship, and you have never walked over to it.'),
+            L('l2', 'narrator', '从你上船的那天起，那个门就一直关着。', 'From the day you came aboard, that hatch has been shut.'),
+            L('l3', 'narrator', '今天晚上大家都睡了，你一个人走过去，靠在门上听。', 'Tonight, with everyone asleep, you go over alone and lean against it to listen.'),
           ],
         },
         {
@@ -322,8 +322,8 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           kind: 'narration',
           next: 'n3',
           lines: [
-            L('l4', 'narrator', '里面有声音。', 'There is a sound inside.'),
-            L('l5', 'narrator', '很小，可是你听得出来：那是说话的声音。', 'Very small, but you can make it out: it is the sound of speaking.'),
+            L('l4', 'narrator', '里面有声音，很小，可是的确有声音。', 'There is a sound inside — very faint, but there.'),
+            L('l5', 'narrator', '你安静下来再听一次，那是有人在说话的声音。', 'You go still and listen again: it is the sound of someone talking.'),
           ],
         },
         {
@@ -332,8 +332,8 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           promptZh: '船上只有你和船长两个人。里面为什么会有说话的声音？',
           promptEn: 'Only you and the captain are aboard. So why is there a voice inside?',
           lines: [
-            L('l6', 'narrator', '船上只有两个人：你，和船长。', 'There are only two people aboard: you, and the captain.'),
-            L('l7', 'narrator', '船长在前面。你在这里。', 'The captain is up front. You are here.'),
+            L('l6', 'narrator', '这艘船上只有两个人：一个是你，一个是船长。', 'There are only two people on this ship: you, and the captain.'),
+            L('l7', 'narrator', '船长在前面睡着，而你就站在这里。', 'The captain is asleep up front, and you are standing right here.'),
           ],
           choices: [
             {
@@ -369,8 +369,8 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           rejoin: 'n4',
           teaches: ['只有', '得出来'],
           lines: [
-            L('l8', 'narrator', '「只有两个人」——不多不少，就是两个。', '"Only two people" — not more, not fewer. Exactly two.'),
-            L('l9', 'narrator', '两个人都不在这里，那声音就应该是别的。', 'Both are elsewhere, so the voice should be something else.'),
+            L('l8', 'narrator', '「只有两个人」的意思是：不多不少，就是两个。', '"Only two people" — not more, not fewer. Exactly two.'),
+            L('l9', 'narrator', '两个人都不在这里，那么这个声音就应该是别的什么。', 'Neither of them is here, so that voice has to belong to something else.'),
           ],
         },
         {
@@ -378,8 +378,8 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           kind: 'narration',
           next: 'n5',
           lines: [
-            L('l10', 'narrator', '你把手放在门上，再听一次。', 'You put your hand on the hatch and listen again.'),
-            L('l11', 'narrator', '那个声音，和船说话的声音一样。', 'That voice sounds the same as the ship’s.'),
+            L('l10', 'narrator', '你把手放在那扇门上，又听了一次。', 'You put your hand flat on the hatch and listen once more.'),
+            L('l11', 'narrator', '那个声音，和船平时说话的声音完全一样。', 'That voice sounds exactly the same as the ship when it speaks to you.'),
           ],
         },
         {
@@ -391,7 +391,7 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           passScore: 0.65,
           onPass: 'n6',
           onPartial: 'd2',
-          lines: [L('l12', 'narrator', '你小声问。', 'You ask quietly.')],
+          lines: [L('l12', 'narrator', '你轻轻地、小声地问了一句。', 'You ask, very quietly.')],
         },
         {
           id: 'd2',
@@ -399,8 +399,8 @@ export const SCIFI_CHAPTERS: SeedChapter[] = [
           rejoin: 'n6',
           teaches: ['是你吗'],
           lines: [
-            L('l13', 'narrator', '里面没有回答。', 'Nothing answers.'),
-            L('l14', 'narrator', '你再问一次，说清楚一点。', 'You ask again, more clearly.'),
+            L('l13', 'narrator', '里面安静了下来，没有人回答你。', 'It goes quiet inside. Nothing answers you.'),
+            L('l14', 'narrator', '你再问一次，这次说得清楚一点。', 'You ask again, more clearly this time.'),
           ],
         },
         {

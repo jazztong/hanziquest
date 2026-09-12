@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import ItemCard, { type Feedback } from '@/components/ItemCard';
 import type { PublicItem } from '@/lib/items/public';
+import SoundToggle from '@/components/SoundToggle';
+import { sfx } from '@/lib/sfx';
 
 interface Stage {
   id: string;
@@ -81,6 +83,7 @@ export default function Prologue() {
         setFeedback(null);
         startedAt.current = Date.now();
         if (b.done) {
+          sfx('complete');
           setResult(b.result);
           return;
         }
@@ -112,8 +115,9 @@ export default function Prologue() {
           <span className="uppercase tracking-wider">
             Prologue · {stage?.titleEn ?? ''}
           </span>
-          <span>
+          <span className="flex items-center gap-2">
             {progress.done} / {progress.total}
+            <SoundToggle />
           </span>
         </div>
         <div className="progress">
@@ -144,6 +148,7 @@ export default function Prologue() {
             <button
               className="btn btn-primary mt-6 px-8"
               onClick={() => {
+                sfx('unlock');
                 setShowStageCard(false);
                 startedAt.current = Date.now();
               }}

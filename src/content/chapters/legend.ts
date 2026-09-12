@@ -42,9 +42,9 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           artId: 'scene-legend-1-1',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '天上的人很忙。', 'The people up above are very busy.'),
-            L('l2', 'narrator', '所以这件事，给了你一张纸。', 'So this errand came to you as one sheet of paper.'),
-            L('l3', 'narrator', '纸上有三个字。', 'There are three characters on it.'),
+            L('l1', 'narrator', '天上的人都很忙，没有人想接这件事。', 'Everyone up above is busy, and nobody wants this errand.'),
+            L('l2', 'narrator', '所以这件事最后落到你手上，只给了你一张纸。', 'So it ends up with you, and all you are given is one sheet of paper.'),
+            L('l3', 'narrator', '那张纸上只写着三个字，别的什么也没有。', 'There are three characters on it and nothing else.'),
           ],
         },
         {
@@ -54,7 +54,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           lines: [
             L('l4', 'man', '「三个字？」石猴说。', '"Three characters?" says Stone Monkey.'),
             L('l5', 'man', '「我也不认得。我们走吧。」', '"I cannot read them either. Let’s just go."'),
-            L('l6', 'narrator', '他已经走在前面了。', 'He is already walking ahead.'),
+            L('l6', 'narrator', '他说完就走了，已经走在你前面很远。', 'He says it and goes, already well ahead of you.'),
           ],
         },
         {
@@ -63,8 +63,8 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           promptZh: '你还没看清楚纸上的字。现在应该怎么做？',
           promptEn: 'You have not read the paper properly yet. What should you do?',
           lines: [
-            L('l7', 'narrator', '前面有两条路。', 'There are two roads ahead.'),
-            L('l8', 'narrator', '一条上山，一条下山。', 'One goes up the mountain, one goes down.'),
+            L('l7', 'narrator', '走了一会儿，前面出现了两条路。', 'After a while, two roads appear ahead of you.'),
+            L('l8', 'narrator', '一条往上走进山里，一条往下走出山外。', 'One climbs up into the mountain; the other goes down and out of it.'),
           ],
           choices: [
             {
@@ -101,7 +101,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           teaches: ['先…再…', '认得'],
           lines: [
             L('l9', 'narrator', '「先…再…」——先做一件，再做第二件。', '先…再… — do one thing first, then the second.'),
-            L('l10', 'narrator', '先看字，再走路。走错了就要走回来。', 'Read first, then walk. Take the wrong road and you walk back.'),
+            L('l10', 'narrator', '先把字看清楚，再走路；走错了，就要花一倍的时间走回来。', 'Read it properly first, then walk. Take the wrong road and you spend twice as long walking back.'),
           ],
         },
         {
@@ -109,8 +109,8 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           kind: 'narration',
           next: 'n5',
           lines: [
-            L('l11', 'narrator', '你看清楚了。纸上写着：过山去。', 'You look properly. The paper says: cross the mountain.'),
-            L('l12', 'narrator', '石猴已经走到下山的路上了。', 'Stone Monkey is already on the road going down.'),
+            L('l11', 'narrator', '你把纸拿近了看清楚，上面写着三个字：过山去。', 'You hold the paper closer and read it properly. Three characters: cross the mountain.'),
+            L('l12', 'narrator', '可是石猴已经走上了那条下山的路。', 'But Stone Monkey is already well down the road that leads out.'),
           ],
         },
         {
@@ -122,7 +122,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           passScore: 0.6,
           onPass: 'n6',
           onPartial: 'd2',
-          lines: [L('l13', 'narrator', '你在他后面叫他。', 'You call after him.')],
+          lines: [L('l13', 'narrator', '你站在路口，在他后面大声叫他。', 'You stand at the fork and shout after him.')],
         },
         {
           id: 'd2',
@@ -131,7 +131,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           teaches: ['错'],
           lines: [
             L('l14', 'man', '「什么？」他没有停。', '"What?" He does not stop.'),
-            L('l15', 'narrator', '你大声一点，再叫一次。', 'You call again, louder.'),
+            L('l15', 'narrator', '你走上前几步，再大声叫了一次。', 'You take a few steps forward and shout again, louder.'),
           ],
         },
         {
@@ -177,8 +177,8 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           artId: 'scene-legend-1-2',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '山下有一个小庙。', 'There is a small shrine at the foot of the mountain.'),
-            L('l2', 'narrator', '里面住着一个很老很老的土地公。', 'Inside lives a very, very old earth god.'),
+            L('l1', 'narrator', '山下有一个很小的庙，小得只能站下一个人。', 'At the foot of the mountain is a shrine so small only one person could stand in it.'),
+            L('l2', 'narrator', '里面住着一个土地公，看上去已经很老很老了。', 'Inside lives an earth god who looks very, very old indeed.'),
             L('l3', 'elder', '「这座山，我知道每一块石头。」', '"This mountain — I know every stone on it."'),
           ],
         },
@@ -198,8 +198,8 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           promptZh: '土地公知道山上的每一块石头，可是没出过山。他能带你过山吗？',
           promptEn: 'He knows every stone on the mountain but has never left it. Can he get you across?',
           lines: [
-            L('l7', 'narrator', '你要过山，到山的另一边去。', 'You need to cross the mountain to the other side.'),
-            L('l8', 'narrator', '土地公只知道山里面的事。', 'He only knows what is inside the mountain.'),
+            L('l7', 'narrator', '你要做的是过山，到山的另一边去。', 'What you need to do is cross the mountain, to the other side of it.'),
+            L('l8', 'narrator', '可是土地公只知道山里面的事，山外面的他一点也不知道。', 'But the earth god only knows what is inside the mountain; of what lies outside it he knows nothing.'),
           ],
           choices: [
             {
@@ -235,8 +235,8 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           rejoin: 'n4',
           teaches: ['里面', '外面'],
           lines: [
-            L('l9', 'narrator', '「里面」和「外面」是两件事。', '"Inside" and "outside" are two different things.'),
-            L('l10', 'narrator', '他知道里面的每一块石头，外面的一块也不知道。', 'He knows every stone inside, and not one outside.'),
+            L('l9', 'narrator', '「里面」和「外面」是两件不一样的事。', '"Inside" and "outside" are two different things.'),
+            L('l10', 'narrator', '他知道山里面的每一块石头，可是山外面的，他一块也说不出来。', 'He knows every stone inside the mountain, and cannot name a single one outside it.'),
           ],
         },
         {
@@ -245,7 +245,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           next: 'n5',
           lines: [
             L('l11', 'man', '「那我们要他做什么？」石猴说。', '"Then what do we need him for?" says Stone Monkey.'),
-            L('l12', 'elder', '土地公看了石猴一眼，没说话。', 'The earth god gives him a look and says nothing.'),
+            L('l12', 'elder', '土地公看了石猴一眼，什么话也没有说。', 'The earth god gives him a look and says nothing at all.'),
           ],
         },
         {
@@ -257,7 +257,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           passScore: 0.65,
           onPass: 'n6',
           onPartial: 'd2',
-          lines: [L('l13', 'narrator', '你想了一下，才开口。', 'You think for a moment before speaking.')],
+          lines: [L('l13', 'narrator', '你想了一下他知道什么、不知道什么，才开口。', 'You think for a moment about what he does and does not know, and then you speak.')],
         },
         {
           id: 'd2',
@@ -266,7 +266,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           teaches: ['请', '带'],
           lines: [
             L('l14', 'elder', '「你说什么？」', '"What was that?"'),
-            L('l15', 'narrator', '你说得慢一点，清楚一点。', 'You say it slower, and more clearly.'),
+            L('l15', 'narrator', '你把话说得慢一点，也说得清楚一点。', 'You say it more slowly, and more clearly.'),
           ],
         },
         {
@@ -312,9 +312,9 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           artId: 'scene-legend-1-3',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '你们走到山上。', 'You climb to the top of the mountain.'),
-            L('l2', 'narrator', '前面的路没有了。', 'The road ahead is gone.'),
-            L('l3', 'narrator', '一块很大很大的石头，把路都挡住了。', 'One enormous stone has blocked the whole road.'),
+            L('l1', 'narrator', '你们跟着土地公，一直走到山上。', 'You follow the earth god all the way up the mountain.'),
+            L('l2', 'narrator', '走到一半，前面的路忽然没有了。', 'Halfway up, the road ahead simply stops.'),
+            L('l3', 'narrator', '一块很大很大的石头挡在那里，把整条路都挡住了。', 'An enormous stone sits there, blocking the entire road.'),
           ],
         },
         {
@@ -323,7 +323,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           next: 'n3',
           lines: [
             L('l4', 'man', '石猴叫了三次。石头不动。', 'Stone Monkey shouts three times. The stone does not move.'),
-            L('l5', 'man', '他用手推。石头还是不动。', 'He pushes with his hands. Still it does not move.'),
+            L('l5', 'man', '他用两只手去推，石头还是一点也不动。', 'He shoves at it with both hands, and it still does not move an inch.'),
             L('l6', 'man', '「这块石头在生我的气。」他说。', '"This stone is angry with me," he says.'),
           ],
         },
@@ -334,7 +334,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           promptEn: 'Shouting did not move it. Pushing did not move it. What are you thinking?',
           lines: [
             L('l7', 'narrator', '土地公说过：这座山的每一块石头，他都知道。', 'The earth god said he knows every stone on this mountain.'),
-            L('l8', 'narrator', '他现在站在后面，什么也没说。', 'He is standing behind you now, saying nothing.'),
+            L('l8', 'narrator', '他现在就站在你们后面，一句话也没有说。', 'He is standing right behind the two of you now, not saying a word.'),
           ],
           choices: [
             {
@@ -370,8 +370,8 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           rejoin: 'n4',
           teaches: ['挡住', '都'],
           lines: [
-            L('l9', 'narrator', '想一想：谁知道这座山？', 'Think: who knows this mountain?'),
-            L('l10', 'narrator', '有办法的人就在你后面。', 'The person with the answer is standing right behind you.'),
+            L('l9', 'narrator', '想一想：这里谁最了解这座山？', 'Think: who here knows this mountain best?'),
+            L('l10', 'narrator', '有办法的那个人，就站在你后面。', 'The person who has the answer is standing right behind you.'),
           ],
         },
         {
@@ -393,7 +393,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           passScore: 0.65,
           onPass: 'n6',
           onPartial: 'd2',
-          lines: [L('l14', 'narrator', '你走到石头前面，慢慢地说。', 'You walk up to the stone and speak slowly.')],
+          lines: [L('l14', 'narrator', '你走到石头前面，把手放上去，慢慢地说。', 'You walk up to the stone, put a hand on it, and speak slowly.')],
         },
         {
           id: 'd2',
@@ -401,7 +401,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           rejoin: 'n6',
           teaches: ['让一让'],
           lines: [
-            L('l15', 'narrator', '石头没有动。', 'The stone does not move.'),
+            L('l15', 'narrator', '石头一点也没有动。', 'The stone does not move at all.'),
             L('l16', 'elder', '「再慢一点。」土地公说。', '"Slower," says the earth god.'),
           ],
         },
@@ -411,7 +411,7 @@ export const LEGEND_CHAPTERS: SeedChapter[] = [
           outro:
             'Arc one ends here. The road is open, and Stone Monkey has decided he did that.',
           lines: [
-            L('l17', 'narrator', '石头终于动了一点点。', 'At last the stone shifts, just a little.'),
+            L('l17', 'narrator', '过了很久，石头才终于动了一点点。', 'After a long while, the stone finally shifts, just a little.'),
             L('l18', 'man', '「我就说吧。」石猴说。', '"Told you," says Stone Monkey.'),
           ],
         },

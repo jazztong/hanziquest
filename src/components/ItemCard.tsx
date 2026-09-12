@@ -7,6 +7,7 @@ import HanziPad from './HanziPad';
 import Recorder from './Recorder';
 import Speak, { useSpeak } from './Speak';
 import type { PublicItem } from '@/lib/items/public';
+import { sfx } from '@/lib/sfx';
 
 export interface Feedback {
   correct: boolean | null;
@@ -53,6 +54,15 @@ export default function ItemCard({
       return () => clearTimeout(t);
     }
   }, [item.id, item.type, item.audioText, speak]);
+
+  // The verdict sound fires on the feedback arriving, not on the tap, so it
+  // reports the actual result rather than the act of answering.
+  useEffect(() => {
+    if (!feedback) return;
+    if (feedback.correct === true) sfx('correct');
+    else if (feedback.correct === false) sfx('wrong');
+    else sfx('reveal');
+  }, [feedback]);
 
   const locked = Boolean(feedback) || busy;
   const listening = item.type === 'listen-char' || item.type === 'word-listen' || item.type === 'tone-discriminate';
@@ -123,6 +133,7 @@ export default function ItemCard({
                   key={o.id}
                   disabled={locked}
                   onClick={() => {
+                    sfx('select');
                     setSelected(o.id);
                     onAnswer(o.id);
                   }}

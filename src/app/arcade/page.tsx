@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSpeak } from '@/components/Speak';
+import SoundToggle from '@/components/SoundToggle';
+import { sfx, playStreak } from '@/lib/sfx';
 import type { PublicItem } from '@/lib/items/public';
 
 /** The arcade adds `subject` so an answer can be marked without round state. */
@@ -36,6 +38,7 @@ export default function Arcade() {
   const [remaining, setRemaining] = useState(PER_QUESTION_MS);
   const [result, setResult] = useState<{ correct: boolean; answer: string; explainEn: string } | null>(null);
   const [done, setDone] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const startedAt = useRef(Date.now());
   const { speak } = useSpeak();
 
@@ -47,13 +50,21 @@ export default function Arcade() {
     setBestStreak(0);
     setDone(false);
     setResult(null);
+    setError(null);
     fetch('/api/arcade')
       .then((r) => r.json())
       .then((b) => {
+        // An error body has no `items`, and storing it as a round crashes the
+        // first render. Always check before trusting the shape.
+        if (b?.error || !Array.isArray(b?.items)) {
+          setError(b?.error ?? 'Could not build a round.');
+          return;
+        }
         setRound(b);
         startedAt.current = Date.now();
         setRemaining(PER_QUESTION_MS);
-      });
+      })
+      .catch(() => setError('Could not reach the server.'));
   }, []);
 
   useEffect(load, [load]);
@@ -83,6 +94,9 @@ export default function Arcade() {
       const b = await res.json();
       setResult(b);
 
+      if (b.correct) sfx('correct');
+      else sfx('wrong');
+
       if (b.correct) {
         // Faster answers are worth more, floored so a slow-but-right answer
         // still scores. Speed is a bonus, never the point.
@@ -91,6 +105,7 @@ export default function Arcade() {
         setStreak((s) => {
           const next = s + 1;
           setBestStreak((b2) => Math.max(b2, next));
+          if (next >= 3) playStreak(next);
           return next;
         });
       } else {
@@ -99,8 +114,10 @@ export default function Arcade() {
 
       setTimeout(() => {
         setResult(null);
-        if (i + 1 >= (round?.items.length ?? 0)) setDone(true);
-        else setI((n) => n + 1);
+        if (i + 1 >= (round?.items.length ?? 0)) {
+          sfx('complete');
+          setDone(true);
+        } else setI((n) => n + 1);
       }, b.correct ? 700 : 2200);
     },
     [item, result, i, round, streak],
@@ -109,13 +126,38 @@ export default function Arcade() {
   // Per-question clock. Running out counts as a miss, not a penalty.
   useEffect(() => {
     if (!item || result || done) return;
+    let lastTickSecond = -1;
     const id = setInterval(() => {
       const left = PER_QUESTION_MS - (Date.now() - startedAt.current);
       setRemaining(left);
+      // Tick only in the last three seconds. A tick under every question is
+      // just stress; a tick when time is nearly gone is information.
+      const second = Math.ceil(left / 1000);
+      if (left > 0 && second <= 3 && second !== lastTickSecond) {
+        lastTickSecond = second;
+        sfx('tick');
+      }
       if (left <= 0) void answer('');
     }, 100);
     return () => clearInterval(id);
   }, [item, result, done, answer]);
+
+  if (error) {
+    return (
+      <main className="min-h-dvh grid place-items-center px-6 text-center">
+        <div className="max-w-sm">
+          <p className="text-[var(--color-cinnabar)] font-semibold">{error}</p>
+          <p className="text-sm text-[var(--color-slate-soft)] mt-2">
+            If you have been signed out, sign in again and come back.
+          </p>
+          <div className="flex gap-2 mt-6">
+            <Link href="/login" className="btn btn-ghost flex-1">Sign in</Link>
+            <button className="btn btn-primary flex-1" onClick={load}>Retry</button>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   if (!round) {
     return (
@@ -161,6 +203,7 @@ export default function Arcade() {
         {streak >= 2 && (
           <span className="text-xs text-[var(--color-gold)] font-semibold">🔥 {streak}</span>
         )}
+        <SoundToggle />
       </header>
 
       {/* Per-question clock */}

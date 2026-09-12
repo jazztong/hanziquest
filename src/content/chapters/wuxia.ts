@@ -42,7 +42,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           artId: 'scene-wuxia-1-1',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '你来到山上。', 'You arrive on the mountain.'),
+            L('l1', 'narrator', '你走了一天的路，天黑以前才来到山上。', 'You walk for a whole day and reach the mountain just before dark.'),
             L('l2', 'elder', '「你想学什么？」师父问。', '"What do you want to learn?" asks Shifu.'),
             L('l3', 'elder', '「今天学站。」', '"Today you learn to stand."'),
           ],
@@ -52,9 +52,9 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           kind: 'narration',
           next: 'n3',
           lines: [
-            L('l4', 'narrator', '你站着，不动。', 'You stand, and do not move.'),
-            L('l5', 'narrator', '一个小时以后，你的脚很累。', 'An hour later, your legs ache.'),
-            L('l6', 'narrator', '师父在看水。', 'Shifu is watching the water.'),
+            L('l4', 'narrator', '你照他说的站好，一动也不动。', 'You take the stance he describes and do not move at all.'),
+            L('l5', 'narrator', '站了一个小时以后，你的脚开始发抖。', 'After an hour of it, your legs start to shake.'),
+            L('l6', 'narrator', '师父没有看你，他一直在看水。', 'Shifu is not watching you at all. He is watching the water.'),
           ],
         },
         {
@@ -63,8 +63,8 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           promptZh: '师父不看你，只看水。他为什么这样做？',
           promptEn: 'Shifu is not watching you — only the water. Why?',
           lines: [
-            L('l7', 'narrator', '水不动的时候，你可以看到里面。', 'When water is still, you can see into it.'),
-            L('l8', 'narrator', '水一动，就什么也看不到了。', 'The moment it moves, you can see nothing.'),
+            L('l7', 'narrator', '水不动的时候，你可以看到水里面的每一块石头。', 'When the water is still, you can see every stone at the bottom.'),
+            L('l8', 'narrator', '水一动起来，就什么也看不清楚了。', 'The moment it moves, you cannot make out a thing.'),
           ],
           choices: [
             {
@@ -101,7 +101,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           teaches: ['一…就…', '看得清楚'],
           lines: [
             L('l9', 'narrator', '「水一动，就看不到」——一…就…，前面一发生，后面马上来。', '一…就… — as soon as the first happens, the second follows.'),
-            L('l10', 'narrator', '水是这样，人也是这样。', 'True of water, and true of people.'),
+            L('l10', 'narrator', '水是这样，人也是这样——心一乱，就看不清楚了。', 'True of water, and true of people: the moment the mind stirs, nothing is clear.'),
           ],
         },
         {
@@ -110,7 +110,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           next: 'n5',
           lines: [
             L('l11', 'elder', '「心不动，眼睛才看得见。」', '"When the mind is still, the eyes can finally see."'),
-            L('l12', 'narrator', '你还是站着。你的脚很累，可是你不动。', 'You keep standing. Your legs ache, but you do not move.'),
+            L('l12', 'narrator', '你的脚已经很累了，可是你还是站着，一动也不动。', 'Your legs ache badly by now, but you keep standing, without moving at all.'),
           ],
         },
         {
@@ -131,7 +131,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           teaches: ['明'],
           lines: [
             L('l14', 'elder', '「太快了。慢慢说，才是你的。」', '"Too fast. Say it slowly — then it is yours."'),
-            L('l15', 'narrator', '你再说一次。', 'You say it again.'),
+            L('l15', 'narrator', '你想了想他的话，又说了一次。', 'You think about what he said, and say it once more.'),
           ],
         },
         {
@@ -140,8 +140,8 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           outro:
             'One line, learned by standing still for an hour. That is how this school teaches.',
           lines: [
-            L('l16', 'elder', '师父点点头，走了。', 'Shifu nods once and walks away.'),
-            L('l17', 'narrator', '水又动了起来。', 'The water begins to move again.'),
+            L('l16', 'elder', '师父看了你一眼，点点头，就走开了。', 'Shifu glances at you, nods once, and walks away.'),
+            L('l17', 'narrator', '风吹过来，水又动了起来。', 'The wind comes across, and the water begins to move again.'),
           ],
         },
       ],
@@ -177,7 +177,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           artId: 'scene-wuxia-1-2',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '有一个人比你早一年来。', 'Someone came here a year before you.'),
+            L('l1', 'narrator', '门里还有一个人，比你早一年上山。', 'There is one other person here, who came up the mountain a year before you.'),
             L('l2', 'child', '「你站了多久？」她问。', '"How long did you stand?" she asks.'),
             L('l3', 'child', '「我先来的，我站了三个月。」', '"I came first. I stood for three months."'),
           ],
@@ -188,8 +188,8 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           next: 'n3',
           lines: [
             L('l4', 'child', '「我们来比一比。」', '"Let’s have a match."'),
-            L('l5', 'narrator', '你们站在水边。', 'The two of you stand at the water’s edge.'),
-            L('l6', 'narrator', '她很快就动了手。', 'She moves first, and fast.'),
+            L('l5', 'narrator', '你们两个人站在水边，谁也没有先动。', 'The two of you stand at the water’s edge, and neither moves first.'),
+            L('l6', 'narrator', '过了一会儿，她先动了手，动得很快。', 'After a moment she moves first, and she moves fast.'),
           ],
         },
         {
@@ -198,8 +198,8 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           promptZh: '她动得很快，你不动。谁会赢？为什么？',
           promptEn: 'She moves fast; you do not move. Who wins, and why?',
           lines: [
-            L('l7', 'narrator', '她动得快，可是水也动了。', 'She moves fast — and the water moves too.'),
-            L('l8', 'narrator', '你想起师父的话。', 'You remember what Shifu said.'),
+            L('l7', 'narrator', '她动得很快，可是她脚下的水也跟着动了。', 'She moves fast — but the water under her feet moves with her.'),
+            L('l8', 'narrator', '你忽然想起师父说过的那句话。', 'You suddenly remember the line Shifu said.'),
           ],
           choices: [
             {
@@ -235,8 +235,8 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           rejoin: 'n4',
           teaches: ['先', '所以'],
           lines: [
-            L('l9', 'narrator', '「先动」的人，先给了别人一个消息。', 'Whoever moves first has handed the other person information.'),
-            L('l10', 'narrator', '你看到她的手，就知道她要做什么。', 'You see her hand, and you know what she is about to do.'),
+            L('l9', 'narrator', '先动的人，等于先把自己的打算告诉了对方。', 'Whoever moves first has effectively told the other person their plan.'),
+            L('l10', 'narrator', '你看到她的手往哪里去，就知道她想做什么了。', 'You see where her hand is going, and you know what she means to do.'),
           ],
         },
         {
@@ -244,8 +244,8 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           kind: 'narration',
           next: 'n5',
           lines: [
-            L('l11', 'narrator', '你没有出手。你只是走开了一步。', 'You do not strike. You simply step aside.'),
-            L('l12', 'narrator', '她停下来，看着你。', 'She stops and looks at you.'),
+            L('l11', 'narrator', '你没有出手，只是往旁边走了一步。', 'You do not strike. You simply take one step to the side.'),
+            L('l12', 'narrator', '她停了下来，站在那里看着你。', 'She stops, and stands there looking at you.'),
           ],
         },
         {
@@ -266,7 +266,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           teaches: ['也'],
           lines: [
             L('l14', 'child', '「大声一点。」', '"Louder."'),
-            L('l15', 'narrator', '你再说一次。', 'You say it again.'),
+            L('l15', 'narrator', '你想了想他的话，又说了一次。', 'You think about what he said, and say it once more.'),
           ],
         },
         {
@@ -275,7 +275,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           outro: 'You have a junior sister now. She is going to be extremely annoying about it.',
           lines: [
             L('l16', 'child', '她笑了。「明天再比。」', 'She laughs. "Again tomorrow."'),
-            L('l17', 'narrator', '水又静了下来。', 'The water settles again.'),
+            L('l17', 'narrator', '水面上的圈子慢慢没有了，又静了下来。', 'The rings on the water slowly fade, and it goes still again.'),
           ],
         },
       ],
@@ -311,9 +311,9 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           artId: 'scene-wuxia-1-3',
           next: 'n2',
           lines: [
-            L('l1', 'narrator', '这里的本事，都写成句子。', 'The skills here are all written down as lines.'),
-            L('l2', 'narrator', '一句话，就是一招。', 'One line is one move.'),
-            L('l3', 'narrator', '可是这一张，少了一句。', 'But this one is a line short.'),
+            L('l1', 'narrator', '这个门派的本事，都写成一句一句的句子。', 'Everything this school knows is written down as lines, one after another.'),
+            L('l2', 'narrator', '一句话就是一招，念对了才有用。', 'One line is one move, and it only works if you say it right.'),
+            L('l3', 'narrator', '可是你手上的这一张，少了一句。', 'But the one in your hands is a line short.'),
           ],
         },
         {
@@ -323,7 +323,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           lines: [
             L('l4', 'child', '「第三句没有了。」小师妹说。', '"The third line is gone," says Junior Sister.'),
             L('l5', 'child', '「一二四都在，就是少了三。」', '"One, two and four are all here. Only three is missing."'),
-            L('l6', 'narrator', '那里有一个记号，好像有人拿走了什么。', 'There is a mark there, as if someone took something away.'),
+            L('l6', 'narrator', '少的那个地方有一个记号，好像有人把那一句拿走了。', 'Where the line should be there is a mark, as if someone had taken it out.'),
           ],
         },
         {
@@ -332,8 +332,8 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           promptZh: '一二四都在，只少第三句。这说明什么？',
           promptEn: 'Lines one, two and four are all there; only the third is gone. What does that tell you?',
           lines: [
-            L('l7', 'narrator', '如果是自己坏的，不会只坏一句。', 'If it had simply worn away, it would not take exactly one line.'),
-            L('l8', 'narrator', '那个记号很干净。', 'The mark is very clean.'),
+            L('l7', 'narrator', '如果是自己坏的，不会刚好只坏第三句。', 'If it had simply worn away, it would not have taken exactly the third line.'),
+            L('l8', 'narrator', '而且那个记号很干净，一点也不像坏的。', 'And the mark is very clean — it does not look like damage at all.'),
           ],
           choices: [
             {
@@ -370,7 +370,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           teaches: ['如果', '记号'],
           lines: [
             L('l9', 'narrator', '「如果…就…」——前面是想法，后面是结果。', '如果…就… — if this, then that.'),
-            L('l10', 'narrator', '如果是自己坏的，就不会这么干净。', 'If it had worn away, it would not be this clean.'),
+            L('l10', 'narrator', '如果是自己坏的，就不会留下这么干净的记号。', 'If it had worn away, it would not leave a mark this clean.'),
           ],
         },
         {
@@ -378,7 +378,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           kind: 'narration',
           next: 'n5',
           lines: [
-            L('l11', 'narrator', '你去问师父。', 'You go and ask Shifu.'),
+            L('l11', 'narrator', '你拿着那一张，去问师父。', 'You take the sheet with you and go to ask Shifu.'),
             L('l12', 'elder', '他看了很久，没有说话。', 'He looks at it for a long time and says nothing.'),
           ],
         },
@@ -391,7 +391,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           passScore: 0.65,
           onPass: 'n6',
           onPartial: 'd2',
-          lines: [L('l13', 'narrator', '你有点怕，可是你还是问了。', 'You are a little afraid, but you ask anyway.')],
+          lines: [L('l13', 'narrator', '你心里有点怕，可是你还是问了出来。', 'You are a little afraid, but you ask anyway.')],
         },
         {
           id: 'd2',
@@ -400,7 +400,7 @@ export const WUXIA_CHAPTERS: SeedChapter[] = [
           teaches: ['您'],
           lines: [
             L('l14', 'elder', '「大声一点。」', '"Louder."'),
-            L('l15', 'narrator', '你站直了，再问一次。', 'You straighten up and ask again.'),
+            L('l15', 'narrator', '你站直了身子，又问了一次。', 'You straighten up and ask him again.'),
           ],
         },
         {

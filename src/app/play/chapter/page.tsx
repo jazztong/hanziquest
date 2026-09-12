@@ -8,6 +8,8 @@ import Recorder from '@/components/Recorder';
 import ArtImage from '@/components/ArtImage';
 import { useSpeak } from '@/components/Speak';
 import PreTeach from '@/components/PreTeach';
+import SoundToggle from '@/components/SoundToggle';
+import { sfx } from '@/lib/sfx';
 import type { ChapterScript, StoryNode, Line } from '@/lib/story/types';
 
 interface CastMember {
@@ -53,8 +55,16 @@ export default function ChapterPage() {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch('/api/story/next');
-      const b = (await res.json()) as NextResponse;
+      const res = await fetch('/api/story/next').catch(() => null);
+      const b = (await res?.json().catch(() => null)) as NextResponse | null;
+      // A failed or error response has no `gate`, and reading gate.preTeach
+      // below would throw. Fall back to the "no chapter" screen, which already
+      // explains itself.
+      if (!b || (b as unknown as { error?: string }).error || !b.gate) {
+        setData({ chapter: null, cast: [], support: 'full', gate: { decision: 'reject', reason: '', preTeach: [] }, reason: 'Could not load a chapter. If you have been signed out, sign in again.' });
+        setPreTeachDone(true);
+        return;
+      }
       setData(b);
       if (b.chapter) setNodeId(b.chapter.script.start);
       if (b.gate?.decision !== 'pre-teach') setPreTeachDone(true);
@@ -99,6 +109,7 @@ export default function ChapterPage() {
   }, [node, autoPlay, preTeachDone, playLine]);
 
   function goTo(next: string) {
+    sfx('page');
     stop();
     setChoiceResult(null);
     setSpeakResult(null);
@@ -121,6 +132,7 @@ export default function ChapterPage() {
       }),
     });
     const b = await res.json();
+    sfx(b.xp?.levelledUp ? 'levelUp' : 'complete');
     setFinished({
       cardsMinted: b.cardsMinted ?? 0,
       xp: b.xp?.gained ?? 0,
@@ -219,6 +231,7 @@ export default function ChapterPage() {
           <div className="zh text-sm truncate">{data.chapter.title}</div>
           <div className="text-[11px] text-[var(--color-slate)] truncate">{data.chapter.titleEn}</div>
         </div>
+        <SoundToggle />
         <button
           className={`btn px-2.5 py-1 text-xs ${autoPlay ? 'btn-primary' : 'btn-ghost'}`}
           onClick={() => setAutoPlay((a) => !a)}
@@ -325,6 +338,7 @@ export default function ChapterPage() {
                         scores.current.asked += 1;
                         if (c.correct) scores.current.right += 1;
                         else scores.current.detours += 1;
+                        sfx(c.correct ? 'correct' : 'wrong');
                         setChoiceResult({ correct: c.correct, feedback: c.feedback });
                         setTimeout(() => goTo(c.to), c.correct ? 1400 : 3200);
                       }}
@@ -399,6 +413,7 @@ export default function ChapterPage() {
                       scores.current.asked += 1;
                       if (score >= node.passScore) scores.current.right += 1;
                       else scores.current.detours += 1;
+                      sfx(score >= node.passScore ? 'unlock' : 'wrong');
                       setSpeakResult({
                         score,
                         note:

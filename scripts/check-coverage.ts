@@ -11,9 +11,11 @@ import { ALL_SEED_CHAPTERS } from '../src/content/chapters';
 
 /** Learner profiles, defined as "knows the top N characters by HSK band then frequency". */
 const PROFILES: { name: string; size: number }[] = [
-  { name: 'weak    (300)', size: 300 },
-  { name: 'typical (600)', size: 600 },
-  { name: 'ok     (1000)', size: 1000 },
+  { name: 'very weak (300)', size: 300 },
+  { name: 'weak      (450)', size: 450 },
+  { name: 'low       (600)', size: 600 },
+  { name: 'typical   (800)', size: 800 },
+  { name: 'ok       (1000)', size: 1000 },
 ];
 
 function knownSet(size: number): Set<string> {

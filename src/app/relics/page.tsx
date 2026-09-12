@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ArtImage from '@/components/ArtImage';
 import Recorder from '@/components/Recorder';
 import Speak, { useSpeak } from '@/components/Speak';
+import { sfx } from '@/lib/sfx';
 
 interface Relic {
   id: string;
@@ -38,7 +39,8 @@ export default function Relics() {
   useEffect(() => {
     fetch('/api/relics')
       .then((r) => r.json())
-      .then((b) => setRelics(b.relics ?? []));
+      .then((b) => setRelics(Array.isArray(b?.relics) ? b.relics : []))
+      .catch(() => setRelics([]));
   }, []);
 
   const open = relics.find((r) => r.id === openId) ?? null;
@@ -50,6 +52,7 @@ export default function Relics() {
       body: JSON.stringify({ relicId, ...patch }),
     });
     const b = await res.json();
+    if (b.stage >= 4) sfx('unlock');
     setRelics((rs) =>
       rs.map((r) =>
         r.id === relicId
@@ -330,6 +333,7 @@ function Cloze({ relic, onScore }: { relic: Relic; onScore: (score: number) => v
   function check() {
     setChecked(true);
     const right = blanks.filter((b) => (answers[b.key] ?? '').trim() === b.char).length;
+    sfx(right === blanks.length ? 'complete' : right > blanks.length / 2 ? 'correct' : 'wrong');
     onScore(blanks.length ? right / blanks.length : 0);
   }
 

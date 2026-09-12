@@ -39,16 +39,43 @@ describe('seed chapters', () => {
     }
   });
 
-  it('are reachable by a realistic learner, with or without pre-teaching', () => {
-    // 600 characters is roughly where an English-dominant 初一 student sits at
-    // the start (docs/research.md 4.3). No seed chapter should be out of reach.
-    const known = knownSet(600);
+  it('are reachable from 450 known characters, with or without pre-teaching', () => {
+    // 450 is the documented floor, and it is a deliberate trade.
+    //
+    // The chapters were originally reachable from 300, but at 6.5 characters
+    // per sentence they read like a primary-school reader - measurably so:
+    // scripts/reading-level.ts put them at less than half the sentence length
+    // of 初一 textbook prose. Rewriting them at 初一 register (~10 chars/sentence)
+    // raised the character variety and moved the floor to ~450.
+    //
+    // That is the right trade for this learner. 300 characters is roughly
+    // Primary 2; a 初一 student at a 独中 with six years of Chinese-medium
+    // primary behind him sits well above it even when "weak". A learner who
+    // genuinely does not is routed to deck practice with a plain explanation,
+    // not to an empty campaign.
+    const known = knownSet(450);
     for (const ch of ALL_SEED_CHAPTERS) {
       const gate = gateChapter(ch.script, known);
       expect({ id: ch.id, decision: gate.decision }).not.toEqual({
         id: ch.id,
         decision: 'reject',
       });
+    }
+  });
+
+  it('reads at 初一 sentence register, not primary-school register', () => {
+    // The coverage gate measures characters and is blind to syntax, so a
+    // chapter can pass it completely while still reading like a book for a
+    // six-year-old. This is the guard for the thing the gate cannot see.
+    // Reference: the sample 初一 课文 run 15-19 characters per sentence.
+    for (const ch of ALL_SEED_CHAPTERS) {
+      const text = chapterText(ch.script);
+      const sentences = text
+        .split(/[。！？]/)
+        .map((x) => [...x].filter(isHanzi).length)
+        .filter((n) => n > 0);
+      const mean = sentences.reduce((a, b) => a + b, 0) / sentences.length;
+      expect({ id: ch.id, ok: mean >= 9 }).toEqual({ id: ch.id, ok: true });
     }
   });
 

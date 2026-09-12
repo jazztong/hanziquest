@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ArtImage from '@/components/ArtImage';
+import SoundToggle from '@/components/SoundToggle';
 
 interface Summary {
   profile: {
@@ -33,11 +34,25 @@ interface Summary {
 export default function PlayHub() {
   const [s, setS] = useState<Summary | null>(null);
 
+  const [failed, setFailed] = useState(false);
+
   useEffect(() => {
     fetch('/api/player/summary')
       .then((r) => r.json())
-      .then(setS);
+      .then((b) => (b?.error ? setFailed(true) : setS(b)))
+      .catch(() => setFailed(true));
   }, []);
+
+  if (failed) {
+    return (
+      <main className="min-h-dvh grid place-items-center px-6 text-center">
+        <div>
+          <p className="text-[var(--color-cinnabar)] font-semibold">Could not load your profile.</p>
+          <Link href="/login" className="btn btn-primary mt-5">Sign in again</Link>
+        </div>
+      </main>
+    );
+  }
 
   if (!s?.profile) {
     return (
@@ -67,6 +82,7 @@ export default function PlayHub() {
               {p.streakDays > 0 && ` · ${p.streakDays}-day streak`}
             </div>
           </div>
+          <SoundToggle className="shrink-0" />
           <Link href="/parent" className="btn btn-ghost px-2.5 py-1 text-xs shrink-0">
             Parent
           </Link>

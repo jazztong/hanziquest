@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import HanziPad from '@/components/HanziPad';
 import Speak from '@/components/Speak';
+import SoundToggle from '@/components/SoundToggle';
+import { sfx } from '@/lib/sfx';
 
 interface Card {
   id: string;
@@ -40,11 +42,13 @@ export default function Deck() {
     fetch('/api/cards/queue?limit=30')
       .then((r) => r.json())
       .then((b) => {
-        setQueue(b.cards ?? []);
-        setDueTotal(b.dueTotal ?? 0);
-        setDeferred(b.deferred ?? 0);
-        if (!b.cards?.length) setDone(true);
-      });
+        const cards = Array.isArray(b?.cards) ? b.cards : [];
+        setQueue(cards);
+        setDueTotal(b?.dueTotal ?? 0);
+        setDeferred(b?.deferred ?? 0);
+        if (!cards.length) setDone(true);
+      })
+      .catch(() => setDone(true));
   }, []);
 
   const card = queue[i];
@@ -58,6 +62,7 @@ export default function Deck() {
     setUsedHint(false);
     setResult(null);
     startedAt.current = Date.now();
+    sfx('cardFlip');
     const canWriteTurn = card.kind === 'char' && card.state >= 2 && card.reps >= 2;
     setMode(canWriteTurn && card.reps % 3 === 0 ? 'write' : 'recognise');
   }, [card]);
@@ -79,6 +84,9 @@ export default function Deck() {
       });
       const b = await res.json();
       setResult(b);
+      if (b.levelledUp) sfx('levelUp');
+      else if (correct) sfx('correct');
+      else sfx('wrong');
       setTimeout(() => {
         if (i + 1 >= queue.length) setDone(true);
         else setI((n) => n + 1);
@@ -131,6 +139,7 @@ export default function Deck() {
         <span className="text-xs text-[var(--color-slate-soft)]">
           {i + 1}/{queue.length}
         </span>
+        <SoundToggle />
       </header>
 
       <AnimatePresence mode="wait">
@@ -156,7 +165,13 @@ export default function Deck() {
 
               {!revealed ? (
                 <div className="space-y-3">
-                  <button className="btn btn-primary w-full" onClick={() => setRevealed(true)}>
+                  <button
+                    className="btn btn-primary w-full"
+                    onClick={() => {
+                      sfx('reveal');
+                      setRevealed(true);
+                    }}
+                  >
                     Show me
                   </button>
                   <button
