@@ -155,6 +155,7 @@ export async function POST(req: Request) {
         en: marked.feedbackEn,
         zh: marked.feedbackZh,
         detail: marked.detail ?? null,
+        reveal: marked.reveal ?? null,
       },
       progress: progress(next),
       stage: STAGES[next.stageIndex] ?? null,

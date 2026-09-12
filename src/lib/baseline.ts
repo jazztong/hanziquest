@@ -46,6 +46,7 @@ import {
 } from '@/content/baseline-items';
 import { SKILLS, charsToBand, bandToChars, YEAR1_CHAR_TARGET, type Skill } from './skills';
 import { resolveOption } from './items/public';
+import { buildReveal, type Reveal } from './items/reveal';
 import { markWritingByRule } from './scoring/writing';
 import { scoreTranscript } from './scoring/pronunciation';
 
@@ -353,13 +354,24 @@ export interface MarkedResponse {
   feedbackEn: string;
   feedbackZh?: string;
   detail?: unknown;
+  /**
+   * The reading, shown the instant an answer is committed.
+   *
+   * Attention is highest right after answering, and for a learner whose
+   * recognition runs ahead of his pronunciation that is the moment 也 → yě is
+   * worth most. Null for items where the useful feedback is the explanation.
+   */
+  reveal?: Reveal | null;
 }
 
 export function markResponse(item: Item, value: string): MarkedResponse {
+  const reveal = buildReveal(item);
+
   switch (item.type) {
     case 'read-aloud': {
       const s = scoreTranscript(item.payload.stem, value);
       return {
+        reveal,
         correct: s.overall >= 0.6,
         score: s.overall,
         feedbackEn:
@@ -375,6 +387,7 @@ export function markResponse(item: Item, value: string): MarkedResponse {
       // The canvas component reports a 0-1 stroke score; see HanziPad.
       const score = Math.max(0, Math.min(1, Number(value) || 0));
       return {
+        reveal,
         correct: score >= 0.6,
         score,
         feedbackEn:
@@ -388,6 +401,7 @@ export function markResponse(item: Item, value: string): MarkedResponse {
     case 'writing': {
       const mark = markWritingByRule(value, { year: 1, kind: 'essay' });
       return {
+        reveal,
         correct: null,
         score: mark.total / 100,
         feedbackEn: mark.nextStep,
@@ -400,6 +414,7 @@ export function markResponse(item: Item, value: string): MarkedResponse {
       const key = item.answer.correct;
       const correct = Array.isArray(key) ? key.includes(chosen) : key === chosen;
       return {
+        reveal,
         correct,
         score: correct ? 1 : 0,
         feedbackEn: item.answer.explainEn ?? (correct ? 'Correct.' : 'Not this time.'),

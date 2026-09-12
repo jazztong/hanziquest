@@ -8,6 +8,7 @@ import Recorder from './Recorder';
 import Speak, { useSpeak } from './Speak';
 import type { PublicItem } from '@/lib/items/public';
 import { sfx } from '@/lib/sfx';
+import RevealCard, { type Reveal } from './RevealCard';
 
 export interface Feedback {
   correct: boolean | null;
@@ -15,6 +16,8 @@ export interface Feedback {
   en: string;
   zh?: string;
   detail?: unknown;
+  /** The reading, shown the moment the answer is committed. */
+  reveal?: Reveal | null;
 }
 
 /**
@@ -231,7 +234,12 @@ export default function ItemCard({
           >
             {feedback.correct === true ? '对了' : feedback.correct === false ? '再想想' : '收到'}
           </p>
-          <p className="text-sm mt-1.5 text-[var(--color-paper-dim)] leading-relaxed">{feedback.en}</p>
+          {/* The reading first, then the explanation. The reading is the thing
+              he is least likely to have supplied for himself while answering. */}
+          {feedback.reveal && (
+            <RevealCard reveal={feedback.reveal} correct={feedback.correct} />
+          )}
+          <p className="text-sm mt-3 text-[var(--color-paper-dim)] leading-relaxed">{feedback.en}</p>
           {feedback.zh && <p className="zh text-sm mt-1 text-[var(--color-slate-soft)]">{feedback.zh}</p>}
         </motion.div>
       )}
