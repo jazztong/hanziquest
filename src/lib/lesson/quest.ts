@@ -94,8 +94,14 @@ export function splitLines(text: string): ReadingLine[] {
   const out: ReadingLine[] = [];
   const paras = text.split(/\n\s*\n|\n/).filter((p) => p.trim());
   paras.forEach((para, pi) => {
-    // Keep the terminator on the line - it is part of how the line is read.
-    const parts = para.match(/[^。！？]*[。！？]+|[^。！？]+$/g) ?? [para];
+    // Keep the terminator on the line - it is part of how the line is read -
+    // and keep any closing quote that follows it.
+    //
+    // Quoted speech ends 吗？”, with the mark after the full stop, so splitting
+    // on 。！？ alone left the ” stranded at the head of the next line: a line
+    // reading ”我点了点头 that no Chinese text would ever set that way, and a
+    // punctuation question built on a quotation with one end missing.
+    const parts = para.match(/[^。！？]*[。！？]+[”’」』》）]*|[^。！？]+$/g) ?? [para];
     for (const raw of parts) {
       const zh = raw.trim();
       if (!zh || ![...zh].some(isHanzi)) continue;
@@ -203,6 +209,7 @@ function clozeItems(lesson: LessonInput, targets: PreTeachWord[], lines: Reading
         correct: 'k',
         explainEn: `${t.w} (${t.pinyin}) — ${t.gloss}`,
         explainZh: `原句：${line.zh}`,
+        sourceLine: line.zh,
       },
       source: 'lesson',
       tags: [`word:${t.w}`, `lesson:${lesson.id}`],
@@ -291,7 +298,12 @@ function punctuationItems(lesson: LessonInput, lines: ReadingLine[]): Item[] {
           ...distractors.map((d, n) => ({ id: `d${n}`, zh: d })),
         ]),
       },
-      answer: { correct: 'k', explainZh: `原句：${line.zh}`, explainEn: 'Check the original line.' },
+      answer: {
+        correct: 'k',
+        explainZh: `原句：${line.zh}`,
+        explainEn: 'Check the original line.',
+        sourceLine: line.zh,
+      },
       source: 'lesson',
       tags: ['standard:1.6.8-标点', `lesson:${lesson.id}`],
     });

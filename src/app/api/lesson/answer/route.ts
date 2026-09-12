@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm';
 import { db, items as itemsTable, attempts, errorLog } from '@/lib/db';
 import { requireStudent } from '@/lib/auth';
 import { resolveOption } from '@/lib/items/public';
+import { buildReveal } from '@/lib/items/reveal';
 import { addXp, touchStreak } from '@/lib/player';
 import type { Item } from '@/lib/items/types';
 import { BadRequest, body, route } from '@/lib/api';
@@ -67,6 +68,15 @@ export async function POST(req: Request) {
       correct,
       explainEn: item.answer.explainEn ?? '',
       explainZh: item.answer.explainZh ?? '',
+      // The reading of whatever the question was actually about - the word that
+      // fills the gap, the 多音字 in its sentence. Null for the item types where
+      // a pinyin card would be noise, such as sequencing a paragraph.
+      reveal: buildReveal(item),
+      // The untouched line, sent only once the answer is in. Read aloud after a
+      // miss: a word heard inside the sentence it came from is worth more than
+      // the same word heard on its own, and for punctuation the line IS the
+      // lesson - a comma is a pause, and a pause can only be heard.
+      sourceLine: correct ? '' : item.answer.sourceLine ?? '',
     };
   });
 }

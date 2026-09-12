@@ -43,6 +43,14 @@ export interface Reveal {
   radical: string;
 }
 
+/** The Chinese text of the correct option, when there is one. */
+function keyedOption(item: Item): string | null {
+  const key = item.answer.correct;
+  if (typeof key !== 'string') return null;
+  const opt = item.payload.options?.find((o) => o.id === key);
+  return opt?.zh?.trim() || null;
+}
+
 /** The Chinese this item is really about, if any. */
 function subjectOf(item: Item): { zh: string; context?: string; index?: number } | null {
   const p = item.payload;
@@ -61,6 +69,12 @@ function subjectOf(item: Item): { zh: string; context?: string; index?: number }
 
     case 'word-meaning':
       return { zh: p.stem };
+
+    case 'cloze':
+      // The stem is the line with a hole in it, so the subject is the word that
+      // fills the hole. No new data needed: it is the keyed option, which the
+      // browser never sees as the key because the ids are re-shuffled.
+      return keyedOption(item) ? { zh: keyedOption(item)! } : null;
 
     case 'polyphone': {
       // The stem marks the character as 【X】 inside its sentence.

@@ -61,6 +61,15 @@ export interface ItemAnswer {
   explainZh?: string;
   /** Format for 应用文. */
   format?: '公函' | '通告' | '启事';
+  /**
+   * The untouched line this item was cut from.
+   *
+   * It lives here rather than in the payload because for a cloze or a
+   * punctuation item the original line still contains the answer - publicItem()
+   * ships the payload to the browser, and this must not go with it. It is read
+   * back only when marking, to say the line aloud after a miss.
+   */
+  sourceLine?: string;
 }
 
 export interface Item {

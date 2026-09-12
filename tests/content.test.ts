@@ -11,6 +11,8 @@ import { gateChapter, targetChars, nameChars } from '@/lib/story/engine';
 import { CHARS, splitCoverage, isHanzi, isPolyphonic, readingsOf, pinyinOf } from '@/lib/lexicon';
 import { VOICES } from '@/lib/providers/tts';
 import { publicItem, resolveOption } from '@/lib/items/public';
+import { buildQuest } from '@/lib/lesson/quest';
+import { buildReveal } from '@/lib/items/reveal';
 
 const knownSet = (n: number) => new Set(CHARS.slice(0, n).map((c) => c.c));
 
@@ -352,5 +354,78 @@ describe('licensing hygiene', () => {
     const dir = path.join(process.cwd(), 'data', 'source');
     const files = fs.readdirSync(dir);
     expect(files.some((f) => /LICENSE/i.test(f))).toBe(true);
+  });
+});
+
+describe('the 课文 side quest', () => {
+  // An original-style passage in the 初一 register, not from any textbook.
+  const LESSON = {
+    id: 'test-lesson',
+    title: '雨天的球场',
+    bookRef: '测试',
+    text:
+      '那天下午，天空忽然暗了下来，豆大的雨点打在球场上。' +
+      '我和朋友躲在树下，看着水花一点一点地散开。' +
+      '他说：“明天还来吗？”我点了点头，心里觉得很快乐。',
+    vocab: ['雨点', '快乐'],
+  };
+  const known = new Set(CHARS.slice(0, 900).map((c) => c.c));
+  const quest = buildQuest(LESSON, known, 3);
+
+  it('builds questions out of the uploaded text', () => {
+    expect(quest.items.length).toBeGreaterThan(0);
+  });
+
+  it('never starts a line with a closing mark', () => {
+    // Quoted speech ends 吗？”, the mark falling after the terminator, so a
+    // naive split on 。！？ stranded the ” at the head of the next line. No
+    // Chinese text sets a line that way, and it left the quotation open in
+    // whatever question got built from it.
+    const bad = quest.lines.filter((l) => /^[”’」』》）,，。、？！]/.test(l.zh));
+    expect(bad.map((l) => l.zh)).toEqual([]);
+  });
+
+  it('keeps a quotation whole on one line', () => {
+    const spoken = quest.lines.find((l) => l.zh.includes('明天还来吗'));
+    expect(spoken?.zh).toContain('“');
+    expect(spoken?.zh).toContain('”');
+  });
+
+  it('never ships the original line to the browser before it is answered', () => {
+    // A cloze stem is the line with the answer cut out of it, and a punctuation
+    // stem is the line with the mark cut out. Putting the untouched line in the
+    // payload would hand over the answer, so it rides in item.answer instead -
+    // which publicItem never sends.
+    for (const item of quest.items) {
+      const line = item.answer.sourceLine;
+      if (!line) continue;
+      const shipped = JSON.stringify(publicItem(item));
+      expect({ id: item.id, leaks: shipped.includes(line) }).toEqual({
+        id: item.id,
+        leaks: false,
+      });
+    }
+  });
+
+  it('keeps the original line on cloze and punctuation items, to read after a miss', () => {
+    const needsLine = quest.items.filter((i) => i.type === 'cloze' || i.type === 'punctuation');
+    for (const item of needsLine) {
+      expect({ id: item.id, hasLine: Boolean(item.answer.sourceLine) }).toEqual({
+        id: item.id,
+        hasLine: true,
+      });
+      // And it must be the real line, not the one with the hole in it.
+      expect(item.answer.sourceLine).not.toContain('（　）');
+    }
+  });
+
+  it('reveals the word that fills a cloze gap, with its reading', () => {
+    const cloze = quest.items.find((i) => i.type === 'cloze');
+    if (!cloze) return;
+    const reveal = buildReveal(cloze);
+    expect(reveal).not.toBeNull();
+    // The subject is the answer, not the blanked stem.
+    expect(reveal!.zh).not.toContain('（　）');
+    expect(reveal!.pinyin.trim().length).toBeGreaterThan(0);
   });
 });

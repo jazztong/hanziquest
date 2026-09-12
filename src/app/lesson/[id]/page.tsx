@@ -9,6 +9,7 @@ import HanziPad from '@/components/HanziPad';
 import SoundToggle from '@/components/SoundToggle';
 import Speak, { useSpeak } from '@/components/Speak';
 import { speakFeedbackPaced } from '@/lib/feedback-voice';
+import RevealCard, { type Reveal } from '@/components/RevealCard';
 import {
   Screen,
   PageHeader,
@@ -226,7 +227,13 @@ function Reading({ quest, onDone }: { quest: Quest; onDone: () => void }) {
 
 function Quiz({ items, onDone }: { items: PublicItem[]; onDone: () => void }) {
   const [i, setI] = useState(0);
-  const [result, setResult] = useState<{ correct: boolean; explainEn: string; explainZh: string } | null>(null);
+  const [result, setResult] = useState<{
+    correct: boolean;
+    explainEn: string;
+    explainZh: string;
+    reveal?: Reveal | null;
+    sourceLine?: string;
+  } | null>(null);
   const [right, setRight] = useState(0);
   const { speak } = useSpeak();
   const startedAt = useRef(Date.now());
@@ -246,15 +253,25 @@ function Quiz({ items, onDone }: { items: PublicItem[]; onDone: () => void }) {
     setResult(b);
     sfx(b.correct ? 'correct' : 'wrong');
     if (b.correct) setRight((n) => n + 1);
-    // Affirmation only, with no target read after it. These are 统考 item types
-    // - cloze, punctuation, sequencing - whose stem is a whole sentence, and
-    // reading a sentence back on every answer would bury the verdict it is
-    // meant to deliver. The explanation is on screen to be read instead.
+    // What gets said depends on whether he got it, which is a teaching choice
+    // rather than a technical one.
+    //
+    // Right: the answer on its own. He has it, and the run should keep moving.
+    // Wrong: the answer, then the whole line it came from. The extra few
+    // seconds are the ones worth spending - a word heard inside its sentence is
+    // what makes it reusable, and for a punctuation item the line IS the answer,
+    // because a comma is a pause and a pause cannot be shown, only heard.
+    const said = [b.reveal?.speak, b.correct ? '' : b.sourceLine]
+      .filter(Boolean)
+      .join('，');
+    const long = Boolean(!b.correct && b.sourceLine);
     speakFeedbackPaced({
       correct: b.correct,
+      target: said,
       speak,
       minMs: b.correct ? 1100 : 2800,
-      maxMs: b.correct ? 2600 : 4200,
+      // Room for a whole 初一 line to be read out before the ceiling takes over.
+      maxMs: long ? 9000 : b.correct ? 3200 : 4200,
       onAdvance: () => {
         if (i + 1 >= items.length) onDone();
         else setI((n) => n + 1);
@@ -303,6 +320,11 @@ function Quiz({ items, onDone }: { items: PublicItem[]; onDone: () => void }) {
             </p>
             {result.explainEn && <p className="text-sm mt-1.5 text-[var(--color-paper-dim)]">{result.explainEn}</p>}
             {result.explainZh && <p className="zh text-sm mt-1 text-[var(--color-slate-soft)]">{result.explainZh}</p>}
+            {/* autoSpeak off: the feedback sequence above already says this, and
+                two voices starting together is how utterances get dropped. */}
+            {result.reveal && (
+              <RevealCard reveal={result.reveal} correct={result.correct} autoSpeak={false} />
+            )}
           </motion.div>
         )}
       </div>
