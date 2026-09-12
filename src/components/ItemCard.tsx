@@ -9,6 +9,7 @@ import Speak, { useSpeak } from './Speak';
 import type { PublicItem } from '@/lib/items/public';
 import { sfx } from '@/lib/sfx';
 import RevealCard, { type Reveal } from './RevealCard';
+import { speakFeedback, type Affirmation } from '@/lib/feedback-voice';
 
 export interface Feedback {
   correct: boolean | null;
@@ -41,7 +42,9 @@ export default function ItemCard({
   const [selected, setSelected] = useState<string | null>(null);
   const [text, setText] = useState('');
   const [hintShown, setHintShown] = useState(false);
+  const [affirmation, setAffirmation] = useState<Affirmation | null>(null);
   const startedAt = useRef(Date.now());
+  const spokenFor = useRef<string>('');
   const { speak } = useSpeak();
 
   // Reset per item, and auto-play listening items: for a listening question the
@@ -50,6 +53,7 @@ export default function ItemCard({
     setSelected(null);
     setText('');
     setHintShown(false);
+    setAffirmation(null);
     startedAt.current = Date.now();
     const listening = item.type === 'listen-char' || item.type === 'word-listen' || item.type === 'tone-discriminate';
     if (listening && item.audioText) {
@@ -58,14 +62,29 @@ export default function ItemCard({
     }
   }, [item.id, item.type, item.audioText, speak]);
 
-  // The verdict sound fires on the feedback arriving, not on the tap, so it
-  // reports the actual result rather than the act of answering.
+  // The verdict fires on the feedback arriving, not on the tap, so it reports
+  // the actual result rather than the act of answering.
+  //
+  // Order matters: the chime lands first as an instant signal, then the voice
+  // says which it was and reads the target. Guarded on item id so React
+  // re-running the effect cannot make it speak twice over itself.
   useEffect(() => {
     if (!feedback) return;
+    if (spokenFor.current === item.id) return;
+    spokenFor.current = item.id;
+
     if (feedback.correct === true) sfx('correct');
     else if (feedback.correct === false) sfx('wrong');
     else sfx('reveal');
-  }, [feedback]);
+
+    if (feedback.correct === null) return;
+    const said = speakFeedback({
+      correct: feedback.correct,
+      target: feedback.reveal?.speak,
+      speak,
+    });
+    setAffirmation(said);
+  }, [feedback, item.id, speak]);
 
   const locked = Boolean(feedback) || busy;
   const listening = item.type === 'listen-char' || item.type === 'word-listen' || item.type === 'tone-discriminate';
@@ -223,8 +242,10 @@ export default function ItemCard({
           animate={{ opacity: 1, height: 'auto' }}
           className="mt-5 pt-4 border-t border-[#2a3648]"
         >
+          {/* The spoken words, shown. Seeing 对了 while hearing it is how the
+              phrase itself gets learned, rather than staying background noise. */}
           <p
-            className={`font-semibold ${
+            className={`font-semibold flex items-baseline gap-2 flex-wrap ${
               feedback.correct === true
                 ? 'text-[var(--color-jade-bright)]'
                 : feedback.correct === false
@@ -232,12 +253,21 @@ export default function ItemCard({
                   : 'text-[var(--color-gold)]'
             }`}
           >
-            {feedback.correct === true ? '对了' : feedback.correct === false ? '再想想' : '收到'}
+            <span className="zh text-lg">
+              {affirmation ? affirmation.zh : feedback.correct === null ? '收到' : ''}
+            </span>
+            {affirmation && (
+              <span className="text-xs font-normal text-[var(--color-slate-soft)]">
+                {affirmation.pinyin} · {affirmation.en}
+              </span>
+            )}
           </p>
           {/* The reading first, then the explanation. The reading is the thing
               he is least likely to have supplied for himself while answering. */}
           {feedback.reveal && (
-            <RevealCard reveal={feedback.reveal} correct={feedback.correct} />
+            // autoSpeak off: the feedback sequence above already says the
+            // affirmation and then the target. Two speakers would overlap.
+            <RevealCard reveal={feedback.reveal} correct={feedback.correct} autoSpeak={false} />
           )}
           <p className="text-sm mt-3 text-[var(--color-paper-dim)] leading-relaxed">{feedback.en}</p>
           {feedback.zh && <p className="zh text-sm mt-1 text-[var(--color-slate-soft)]">{feedback.zh}</p>}
