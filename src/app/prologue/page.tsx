@@ -8,6 +8,7 @@ import type { PublicItem } from '@/lib/items/public';
 import SoundToggle from '@/components/SoundToggle';
 import { Screen, Loading, Progress } from '@/components/ui';
 import { sfx } from '@/lib/sfx';
+import { boundedAdvance, type Gate } from '@/lib/feedback-voice';
 
 interface Stage {
   id: string;
@@ -47,6 +48,18 @@ export default function Prologue() {
   const [showStageCard, setShowStageCard] = useState(true);
   const [resumed, setResumed] = useState(false);
   const startedAt = useRef(Date.now());
+  // The pending advance. Held in a ref so the spoken-verdict callback coming
+  // back from ItemCard can release the same gate the answer handler opened.
+  const gate = useRef<Gate | null>(null);
+
+  // Leaving mid-question must not leave a timer pointed at a screen that has
+  // gone: the advance would fire into an unmounted tree.
+  useEffect(() => () => gate.current?.cancel(), []);
+
+  // ItemCard owns the speaking, this screen owns the advancing, so the verdict
+  // finishing has to travel back up. Stable identity: ItemCard watches this in
+  // an effect, and a new function every render would churn it.
+  const onSpoken = useCallback(() => gate.current?.finished(), []);
 
   useEffect(() => {
     (async () => {
@@ -77,15 +90,20 @@ export default function Prologue() {
       setFeedback(b.feedback);
       setProgress(b.progress);
 
-      // Hold the feedback long enough to read it, then move on. A wrong answer
-      // gets longer, because that is when the explanation matters.
-      // Longer holds now that the reveal card appears: it speaks the reading,
-      // and cutting away mid-word teaches nothing. Wrong answers hold longest,
-      // because that is when the explanation matters most.
+      // Hold the feedback long enough to read it, then move on. Wrong answers
+      // hold longest, because that is when the explanation matters most.
+      //
+      // This used to be a flat timer sized by guessing how long the reveal
+      // takes to say aloud. It is bounded instead now: the floor is how long
+      // the card needs to be *read*, and the advance then waits past it until
+      // the voice reports finishing - up to a ceiling, so a browser with no
+      // zh-CN voice (which may never report anything) cannot stall the run.
       const hasReveal = Boolean(b.feedback.reveal);
-      const delay =
-        b.feedback.correct === false ? (hasReveal ? 4200 : 2600) : hasReveal ? 2600 : 1100;
-      setTimeout(() => {
+      const floor =
+        b.feedback.correct === false ? (hasReveal ? 3200 : 2600) : hasReveal ? 1800 : 1100;
+      const ceiling = b.feedback.correct === false ? 6000 : 4500;
+      gate.current?.cancel();
+      gate.current = boundedAdvance(() => {
         setFeedback(null);
         startedAt.current = Date.now();
         if (b.done) {
@@ -99,7 +117,7 @@ export default function Prologue() {
           setShowStageCard(true);
         }
         setItem(b.item);
-      }, delay);
+      }, floor, ceiling);
     },
     [runId, busy],
   );
@@ -162,7 +180,14 @@ export default function Prologue() {
             )}
           </motion.section>
         ) : item ? (
-          <ItemCard key={item.id} item={item} feedback={feedback} onAnswer={answer} busy={busy} />
+          <ItemCard
+            key={item.id}
+            item={item}
+            feedback={feedback}
+            onAnswer={answer}
+            busy={busy}
+            onSpoken={onSpoken}
+          />
         ) : null}
       </AnimatePresence>
     </Screen>

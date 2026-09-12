@@ -8,6 +8,7 @@ import HanziText from '@/components/HanziText';
 import HanziPad from '@/components/HanziPad';
 import SoundToggle from '@/components/SoundToggle';
 import Speak, { useSpeak } from '@/components/Speak';
+import { speakFeedbackPaced } from '@/lib/feedback-voice';
 import {
   Screen,
   PageHeader,
@@ -227,6 +228,7 @@ function Quiz({ items, onDone }: { items: PublicItem[]; onDone: () => void }) {
   const [i, setI] = useState(0);
   const [result, setResult] = useState<{ correct: boolean; explainEn: string; explainZh: string } | null>(null);
   const [right, setRight] = useState(0);
+  const { speak } = useSpeak();
   const startedAt = useRef(Date.now());
   const item = items[i];
 
@@ -244,10 +246,20 @@ function Quiz({ items, onDone }: { items: PublicItem[]; onDone: () => void }) {
     setResult(b);
     sfx(b.correct ? 'correct' : 'wrong');
     if (b.correct) setRight((n) => n + 1);
-    setTimeout(() => {
-      if (i + 1 >= items.length) onDone();
-      else setI((n) => n + 1);
-    }, b.correct ? 1100 : 2800);
+    // Affirmation only, with no target read after it. These are 统考 item types
+    // - cloze, punctuation, sequencing - whose stem is a whole sentence, and
+    // reading a sentence back on every answer would bury the verdict it is
+    // meant to deliver. The explanation is on screen to be read instead.
+    speakFeedbackPaced({
+      correct: b.correct,
+      speak,
+      minMs: b.correct ? 1100 : 2800,
+      maxMs: b.correct ? 2600 : 4200,
+      onAdvance: () => {
+        if (i + 1 >= items.length) onDone();
+        else setI((n) => n + 1);
+      },
+    });
   }
 
   if (!item) { onDone(); return null; }

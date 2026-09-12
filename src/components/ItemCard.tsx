@@ -33,11 +33,18 @@ export default function ItemCard({
   feedback,
   onAnswer,
   busy,
+  onSpoken,
 }: {
   item: PublicItem;
   feedback: Feedback | null;
   onAnswer: (value: string, extra?: { audio?: Blob | null }) => void;
   busy?: boolean;
+  /**
+   * Fired when the spoken verdict has finished. The owner decides what to do
+   * with it - the prologue uses it to advance, so the next question does not
+   * cut the reading off half way through.
+   */
+  onSpoken?: () => void;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [text, setText] = useState('');
@@ -77,14 +84,20 @@ export default function ItemCard({
     else if (feedback.correct === false) sfx('wrong');
     else sfx('reveal');
 
-    if (feedback.correct === null) return;
+    // Nothing to say for an unscored item, but the owner is still waiting on
+    // this callback, so report done rather than leaving it to time out.
+    if (feedback.correct === null) {
+      onSpoken?.();
+      return;
+    }
     const said = speakFeedback({
       correct: feedback.correct,
       target: feedback.reveal?.speak,
       speak,
+      onEnd: () => onSpoken?.(),
     });
     setAffirmation(said);
-  }, [feedback, item.id, speak]);
+  }, [feedback, item.id, speak, onSpoken]);
 
   const locked = Boolean(feedback) || busy;
   const listening = item.type === 'listen-char' || item.type === 'word-listen' || item.type === 'tone-discriminate';

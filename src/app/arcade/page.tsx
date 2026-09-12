@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSpeak } from '@/components/Speak';
 import SoundToggle from '@/components/SoundToggle';
 import { sfx, playStreak } from '@/lib/sfx';
+import { speakFeedbackPaced } from '@/lib/feedback-voice';
 import type { PublicItem } from '@/lib/items/public';
 import { Screen, Centred, Loading, PageHeader, Progress, OptionList } from '@/components/ui';
 
@@ -95,6 +96,7 @@ export default function Arcade() {
       const b = await res.json();
       setResult(b);
 
+      // Chime first as the instant signal, then the voice says which it was.
       if (b.correct) sfx('correct');
       else sfx('wrong');
 
@@ -113,15 +115,25 @@ export default function Arcade() {
         setStreak(0);
       }
 
-      setTimeout(() => {
-        setResult(null);
-        if (i + 1 >= (round?.items.length ?? 0)) {
-          sfx('complete');
-          setDone(true);
-        } else setI((n) => n + 1);
-      }, b.correct ? 700 : 2200);
+      // The subject is a single character, so speaking it costs about half a
+      // second - worth it on a wrong answer especially, where the reading he
+      // just guessed at is the thing that needs overwriting.
+      speakFeedbackPaced({
+        correct: b.correct,
+        target: item.subject,
+        speak,
+        minMs: b.correct ? 700 : 2200,
+        maxMs: b.correct ? 2400 : 4000,
+        onAdvance: () => {
+          setResult(null);
+          if (i + 1 >= (round?.items.length ?? 0)) {
+            sfx('complete');
+            setDone(true);
+          } else setI((n) => n + 1);
+        },
+      });
     },
-    [item, result, i, round, streak],
+    [item, result, i, round, streak, speak],
   );
 
   // Per-question clock. Running out counts as a miss, not a penalty.

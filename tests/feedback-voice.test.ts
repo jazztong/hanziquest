@@ -1,5 +1,12 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { CORRECT, INCORRECT, pickAffirmation, speakFeedback } from '@/lib/feedback-voice';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import {
+  CORRECT,
+  INCORRECT,
+  pickAffirmation,
+  speakFeedback,
+  speakFeedbackPaced,
+  boundedAdvance,
+} from '@/lib/feedback-voice';
 
 // sfx reads localStorage, which does not exist under the node test environment.
 vi.mock('@/lib/sfx', () => ({ isSoundOn: () => soundOn }));
@@ -95,5 +102,131 @@ describe('spoken feedback', () => {
     let ends = 0;
     speakFeedback({ correct: true, target: '朋友', speak: () => {}, onEnd: () => ends++ });
     expect(ends).toBe(1);
+  });
+});
+
+describe('advancing after the verdict has been spoken', () => {
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
+
+  /** A speech engine that finishes after `ms`, or never if ms is null. */
+  const voice = (ms: number | null) =>
+    (_t: string, _s?: string, cb?: { onEnd?: () => void }) => {
+      if (ms !== null) setTimeout(() => cb?.onEnd?.(), ms);
+    };
+
+  it('holds the floor when speech finishes early', () => {
+    // The arcade advances 700ms after a correct answer. A one-syllable
+    // affirmation must not make it advance sooner than that and feel twitchy.
+    let advanced = 0;
+    speakFeedbackPaced({
+      correct: true,
+      speak: voice(100),
+      minMs: 700,
+      maxMs: 2400,
+      onAdvance: () => advanced++,
+    });
+    vi.advanceTimersByTime(699);
+    expect(advanced).toBe(0);
+    vi.advanceTimersByTime(2);
+    expect(advanced).toBe(1);
+  });
+
+  it('waits past the floor for speech that is still going', () => {
+    let advanced = 0;
+    speakFeedbackPaced({
+      correct: true,
+      speak: voice(1500),
+      minMs: 700,
+      maxMs: 4000,
+      onAdvance: () => advanced++,
+    });
+    vi.advanceTimersByTime(1400);
+    expect(advanced).toBe(0);
+    vi.advanceTimersByTime(200);
+    expect(advanced).toBe(1);
+  });
+
+  it('advances anyway when the voice never reports finishing', () => {
+    // A browser with no zh-CN voice, or a tab backgrounded mid-utterance, can
+    // simply never fire onEnd. Without the ceiling the quiz would stop dead.
+    let advanced = 0;
+    speakFeedbackPaced({
+      correct: false,
+      speak: voice(null),
+      minMs: 2200,
+      maxMs: 4000,
+      onAdvance: () => advanced++,
+    });
+    vi.advanceTimersByTime(3999);
+    expect(advanced).toBe(0);
+    vi.advanceTimersByTime(2);
+    expect(advanced).toBe(1);
+  });
+
+  it('advances exactly once, however the timers fall', () => {
+    let advanced = 0;
+    speakFeedbackPaced({
+      correct: true,
+      speak: voice(50),
+      minMs: 700,
+      maxMs: 900,
+      onAdvance: () => advanced++,
+    });
+    vi.advanceTimersByTime(10000);
+    expect(advanced).toBe(1);
+  });
+
+  it('keeps the original pacing exactly when sound is off', () => {
+    soundOn = false;
+    let advanced = 0;
+    speakFeedbackPaced({
+      correct: true,
+      speak: () => {
+        throw new Error('must not speak while muted');
+      },
+      minMs: 1100,
+      maxMs: 2600,
+      onAdvance: () => advanced++,
+    });
+    vi.advanceTimersByTime(1099);
+    expect(advanced).toBe(0);
+    vi.advanceTimersByTime(2);
+    expect(advanced).toBe(1);
+  });
+});
+
+describe('the advance gate on its own', () => {
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
+
+  it('does not advance after it has been cancelled', () => {
+    // The prologue cancels on unmount. Without this, leaving mid-question
+    // fires an advance into a screen that is no longer mounted.
+    let advanced = 0;
+    const gate = boundedAdvance(() => advanced++, 500, 2000);
+    gate.cancel();
+    gate.finished();
+    vi.advanceTimersByTime(10000);
+    expect(advanced).toBe(0);
+  });
+
+  it('ignores a second finished() call', () => {
+    let advanced = 0;
+    const gate = boundedAdvance(() => advanced++, 0, 2000);
+    gate.finished();
+    gate.finished();
+    vi.advanceTimersByTime(10000);
+    expect(advanced).toBe(1);
+  });
+
+  it('still honours the floor when finished() arrives immediately', () => {
+    let advanced = 0;
+    const gate = boundedAdvance(() => advanced++, 800, 3000);
+    gate.finished();
+    vi.advanceTimersByTime(799);
+    expect(advanced).toBe(0);
+    vi.advanceTimersByTime(2);
+    expect(advanced).toBe(1);
   });
 });

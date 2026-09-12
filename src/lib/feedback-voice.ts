@@ -115,3 +115,86 @@ export function speakFeedback({
   void speak(affirmation.zh, 'system', { onEnd: sayTarget });
   return affirmation;
 }
+
+export interface Gate {
+  /** Call when the thing being waited on has finished. */
+  finished: () => void;
+  /** Call when the screen is leaving, so a pending advance cannot fire into it. */
+  cancel: () => void;
+}
+
+/**
+ * Advance once, no sooner than minMs and no later than maxMs.
+ *
+ * Split out from the speaking so that a caller whose audio finishes somewhere
+ * else entirely can use the same bounds - the prologue speaks inside ItemCard
+ * but advances in the page, so the two halves cannot share a single call.
+ */
+export function boundedAdvance(onAdvance: () => void, minMs: number, maxMs: number): Gate {
+  const startedAt = Date.now();
+  let done = false;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+
+  const go = () => {
+    if (done) return;
+    done = true;
+    if (timer) clearTimeout(timer);
+    onAdvance();
+  };
+
+  timer = setTimeout(go, Math.max(minMs, maxMs));
+
+  return {
+    finished: () => {
+      if (done) return;
+      const held = Date.now() - startedAt;
+      if (held >= minMs) go();
+      else {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(go, minMs - held);
+      }
+    },
+    cancel: () => {
+      done = true;
+      if (timer) clearTimeout(timer);
+    },
+  };
+}
+
+export interface PacedFeedbackOptions extends VoiceFeedbackOptions {
+  /** Never advance sooner than this, even if the voice is silent or muted. */
+  minMs: number;
+  /** Always advance by this, even if the voice never reports finishing. */
+  maxMs: number;
+  onAdvance: () => void;
+}
+
+/**
+ * Speak the verdict, then move on when it has actually finished being said.
+ *
+ * The screens that use this were written before there was a voice, and each
+ * advanced on a fixed timer - the arcade after 700ms on a correct answer. That
+ * is shorter than the word 对了, so the affirmation would be cut off by the next
+ * question appearing.
+ *
+ * Waiting on speech alone is not safe either. A browser with no zh-CN voice
+ * installed, or a tab that was backgrounded mid-utterance, may never fire
+ * onEnd at all - and then the quiz simply stops, which is the worst outcome of
+ * the three. So the advance is bounded on both sides:
+ *
+ *   floor   - keeps the original rhythm. A short "对" must not make the arcade
+ *             feel twitchier than it was designed to feel.
+ *   ceiling - guarantees the run continues whatever the speech engine does.
+ *
+ * With sound off, speakFeedback calls onEnd synchronously, so the advance lands
+ * exactly on the floor and the pacing is identical to before this existed.
+ */
+export function speakFeedbackPaced({
+  minMs,
+  maxMs,
+  onAdvance,
+  ...rest
+}: PacedFeedbackOptions): Affirmation {
+  const gate = boundedAdvance(onAdvance, minMs, maxMs);
+  return speakFeedback({ ...rest, onEnd: gate.finished });
+}
