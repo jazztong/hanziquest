@@ -1,7 +1,8 @@
 # 汉字任务 · HanziQuest
 
-A story-driven 华文 game for one student: **the student, 13, 初一 at the 独中 (Klang),
-on the 6-year UEC track.** Strong English, weak Chinese. The target is the
+A story-driven 华文 game built for one student: **13 years old, 初一 at a
+Malaysian 独中 (independent Chinese high school), on the 6-year UEC track.**
+Strong English, weak Chinese. The target is the
 董总 初中华文 curriculum and, at the end of 初三, the **初中统考 华文 (JY01)** paper.
 
 It is a game whose core mechanic is reading Chinese — not a quiz app with points
@@ -23,10 +24,12 @@ database, seeds it, and starts the app on <http://localhost:3000>.
 
 | Account | Login |
 |---|---|
-| Student | `student` / `student` |
-| Parent | `parent` / `parent` |
+| Student | `student` / printed by the seed |
+| Parent | `parent` / printed by the seed |
 
-Change both. They are seeded so a fresh checkout works, not because they are secure.
+`npm run seed` generates a random password for each account and prints it once.
+Set `SEED_PASSWORD` first if you would rather choose your own. Nothing here is
+built to be exposed to the internet - it is a household app on a home machine.
 
 ```bash
 npm test          # 121 tests
@@ -237,7 +240,8 @@ Honest list of what is not done. Fuller detail at the end of
 6. **Azure pronunciation assessment** is interfaced (`scoreFromAzure`) but the
    audio-upload path to Azure is not wired; with a key set, TTS works and
    scoring still uses the transcript fallback.
-7. **the 独中's internal exam format is unpublished**, so the school-exam boss
+7. **The school's internal exam format is unpublished** - each 独中 sets its
+   own and most do not publish the paper shape - so the school-exam boss
    blueprint uses a documented assumption (research.md §3). The parent can
    correct exam dates; the paper shape is a guess.
 8. **The 2028 统考 date is projected**, not published. Seeded as `2028-10-24` and

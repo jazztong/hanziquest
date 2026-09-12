@@ -32,7 +32,7 @@ occluded** — a weathered blank plaque, a lantern turned away, a scroll rolled 
 
 ## 1. Who this is for
 
-the student is **13**. The art has to read as a game he'd choose, not a resource his
+The player is **13**. The art has to read as a game he'd choose, not a resource his
 parents chose for him.
 
 **Aim at:** the illustration language of contemporary YA graphic novels and

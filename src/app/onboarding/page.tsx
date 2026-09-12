@@ -114,7 +114,7 @@ export default function Onboarding() {
               value={heroName}
               onChange={(e) => setHeroName(e.target.value)}
               maxLength={24}
-              placeholder="the student"
+              placeholder="Your name"
               className="w-full rounded-lg bg-[#111925] border border-[#2f3d52] px-4 py-3 text-xl outline-none focus:border-[var(--color-jade)]"
             />
             <div className="mt-6 surface p-4 text-sm text-[var(--color-slate-soft)] leading-relaxed">

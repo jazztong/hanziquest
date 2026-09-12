@@ -5,6 +5,7 @@
  * Idempotent by primary key - re-running replaces rather than duplicates.
  */
 import { createClient } from '@libsql/client';
+import { randomBytes } from 'node:crypto';
 import path from 'node:path';
 import { hashPassword } from '../src/lib/auth-hash';
 import { ALL_SEED_CHAPTERS } from '../src/content/chapters';
@@ -59,10 +60,24 @@ async function main() {
   console.log('seeding...');
 
   // --- accounts -----------------------------------------------------------
-  // Passwords are seeded, printed once, and meant to be changed. They are not
-  // secrets in any meaningful sense: this is a local household app.
-  const studentPw = 'student';
-  const parentPw = 'parent';
+  // Generated rather than hard-coded, and printed once.
+  //
+  // A password written into the repository is a password every reader of the
+  // repository already has, and this database ends up holding a child's work
+  // and their voice recordings. Generating it means there is nothing to leak
+  // and no two checkouts share a login. Set SEED_PASSWORD to choose your own.
+  const newPassword = () => process.env.SEED_PASSWORD || randomBytes(6).toString('base64url');
+  const studentPw = newPassword();
+  const parentPw = newPassword();
+
+  // Re-seeding must not reset a password that is already in use, so the upsert
+  // below leaves password_hash alone on conflict. That means a generated
+  // password only becomes real for an account that did not exist yet - and
+  // printing it either way would confidently report a login that does not work.
+  const existing = await client.execute('SELECT id FROM users');
+  const isNew = (id: string) => !existing.rows.some((r) => r.id === id);
+  const studentIsNew = isNew(STUDENT_ID);
+  const parentIsNew = isNew(PARENT_ID);
 
   await run(
     `INSERT INTO users (id, name, role, password_hash) VALUES (?,?,?,?)
@@ -180,9 +195,13 @@ async function main() {
 
   client.close();
   console.log('\nseed complete.');
-  console.log('  student login:  student / student');
-  console.log('  parent login:   parent / parent');
-  console.log('  change both in the parent dashboard.');
+  const shown = (name: string, pw: string, fresh: boolean) =>
+    fresh ? `${name} / ${pw}` : `${name} / (unchanged - this account already existed)`;
+  console.log('  student login:  ' + shown('student', studentPw, studentIsNew));
+  console.log('  parent login:   ' + shown('parent', parentPw, parentIsNew));
+  if (studentIsNew || parentIsNew) {
+    console.log('  Shown once. Change them in the parent dashboard.');
+  }
 }
 
 main().catch((e) => {

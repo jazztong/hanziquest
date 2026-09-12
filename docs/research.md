@@ -1,7 +1,7 @@
 # Phase 0 Research — 华文 Learning Game for UEC 初中 Track
 
 **Compiled:** 2026-09-12
-**Student context:** the student, 13, 初一 at the 独中 (a Malaysian 独中), Klang. 6-year UEC track. Strong English, weak Chinese. 初二 begins Jan 2027; 初中统考 华文 falls at end of 初三 (Oct 2028).
+**Student context:** 13, 初一 at a Malaysian 独中. 6-year UEC track. Strong English, weak Chinese. 初二 begins Jan 2027; 初中统考 华文 falls at end of 初三 (Oct 2028).
 
 **Confidence key:** ✅ verified against a primary source · ⚠️ inferred / secondary source · ❓ unverified assumption (decision logged in `docs/decisions.md`)
 
@@ -99,7 +99,7 @@ Retrieved from Dong Zong E-Learning → 独中课程标准 (MICSS Curriculum Sta
 **Confirmed timing (2026 timetable, 52nd UEC):** 华文 (JY01) sat 22 Oct 2026. 试卷一 8.30–10.15am (1h45m), 试卷二 10.30am–12.00pm (1h30m). Candidates leave the hall between papers and may not consult 试卷一 while sitting 试卷二. ✅
 `https://uec.dongzong.my/wp-content/uploads/2026/07/2026-KS-Time-J.pdf`
 
-> **the student's 统考 sitting:** 初三 in 2028 → the 54th UEC, expected **3rd–4th week of October 2028**. Seeded as `2028-10-24` (placeholder, parent-editable). ⚠️
+> **This student's 统考 sitting:** 初三 in 2028 → the 54th UEC, expected **3rd–4th week of October 2028**. Seeded as `2028-10-24` (placeholder, parent-editable). ⚠️
 
 ### 2.2 Marking rubrics ✅
 
@@ -175,7 +175,7 @@ The 纲要 names exactly which poems are recitation-examinable, with book and le
 
 ## 3. 独中 校内 初一/初二 期中/期末 format ⚠️
 
-No official 董总 document governs internal school exams — each 独中 sets its own, and the 独中 does not publish its paper structure. Commercial 模拟卷 for 独中初一年终考 (e.g. Zekolah CIS Junior 1 Year-End) are built to mirror the 统考 shape.
+No official 董总 document governs internal school exams — each 独中 sets its own, and this student's school does not publish its paper structure. Commercial 模拟卷 for 独中初一年终考 (e.g. Zekolah CIS Junior 1 Year-End) are built to mirror the 统考 shape.
 
 **Defensible assumption adopted** ⚠️: internal 初一/初二 papers are a **scaled-down 统考**:
 - 试卷一 写作: 作文 (~300字 at 初一, ~350字 at 初二) + 应用文 (书信/便条 at 初一; 公函/启事 at 初二, matching curriculum 1.3.1 / 2.3.1)
@@ -219,7 +219,7 @@ Observed level-tag distribution in `complete.min.json` (`n*` = HSK 3.0 bands, `n
 
 ### 4.3 The gap this app has to close
 
-| Skill | SJKC graduate entering 初一 | English-dominant student (the student's profile) | Gap |
+| Skill | SJKC graduate entering 初一 | English-dominant student (this profile) | Gap |
 |---|---|---|---|
 | 识字量 (recognition) | ~2,500 | ~300–800 ❓ (baseline will measure) | **the primary bottleneck** |
 | 拼音/声调 | Automatic, 6 years of use | Knows the letters, unreliable tones | Tone discrimination + 音变 |
@@ -255,7 +255,7 @@ Sources:
 | 阅读理解 investigation passage | **≥95%** | Mirrors the exam, which is deliberately slightly above comfort |
 | New target words introduced per chapter | **5–10** | Matches the spec and keeps unknown density inside the band |
 
-Coverage is computed over **characters**, not words, because character recognition is the student's binding constraint and it is what the 识字 deck tracks. A chapter is refused at serve time if it falls outside its band.
+Coverage is computed over **characters**, not words, because character recognition is this student's binding constraint and it is what the 识字 deck tracks. A chapter is refused at serve time if it falls outside its band.
 
 ### 5.2 Spaced repetition
 
@@ -268,7 +268,7 @@ Consistent findings that drove design choices (⚠️ — synthesised from the L
 - **Narrative context aids retention** over isolated word lists. → every new word is first met inside a story sentence, then enters the deck.
 - **Immediate feedback + short sessions** sustain engagement better than long sessions. → 20–30 min default, instant marking.
 - **Failure must be recoverable.** Loss-aversion penalties (streak loss, lives) suppress voluntary practice in adolescents. → the spec's "recoverable detour, never a game over" and "no streak penalty" rules are kept, and no pay-to-win or dark patterns.
-- **Audio-synchronised text (karaoke highlighting)** supports the decoding-to-meaning link for learners whose character recognition lags their oral comprehension — exactly the student's asymmetry.
+- **Audio-synchronised text (karaoke highlighting)** supports the decoding-to-meaning link for learners whose character recognition lags their oral comprehension — exactly this asymmetry.
 
 ---
 
@@ -284,7 +284,7 @@ Consistent findings that drove design choices (⚠️ — synthesised from the L
 
 | # | Item | Status | Handling |
 |---|---|---|---|
-| 1 | the 独中 internal exam format | ❓ unpublished | Scaled-down-统考 assumption (§3); parent can correct via dashboard |
+| 1 | The school's internal exam format | ❓ unpublished | Scaled-down-统考 assumption (§3); parent can correct via dashboard |
 | 2 | 初三 统考 date, Oct 2028 | ❓ not yet published | Seeded `2028-10-24`, parent-editable |
 | 3 | HSK 3.0 headline counts | ⚠️ secondary | Build uses the machine-readable inventories, not the headline numbers |
 | 4 | KSSR 2,500-character target | ⚠️ secondary | Used only to set the baseline's upper anchor |
