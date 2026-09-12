@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArtImage from '@/components/ArtImage';
 import Recorder from '@/components/Recorder';
 import Speak, { useSpeak } from '@/components/Speak';
+import { Screen, PageHeader, Progress } from '@/components/ui';
 import { sfx } from '@/lib/sfx';
 
 interface Relic {
@@ -75,11 +75,8 @@ export default function Relics() {
   const laterCount = relics.filter((r) => r.year > 1).length;
 
   return (
-    <main className="min-h-dvh px-4 py-5 max-w-3xl mx-auto pb-16">
-      <header className="flex items-center gap-3 mb-2">
-        <Link href="/play" className="btn btn-ghost px-2.5 py-1 text-xs">←</Link>
-        <h1 className="text-xl font-bold">古诗文 Relics</h1>
-      </header>
+    <Screen width="wide">
+      <PageHeader back="/play" title={<h1 className="text-base font-bold">古诗文 Relics</h1>} />
       <p className="text-sm text-[var(--color-slate-soft)] mb-6 leading-relaxed">
         These fourteen are the exact 默写 list named in the 初中统考 考试纲要. Not a selection — the
         list. Activate one by reciting it from memory.
@@ -101,25 +98,23 @@ export default function Relics() {
               <button
                 key={r.id}
                 onClick={() => setOpenId(r.id)}
-                className={`card-face ${r.stage >= 4 ? 'r-legendary' : r.stage > 0 ? 'r-rare' : 'r-common'} rounded-xl p-4 text-left transition hover:brightness-110`}
+                className={`card-face ${r.stage >= 4 ? 'r-legendary' : r.stage > 0 ? 'r-rare' : 'r-common'} rounded-xl p-3 sm:p-4 text-left transition hover:brightness-110`}
               >
                 <div className="flex gap-3">
-                  <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-[#111925]">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden shrink-0 bg-[#111925]">
                     <ArtImage id={r.artId} alt="" className="w-full h-full" />
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <div className="zh-display text-lg truncate">{r.title}</div>
                     <div className="text-xs text-[var(--color-slate-soft)] truncate">
                       {r.author} · {r.dynasty}
                     </div>
-                    <div className="text-[10px] mt-1" style={{ color: 'var(--rarity)' }}>
+                    <div className="text-[10px] mt-1 truncate" style={{ color: 'var(--rarity)' }}>
                       {STAGE_LABELS[r.stage]} · {r.charCount} 字
                     </div>
                   </div>
                 </div>
-                <div className="progress mt-3">
-                  <i style={{ width: `${(r.stage / 4) * 100}%` }} />
-                </div>
+                <Progress value={(r.stage / 4) * 100} className="mt-3" />
               </button>
             ))}
           </div>
@@ -127,16 +122,16 @@ export default function Relics() {
       ))}
 
       {!showLater && laterCount > 0 && (
-        <button className="btn btn-ghost w-full" onClick={() => setShowLater(true)}>
+        <button className="btn btn-ghost w-full min-h-11" onClick={() => setShowLater(true)}>
           Show the {laterCount} from 初二 and 初三
         </button>
       )}
       {showLater && (
-        <button className="btn btn-ghost w-full" onClick={() => setShowLater(false)}>
+        <button className="btn btn-ghost w-full min-h-11" onClick={() => setShowLater(false)}>
           Just 初一
         </button>
       )}
-    </main>
+    </Screen>
   );
 }
 
@@ -167,12 +162,22 @@ function RelicDetail({
   }
 
   return (
-    <main className="min-h-dvh px-4 py-5 max-w-2xl mx-auto pb-20">
-      <header className="flex items-center gap-3 mb-4">
-        <button className="btn btn-ghost px-2.5 py-1 text-xs" onClick={onClose}>←</button>
-        <div className="min-w-0">
-          <div className="zh-display text-xl truncate">{relic.title}</div>
-          <div className="text-xs text-[var(--color-slate-soft)]">
+    <Screen>
+      {/* The back affordance here closes an overlay rather than navigating, so
+          it cannot be PageHeader's `back` route — but it keeps the same shape
+          and the same 44px target. */}
+      <header className="flex items-center gap-3 mb-4 min-w-0">
+        <button
+          className="btn btn-ghost shrink-0 grid place-items-center"
+          style={{ minWidth: 44, minHeight: 44, padding: 0 }}
+          aria-label="Back"
+          onClick={onClose}
+        >
+          <span aria-hidden>←</span>
+        </button>
+        <div className="min-w-0 flex-1">
+          <div className="zh-display text-lg sm:text-xl truncate">{relic.title}</div>
+          <div className="text-[11px] sm:text-xs text-[var(--color-slate-soft)] truncate">
             {relic.author} · {relic.dynasty} · {relic.form} · {relic.book} {relic.lesson}
           </div>
         </div>
@@ -187,7 +192,7 @@ function RelicDetail({
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`btn px-3 py-1.5 text-xs ${tab === t ? 'btn-primary' : 'btn-ghost'}`}
+            className={`btn flex-1 min-w-0 min-h-11 px-2 text-xs ${tab === t ? 'btn-primary' : 'btn-ghost'}`}
           >
             {t === 'read' ? '1 · Read' : t === 'recall' ? '2 · Recall' : '3 · Recite'}
           </button>
@@ -197,24 +202,26 @@ function RelicDetail({
       <AnimatePresence mode="wait">
         {tab === 'read' && (
           <motion.section key="read" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <button className="btn btn-primary w-full mb-4" onClick={readAll}>
+            <button className="btn btn-primary w-full min-h-11 mb-4" onClick={readAll}>
               ▶ Play the whole poem
             </button>
 
-            <div className="surface-paper p-5 space-y-3">
+            <div className="surface-paper p-4 sm:p-5 space-y-3">
               {relic.lines.map((l, i) => (
                 <div
                   key={i}
                   className={`cursor-pointer ${activeLine === i ? 'opacity-100' : 'opacity-90'}`}
                   onClick={() => void speak(l.zh, 'elder')}
                 >
-                  <div className="text-[11px] text-[var(--color-slate)] tracking-wide">{l.pinyin}</div>
+                  <div className="text-[11px] text-[var(--color-slate)] tracking-wide break-words">
+                    {l.pinyin}
+                  </div>
                   <div
-                    className={`zh-display text-xl text-[var(--color-ink)] ${activeLine === i ? 'syl-on' : ''}`}
+                    className={`zh-display text-lg sm:text-xl text-[var(--color-ink)] break-words ${activeLine === i ? 'syl-on' : ''}`}
                   >
                     {l.zh}
                   </div>
-                  <div className="text-sm text-[var(--color-slate)] mt-0.5">{l.en}</div>
+                  <div className="text-sm text-[var(--color-slate)] mt-0.5 break-words">{l.en}</div>
                 </div>
               ))}
             </div>
@@ -250,7 +257,7 @@ function RelicDetail({
               </h3>
               <dl className="space-y-1.5">
                 {relic.notes.map((n) => (
-                  <div key={n.term} className="text-sm">
+                  <div key={n.term} className="text-sm break-words">
                     <dt className="zh inline font-semibold">{n.term}</dt>
                     <dd className="inline text-[var(--color-slate-soft)]">
                       {' '}
@@ -262,7 +269,7 @@ function RelicDetail({
             </div>
 
             <button
-              className="btn btn-ghost w-full mt-5"
+              className="btn btn-ghost w-full min-h-11 mt-5"
               onClick={() => {
                 onProgress(relic.id, { stage: Math.max(relic.stage, 2) });
                 setTab('recall');
@@ -325,7 +332,7 @@ function RelicDetail({
           </motion.section>
         )}
       </AnimatePresence>
-    </main>
+    </Screen>
   );
 }
 
@@ -369,11 +376,14 @@ function Cloze({ relic, onScore }: { relic: Relic; onScore: (score: number) => v
       <p className="text-sm text-[var(--color-slate-soft)] mb-4">
         Fill the gaps. {blanks.length} blanks.
       </p>
-      <div className="surface-paper p-5 space-y-4">
+      <div className="surface-paper p-4 sm:p-5 space-y-4">
         {relic.lines.map((l, li) => {
           let hanziIdx = -1;
           return (
-            <p key={li} className="zh-display text-xl text-[var(--color-ink)] leading-loose">
+            <p
+              key={li}
+              className="zh-display text-lg sm:text-xl text-[var(--color-ink)] leading-loose break-words"
+            >
               {[...l.zh].map((ch, ci) => {
                 if (!/[一-鿿]/u.test(ch)) return <span key={ci}>{ch}</span>;
                 hanziIdx += 1;
@@ -387,8 +397,9 @@ function Cloze({ relic, onScore }: { relic: Relic; onScore: (score: number) => v
                     value={val}
                     maxLength={1}
                     disabled={checked}
+                    aria-label={`Blank ${li + 1}-${hanziIdx + 1}`}
                     onChange={(e) => setAnswers((a) => ({ ...a, [key]: e.target.value }))}
-                    className={`zh inline-block w-9 text-center mx-0.5 border-b-2 bg-transparent outline-none ${
+                    className={`zh inline-block w-8 h-11 align-middle text-center mx-0.5 border-b-2 bg-transparent outline-none ${
                       checked
                         ? ok
                           ? 'border-[var(--color-jade)] text-[var(--color-jade)]'
@@ -404,7 +415,7 @@ function Cloze({ relic, onScore }: { relic: Relic; onScore: (score: number) => v
       </div>
 
       {!checked ? (
-        <button className="btn btn-primary w-full mt-5" onClick={check}>
+        <button className="btn btn-primary w-full min-h-11 mt-5" onClick={check}>
           Check
         </button>
       ) : (
@@ -415,7 +426,7 @@ function Cloze({ relic, onScore }: { relic: Relic; onScore: (score: number) => v
           {right < blanks.length && (
             <p className="text-sm text-[var(--color-slate-soft)] mt-2">
               Missed:{' '}
-              <span className="zh">
+              <span className="zh break-words">
                 {blanks
                   .filter((b) => (answers[b.key] ?? '').trim() !== b.char)
                   .map((b) => b.char)
@@ -424,7 +435,7 @@ function Cloze({ relic, onScore }: { relic: Relic; onScore: (score: number) => v
             </p>
           )}
           <button
-            className="btn btn-ghost mt-4"
+            className="btn btn-ghost min-h-11 mt-4"
             onClick={() => {
               setChecked(false);
               setAnswers({});

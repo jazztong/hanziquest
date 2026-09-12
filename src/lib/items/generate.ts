@@ -60,6 +60,29 @@ function sensesOf(entry: CharEntry): string[] {
     .filter(Boolean);
 }
 
+/**
+ * Three distractors whose glosses are distinct from each other.
+ *
+ * Picking three distinct *characters* is not enough: two different characters
+ * can carry the same English gloss, and an item that offers "dialect" twice has
+ * a choice that cannot be made. This was intermittent - roughly one item in a
+ * thousand - so it survived every single-pass test run.
+ *
+ * Greedy over a shuffled pool rather than de-duplicating the pool up front:
+ * each candidate is compared against at most three accepted glosses, instead of
+ * every band-mate against every other.
+ */
+function pickDistinctDistractors(pool: CharEntry[], n: number): CharEntry[] {
+  const chosen: CharEntry[] = [];
+  for (const c of shuffle(pool)) {
+    if (chosen.length === n) break;
+    const g = glossOf(c);
+    if (chosen.some((x) => meansTheSame(glossOf(x), g))) continue;
+    chosen.push(c);
+  }
+  return chosen;
+}
+
 /** Close enough that a learner could not tell them apart. */
 function meansTheSame(a: string, b: string): boolean {
   const norm = (x: string) =>
@@ -101,7 +124,9 @@ export function charRecogniseItem(entry: CharEntry): Item | null {
   });
   if (pool.length < 3) return null;
 
-  const distractors = pick(pool, 3);
+  const distractors = pickDistinctDistractors(pool, 3);
+  // A band with fewer than three distinguishable meanings cannot make an item.
+  if (distractors.length < 3) return null;
   const options: Option[] = shuffle([
     { id: 'k', en: key, zh: entry.c },
     ...distractors.map((d, i) => ({ id: `d${i}`, en: glossOf(d), zh: d.c })),

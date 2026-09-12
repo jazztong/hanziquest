@@ -8,6 +8,16 @@ import HanziText from '@/components/HanziText';
 import HanziPad from '@/components/HanziPad';
 import SoundToggle from '@/components/SoundToggle';
 import Speak, { useSpeak } from '@/components/Speak';
+import {
+  Screen,
+  PageHeader,
+  Panel,
+  Stat,
+  Progress,
+  Loading,
+  ErrorState,
+  OptionList,
+} from '@/components/ui';
 import { sfx } from '@/lib/sfx';
 import type { PublicItem } from '@/lib/items/public';
 
@@ -55,33 +65,18 @@ export default function LessonQuest({ params }: { params: Promise<{ id: string }
   }, [id]);
 
   if (error) {
-    return (
-      <main className="min-h-dvh grid place-items-center px-6 text-center">
-        <div>
-          <p className="text-[var(--color-cinnabar)] font-semibold">{error}</p>
-          <Link href="/play" className="btn btn-primary mt-5">Back to the map</Link>
-        </div>
-      </main>
-    );
+    return <ErrorState message={error} action={{ label: 'Back to the map', href: '/play' }} map={false} />;
   }
-  if (!quest) {
-    return (
-      <main className="min-h-dvh grid place-items-center">
-        <p className="text-[var(--color-slate-soft)]">Building the quest…</p>
-      </main>
-    );
-  }
+  if (!quest) return <Loading what="Building the quest…" />;
 
   return (
-    <main className="min-h-dvh px-4 py-5 max-w-2xl mx-auto pb-24">
-      <header className="flex items-center gap-3 mb-5">
-        <Link href="/play" className="btn btn-ghost px-2.5 py-1 text-xs">←</Link>
-        <div className="min-w-0 flex-1">
-          <div className="zh text-sm truncate">{quest.title}</div>
-          <div className="text-[11px] text-[var(--color-slate)] truncate">{quest.bookRef || '课文'}</div>
-        </div>
-        <SoundToggle />
-      </header>
+    <Screen>
+      <PageHeader
+        back="/play"
+        title={<span className="zh">{quest.title}</span>}
+        subtitle={quest.bookRef || '课文'}
+        right={<SoundToggle />}
+      />
 
       <AnimatePresence mode="wait">
         {stage === 'intro' && <Intro key="i" quest={quest} onGo={() => { sfx('unlock'); setStage(quest.preTeach.length ? 'preteach' : 'read'); }} />}
@@ -90,19 +85,7 @@ export default function LessonQuest({ params }: { params: Promise<{ id: string }
         {stage === 'quiz' && <Quiz key="q" items={quest.items} onDone={() => { sfx('complete'); setStage('done'); }} />}
         {stage === 'done' && <Done key="d" />}
       </AnimatePresence>
-    </main>
-  );
-}
-
-function Panel({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.section
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -12 }}
-    >
-      {children}
-    </motion.section>
+    </Screen>
   );
 }
 
@@ -114,13 +97,17 @@ function Intro({ quest, onGo }: { quest: Quest; onGo: () => void }) {
   const measured = quest.stats.knownShare > 0;
   return (
     <Panel>
-      <div className="surface p-6">
+      <div className="surface p-4 sm:p-6">
         <p className="pill">课文 side quest</p>
-        <h1 className="zh-display text-2xl mt-3">{quest.title}</h1>
-        <div className="grid grid-cols-3 gap-3 mt-5 text-center">
-          <Stat n={quest.stats.chars} label="字" sub="in the lesson" />
-          <Stat n={measured ? `${pct}%` : '—'} label="you can read" sub={measured ? 'already' : 'do the prologue'} />
-          <Stat n={quest.preTeach.length} label="new words" sub="to meet first" />
+        <h1 className="zh-display text-xl sm:text-2xl mt-3 break-words">{quest.title}</h1>
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 mt-5">
+          <Stat value={quest.stats.chars} label="字" sub="in the lesson" />
+          <Stat
+            value={measured ? `${pct}%` : '—'}
+            label="you can read"
+            sub={measured ? 'already' : 'do the prologue'}
+          />
+          <Stat value={quest.preTeach.length} label="new words" sub="to meet first" />
         </div>
         <p className="text-sm text-[var(--color-slate-soft)] mt-5 leading-relaxed">
           {!measured
@@ -131,7 +118,7 @@ function Intro({ quest, onGo }: { quest: Quest; onGo: () => void }) {
               ? 'A fair bit of this is new. Meet the words first and the reading gets much easier.'
               : 'This one is a stretch. Take the words slowly — there is no clock on any of it.'}
         </p>
-        <button className="btn btn-primary w-full mt-6" onClick={onGo}>
+        <button className="btn btn-primary w-full min-h-11 mt-6" onClick={onGo}>
           Start
         </button>
       </div>
@@ -139,16 +126,6 @@ function Intro({ quest, onGo }: { quest: Quest; onGo: () => void }) {
         Built from the lesson your parent uploaded. It stays on this machine.
       </p>
     </Panel>
-  );
-}
-
-function Stat({ n, label, sub }: { n: number | string; label: string; sub: string }) {
-  return (
-    <div>
-      <div className="text-2xl font-bold text-[var(--color-jade-bright)]">{n}</div>
-      <div className="text-[11px] text-[var(--color-paper-dim)]">{label}</div>
-      <div className="text-[10px] text-[var(--color-slate)]">{sub}</div>
-    </div>
   );
 }
 
@@ -161,8 +138,8 @@ function PreTeach({ words, onDone }: { words: PreTeachWord[]; onDone: () => void
   return (
     <Panel>
       <p className="pill mb-3">生字新词 · {i + 1} / {words.length}</p>
-      <div className="surface p-6 text-center">
-        <div className="zh-display text-6xl leading-tight">{w.w}</div>
+      <div className="surface p-4 sm:p-6 text-center">
+        <div className="zh-display text-5xl sm:text-6xl leading-tight break-words">{w.w}</div>
         <div className="text-xl font-semibold text-[var(--color-jade-bright)] mt-3">{w.pinyin}</div>
         <p className="text-sm text-[var(--color-paper-dim)] mt-2">{w.gloss || '—'}</p>
         <p className="text-[11px] text-[var(--color-slate)] mt-1">
@@ -175,12 +152,14 @@ function PreTeach({ words, onDone }: { words: PreTeachWord[]; onDone: () => void
             <p className="text-xs text-[var(--color-slate-soft)] mb-3">
               New character{w.newChars.length > 1 ? 's' : ''} to write: {w.newChars.join(' ')}
             </p>
-            <HanziPad char={w.newChars[0]} size={190} onDone={() => sfx('correct')} />
+            <div className="mx-auto w-full max-w-[190px]">
+              <HanziPad char={w.newChars[0]} size={190} onDone={() => sfx('correct')} />
+            </div>
           </div>
         )}
       </div>
       <button
-        className="btn btn-primary w-full mt-5"
+        className="btn btn-primary w-full min-h-11 mt-5"
         onClick={() => { sfx('page'); last ? onDone() : setI((n) => n + 1); }}
       >
         {last ? 'Read the lesson' : 'Next word'}
@@ -212,15 +191,15 @@ function Reading({ quest, onDone }: { quest: Quest; onDone: () => void }) {
   return (
     <Panel>
       <div className="flex items-center gap-2 mb-3">
-        <button className="btn btn-primary flex-1" onClick={playingAll ? () => { cancelled.current = true; stop(); setPlayingAll(false); setActive(-1); } : playAll}>
+        <button className="btn btn-primary flex-1 min-w-0 min-h-11 px-2" onClick={playingAll ? () => { cancelled.current = true; stop(); setPlayingAll(false); setActive(-1); } : playAll}>
           {playingAll ? '◼ Stop' : '▶ Read the whole lesson'}
         </button>
-        <button className="btn btn-ghost text-xs" onClick={() => setShowPinyin((p) => !p)}>
+        <button className="btn btn-ghost shrink-0 min-h-11 px-3 text-xs" onClick={() => setShowPinyin((p) => !p)}>
           {showPinyin ? '拼音 on' : '拼音 off'}
         </button>
       </div>
 
-      <div className="surface-paper p-5 space-y-3 max-h-[55vh] overflow-y-auto">
+      <div className="surface-paper p-4 sm:p-5 space-y-3 max-h-[55vh] overflow-y-auto">
         {quest.lines.map((l, i) => (
           <div
             key={l.id}
@@ -237,7 +216,7 @@ function Reading({ quest, onDone }: { quest: Quest; onDone: () => void }) {
         ))}
       </div>
 
-      <button className="btn btn-primary w-full mt-5" onClick={() => { sfx('page'); onDone(); }}>
+      <button className="btn btn-primary w-full min-h-11 mt-5" onClick={() => { sfx('page'); onDone(); }}>
         I have read it — questions
       </button>
     </Panel>
@@ -275,32 +254,34 @@ function Quiz({ items, onDone }: { items: PublicItem[]; onDone: () => void }) {
 
   return (
     <Panel>
-      <div className="flex items-center justify-between text-xs text-[var(--color-slate-soft)] mb-2">
-        <span>统考题型 · {i + 1} / {items.length}</span>
-        <span>{right} correct</span>
+      <div className="flex items-center justify-between gap-2 text-xs text-[var(--color-slate-soft)] mb-2">
+        <span className="min-w-0 truncate">统考题型 · {i + 1} / {items.length}</span>
+        <span className="shrink-0">{right} correct</span>
       </div>
-      <div className="progress mb-4"><i style={{ width: `${((i + 1) / items.length) * 100}%` }} /></div>
+      <Progress value={((i + 1) / items.length) * 100} className="mb-4" />
 
-      <div className="surface p-5">
-        <div className="zh text-lg leading-relaxed whitespace-pre-line">
+      <div className="surface p-4 sm:p-5">
+        <div className="zh text-lg leading-relaxed whitespace-pre-line break-words">
           <HanziText text={item.stem} support="full" />
         </div>
         {item.stemEn && <p className="text-sm text-[var(--color-slate-soft)] mt-3">{item.stemEn}</p>}
         {item.audioText && <div className="mt-3"><Speak text={item.audioText} speaker="narrator" label="Hear the sentence" /></div>}
 
-        <div className="grid gap-2 mt-5">
-          {(item.options ?? []).map((o) => (
-            <button
-              key={o.id}
-              disabled={Boolean(result)}
-              onClick={() => answer(o.id)}
-              className="btn btn-choice"
-            >
-              {o.zh && <span className="zh text-lg mr-2">{o.zh}</span>}
-              {o.pinyin && <span className="text-lg font-semibold text-[var(--color-jade-bright)] mr-2">{o.pinyin}</span>}
-              {o.en && <span className="text-sm text-[var(--color-paper-dim)]">{o.en}</span>}
-            </button>
-          ))}
+        <div className="mt-5">
+          <OptionList>
+            {(item.options ?? []).map((o) => (
+              <button
+                key={o.id}
+                disabled={Boolean(result)}
+                onClick={() => answer(o.id)}
+                className="btn btn-choice min-h-11 flex-wrap"
+              >
+                {o.zh && <span className="zh text-lg mr-2">{o.zh}</span>}
+                {o.pinyin && <span className="text-lg font-semibold text-[var(--color-jade-bright)] mr-2">{o.pinyin}</span>}
+                {o.en && <span className="text-sm text-[var(--color-paper-dim)]">{o.en}</span>}
+              </button>
+            ))}
+          </OptionList>
         </div>
 
         {result && (
@@ -327,9 +308,9 @@ function Done() {
           Anything you missed has gone into the daily session, so it comes back before the exam
           rather than after it.
         </p>
-        <div className="flex gap-2 mt-7 max-w-sm mx-auto">
-          <Link href="/deck" className="btn btn-ghost flex-1">识字 deck</Link>
-          <Link href="/play" className="btn btn-primary flex-1">Back to the map</Link>
+        <div className="flex flex-wrap gap-2 mt-7 max-w-sm mx-auto">
+          <Link href="/deck" className="btn btn-ghost flex-1 min-w-0 min-h-11 px-2">识字 deck</Link>
+          <Link href="/play" className="btn btn-primary flex-1 min-w-0 min-h-11 px-2">Back to the map</Link>
         </div>
       </div>
     </Panel>

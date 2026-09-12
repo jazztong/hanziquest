@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ArtImage from '@/components/ArtImage';
 import SoundToggle from '@/components/SoundToggle';
+import { Screen, Centred, Loading, Stat, Progress } from '@/components/ui';
 
 interface Summary {
   profile: {
@@ -32,6 +33,16 @@ interface Summary {
   nextExam: { label: string; date: string; daysAway: number; isPlaceholder: boolean } | null;
 }
 
+/**
+ * The banner is full-bleed while the rest of the hub sits inside `Screen`'s
+ * gutter, so it cancels that gutter (and the safe-area inset) with a matching
+ * negative margin rather than the page opting out of the shared frame.
+ */
+const BLEED: React.CSSProperties = {
+  marginLeft: 'calc(-1 * max(1rem, env(safe-area-inset-left)))',
+  marginRight: 'calc(-1 * max(1rem, env(safe-area-inset-right)))',
+};
+
 export default function PlayHub() {
   const [s, setS] = useState<Summary | null>(null);
 
@@ -46,22 +57,14 @@ export default function PlayHub() {
 
   if (failed) {
     return (
-      <main className="min-h-dvh grid place-items-center px-6 text-center">
-        <div>
-          <p className="text-[var(--color-cinnabar)] font-semibold">Could not load your profile.</p>
-          <Link href="/login" className="btn btn-primary mt-5">Sign in again</Link>
-        </div>
-      </main>
+      <Centred>
+        <p className="text-[var(--color-cinnabar)] font-semibold">Could not load your profile.</p>
+        <Link href="/login" className="btn btn-primary mt-5">Sign in again</Link>
+      </Centred>
     );
   }
 
-  if (!s?.profile) {
-    return (
-      <main className="min-h-dvh grid place-items-center">
-        <p className="text-[var(--color-slate-soft)]">Loading…</p>
-      </main>
-    );
-  }
+  if (!s?.profile) return <Loading />;
 
   const p = s.profile;
   const nextMilestone = s.milestones.filter((m) => !m.achievedAt).sort((a, b) => b.pct - a.pct)[0];
@@ -71,12 +74,12 @@ export default function PlayHub() {
   )[0];
 
   return (
-    <main className="min-h-dvh pb-10">
+    <Screen width="wide">
       {/* Banner */}
-      <div className="relative h-40 sm:h-52 overflow-hidden">
+      <div className="relative h-40 sm:h-52 overflow-hidden -mt-4" style={BLEED}>
         <ArtImage id={`map-${p.genre}`} alt="" className="w-full h-full" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#131a26] via-[#131a26]/40 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 p-4 max-w-3xl mx-auto flex items-end gap-3">
+        <div className="absolute inset-x-0 bottom-0 p-4 flex items-end gap-2 sm:gap-3">
           <div className="w-14 h-14 rounded-xl overflow-hidden border border-[#33415a] shrink-0 bg-[#111925]">
             <ArtImage id={p.avatarId} alt="" className="w-full h-full" />
           </div>
@@ -87,133 +90,129 @@ export default function PlayHub() {
               {p.streakDays > 0 && ` · ${p.streakDays}-day streak`}
             </div>
           </div>
-          <SoundToggle className="shrink-0" />
-          <Link href="/parent" className="btn btn-ghost px-2.5 py-1 text-xs shrink-0">
+          <SoundToggle className="shrink-0 min-w-[44px] min-h-[44px]" />
+          <Link href="/parent" className="btn btn-ghost shrink-0 px-3 text-xs min-h-[44px]">
             Parent
           </Link>
         </div>
       </div>
 
-      <div className="px-4 max-w-3xl mx-auto">
-        <div className="progress mt-4">
-          <i style={{ width: `${(p.into / p.need) * 100}%` }} />
-        </div>
-        <p className="text-[11px] text-[var(--color-slate)] mt-1">
-          {p.into} / {p.need} XP to level {p.level + 1}
-        </p>
+      <Progress value={p.into} max={p.need} className="mt-4" />
+      <p className="text-[11px] text-[var(--color-slate)] mt-1">
+        {p.into} / {p.need} XP to level {p.level + 1}
+      </p>
 
-        {/* Today */}
-        <motion.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-6">
-          <h2 className="text-xs uppercase tracking-wider text-[var(--color-slate-soft)] mb-2">
-            Today · about {p.dailyMinutesGoal} min
-          </h2>
-          <Link href="/play/chapter" className="surface block p-5 hover:border-[var(--color-jade)] transition">
-            <div className="flex items-center gap-4">
-              <div className="text-3xl" aria-hidden>📖</div>
-              <div className="flex-1">
-                <div className="font-bold">Continue the story</div>
-                <div className="text-sm text-[var(--color-slate-soft)]">
-                  {s.chaptersCompleted === 0
-                    ? 'Chapter one is waiting.'
-                    : `${s.chaptersCompleted} chapter${s.chaptersCompleted === 1 ? '' : 's'} done.`}
+      {/* Today */}
+      <motion.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-6">
+        <h2 className="text-xs uppercase tracking-wider text-[var(--color-slate-soft)] mb-2">
+          Today · about {p.dailyMinutesGoal} min
+        </h2>
+        <Link
+          href="/play/chapter"
+          className="surface block p-4 sm:p-5 hover:border-[var(--color-jade)] transition"
+        >
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="text-3xl shrink-0" aria-hidden>📖</div>
+            <div className="flex-1 min-w-0">
+              <div className="font-bold">Continue the story</div>
+              <div className="text-sm text-[var(--color-slate-soft)] break-words">
+                {s.chaptersCompleted === 0
+                  ? 'Chapter one is waiting.'
+                  : `${s.chaptersCompleted} chapter${s.chaptersCompleted === 1 ? '' : 's'} done.`}
+              </div>
+            </div>
+            <span className="text-[var(--color-jade)] shrink-0" aria-hidden>→</span>
+          </div>
+        </Link>
+
+        {latestLesson && (
+          <Link
+            href={`/lesson/${latestLesson.id}`}
+            className="surface block p-4 sm:p-5 mt-3 hover:border-[var(--color-jade)] transition"
+          >
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="text-3xl shrink-0" aria-hidden>📚</div>
+              <div className="flex-1 min-w-0">
+                <div className="font-bold">This week&apos;s 课文</div>
+                <div className="zh text-sm text-[var(--color-slate-soft)] truncate">
+                  {latestLesson.title}
+                  {latestLesson.bookRef ? ` · ${latestLesson.bookRef}` : ''}
                 </div>
               </div>
-              <span className="text-[var(--color-jade)]" aria-hidden>→</span>
+              <span className="text-[var(--color-jade)] shrink-0" aria-hidden>→</span>
             </div>
           </Link>
+        )}
 
-          {latestLesson && (
-            <Link
-              href={`/lesson/${latestLesson.id}`}
-              className="surface block p-5 mt-3 hover:border-[var(--color-jade)] transition"
-            >
-              <div className="flex items-center gap-4">
-                <div className="text-3xl" aria-hidden>📚</div>
-                <div className="flex-1 min-w-0">
-                  <div className="font-bold">This week's 课文</div>
-                  <div className="zh text-sm text-[var(--color-slate-soft)] truncate">
-                    {latestLesson.title}
-                    {latestLesson.bookRef ? ` · ${latestLesson.bookRef}` : ''}
-                  </div>
-                </div>
-                <span className="text-[var(--color-jade)]" aria-hidden>→</span>
-              </div>
-            </Link>
-          )}
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 mt-3">
+          <Link
+            href="/deck"
+            className="surface p-3 sm:p-4 min-w-0 hover:border-[var(--color-jade)] transition"
+          >
+            <div className="text-2xl" aria-hidden>🎴</div>
+            <div className="font-semibold mt-1.5 text-sm">识字</div>
+            <div className="text-xs text-[var(--color-slate-soft)] break-words">
+              {s.cards.due > 0 ? `${s.cards.due} due` : 'Clear'}
+            </div>
+          </Link>
+          <Link
+            href="/arcade"
+            className="surface p-3 sm:p-4 min-w-0 hover:border-[var(--color-jade)] transition"
+          >
+            <div className="text-2xl" aria-hidden>🎯</div>
+            <div className="font-semibold mt-1.5 text-sm">声调</div>
+            <div className="text-xs text-[var(--color-slate-soft)] break-words">Tone arcade</div>
+          </Link>
+          <Link
+            href="/relics"
+            className="surface p-3 sm:p-4 min-w-0 hover:border-[var(--color-jade)] transition"
+          >
+            <div className="text-2xl" aria-hidden>📜</div>
+            <div className="font-semibold mt-1.5 text-sm">古诗文</div>
+            <div className="text-xs text-[var(--color-slate-soft)] break-words">
+              {s.relics.activated}/{s.relics.total}
+            </div>
+          </Link>
+        </div>
+      </motion.section>
 
-          <div className="grid grid-cols-3 gap-3 mt-3">
-            <Link href="/deck" className="surface p-4 hover:border-[var(--color-jade)] transition">
-              <div className="text-2xl" aria-hidden>🎴</div>
-              <div className="font-semibold mt-1.5 text-sm">识字</div>
-              <div className="text-xs text-[var(--color-slate-soft)]">
-                {s.cards.due > 0 ? `${s.cards.due} due` : 'Clear'}
+      {/* Numbers */}
+      <section className="grid grid-cols-3 gap-2 sm:gap-3 mt-6">
+        <Stat label="Characters" value={s.knownChars} sub="read on sight" />
+        <Stat label="Cards" value={s.cards.total} sub="collected" />
+        <Stat label="Reviews" value={s.reviewsThisWeek} sub="this week" />
+      </section>
+
+      {/* Next milestone */}
+      {nextMilestone && (
+        <section className="surface p-4 mt-6">
+          <div className="flex items-center justify-between gap-3">
+            <div className="min-w-0">
+              <div className="zh text-sm truncate">{nextMilestone.title}</div>
+              <div className="text-xs text-[var(--color-slate-soft)] truncate">
+                {nextMilestone.titleEn}
               </div>
-            </Link>
-            <Link href="/arcade" className="surface p-4 hover:border-[var(--color-jade)] transition">
-              <div className="text-2xl" aria-hidden>🎯</div>
-              <div className="font-semibold mt-1.5 text-sm">声调</div>
-              <div className="text-xs text-[var(--color-slate-soft)]">Tone arcade</div>
-            </Link>
-            <Link href="/relics" className="surface p-4 hover:border-[var(--color-jade)] transition">
-              <div className="text-2xl" aria-hidden>📜</div>
-              <div className="font-semibold mt-1.5 text-sm">古诗文</div>
-              <div className="text-xs text-[var(--color-slate-soft)]">
-                {s.relics.activated}/{s.relics.total}
-              </div>
-            </Link>
+            </div>
+            <span className="text-sm font-bold text-[var(--color-jade-bright)] shrink-0 tabular-nums">
+              {Math.round(nextMilestone.current)} / {nextMilestone.target}
+            </span>
           </div>
-        </motion.section>
-
-        {/* Numbers */}
-        <section className="grid grid-cols-3 gap-3 mt-6">
-          <Stat label="Characters" value={s.knownChars} sub="read on sight" />
-          <Stat label="Cards" value={s.cards.total} sub="collected" />
-          <Stat label="Reviews" value={s.reviewsThisWeek} sub="this week" />
+          <Progress value={nextMilestone.pct} className="mt-2.5" />
         </section>
+      )}
 
-        {/* Next milestone */}
-        {nextMilestone && (
-          <section className="surface p-4 mt-6">
-            <div className="flex items-center justify-between gap-3">
-              <div className="min-w-0">
-                <div className="zh text-sm truncate">{nextMilestone.title}</div>
-                <div className="text-xs text-[var(--color-slate-soft)] truncate">
-                  {nextMilestone.titleEn}
-                </div>
-              </div>
-              <span className="text-sm font-bold text-[var(--color-jade-bright)] shrink-0">
-                {Math.round(nextMilestone.current)} / {nextMilestone.target}
-              </span>
-            </div>
-            <div className="progress mt-2.5">
-              <i style={{ width: `${nextMilestone.pct}%` }} />
-            </div>
-          </section>
-        )}
-
-        {/* Next exam */}
-        {s.nextExam && (
-          <section className="mt-4 text-center">
-            <p className="text-xs text-[var(--color-slate-soft)]">
-              <span className="zh">{s.nextExam.label}</span> in{' '}
-              <b className="text-[var(--color-gold)]">{s.nextExam.daysAway} days</b>
-              {s.nextExam.isPlaceholder && (
-                <span className="text-[var(--color-slate)]"> · date not confirmed</span>
-              )}
-            </p>
-          </section>
-        )}
-      </div>
-    </main>
-  );
-}
-
-function Stat({ label, value, sub }: { label: string; value: number; sub: string }) {
-  return (
-    <div className="surface p-3 text-center">
-      <div className="text-2xl font-bold text-[var(--color-jade-bright)]">{value}</div>
-      <div className="text-[11px] text-[var(--color-paper-dim)] mt-0.5">{label}</div>
-      <div className="text-[10px] text-[var(--color-slate)]">{sub}</div>
-    </div>
+      {/* Next exam */}
+      {s.nextExam && (
+        <section className="mt-4 text-center">
+          <p className="text-xs text-[var(--color-slate-soft)]">
+            <span className="zh">{s.nextExam.label}</span> in{' '}
+            <b className="text-[var(--color-gold)]">{s.nextExam.daysAway} days</b>
+            {s.nextExam.isPlaceholder && (
+              <span className="text-[var(--color-slate)]"> · date not confirmed</span>
+            )}
+          </p>
+        </section>
+      )}
+    </Screen>
   );
 }

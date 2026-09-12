@@ -49,7 +49,10 @@ export function Screen({
 }) {
   return (
     <main
-      className={`min-h-dvh px-4 pt-4 pb-24 mx-auto w-full ${WIDTH[width]} ${className}`}
+      // px-4 and pb-24 are deliberately not set as classes: the inline styles
+      // below override them anyway, so carrying both left two sources of truth
+      // for the same gutter, and they had already drifted.
+      className={`min-h-dvh pt-4 mx-auto w-full ${WIDTH[width]} ${className}`}
       style={{
         paddingBottom: 'calc(6rem + env(safe-area-inset-bottom))',
         paddingLeft: 'max(1rem, env(safe-area-inset-left))',
@@ -101,9 +104,23 @@ export function PageHeader({
       )}
       {(title || subtitle) && (
         <div className="min-w-0 flex-1">
-          {title && <div className="text-sm font-semibold truncate">{title}</div>}
+          {/* Truncated, but carrying the full text in a title attribute: a long
+              chapter name is clipped on a phone and was otherwise unrecoverable. */}
+          {title && (
+            <div
+              className="text-sm font-semibold truncate"
+              title={typeof title === 'string' ? title : undefined}
+            >
+              {title}
+            </div>
+          )}
           {subtitle && (
-            <div className="text-[11px] text-[var(--color-slate)] truncate">{subtitle}</div>
+            <div
+              className="text-[11px] text-[var(--color-slate)] truncate"
+              title={typeof subtitle === 'string' ? subtitle : undefined}
+            >
+              {subtitle}
+            </div>
           )}
         </div>
       )}
@@ -272,10 +289,17 @@ export function ErrorState({
   message,
   hint,
   action,
+  /**
+   * Show the Map link alongside the action. Turn it off when the action already
+   * goes to the map - lesson/[id] rendered "Back to the map" next to "Map", two
+   * buttons to the same place, which reads as a broken screen, not a recovery.
+   */
+  map = true,
 }: {
   message: string;
   hint?: string;
   action?: { label: string; href?: string; onClick?: () => void };
+  map?: boolean;
 }) {
   return (
     <Centred>
@@ -284,9 +308,11 @@ export function ErrorState({
         <p className="text-sm text-[var(--color-slate-soft)] mt-2 leading-relaxed">{hint}</p>
       )}
       <div className="flex gap-2 mt-6">
-        <Link href="/play" className="btn btn-ghost flex-1">
-          Map
-        </Link>
+        {(map || !action) && (
+          <Link href="/play" className="btn btn-ghost flex-1">
+            Map
+          </Link>
+        )}
         {action &&
           (action.href ? (
             <Link href={action.href} className="btn btn-primary flex-1">

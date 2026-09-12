@@ -7,6 +7,7 @@ import { useSpeak } from '@/components/Speak';
 import SoundToggle from '@/components/SoundToggle';
 import { sfx, playStreak } from '@/lib/sfx';
 import type { PublicItem } from '@/lib/items/public';
+import { Screen, Centred, Loading, PageHeader, Progress, OptionList } from '@/components/ui';
 
 /** The arcade adds `subject` so an answer can be marked without round state. */
 type ArcadeItem = PublicItem & { subject: string };
@@ -144,38 +145,30 @@ export default function Arcade() {
 
   if (error) {
     return (
-      <main className="min-h-dvh grid place-items-center px-6 text-center">
-        <div className="max-w-sm">
-          <p className="text-[var(--color-cinnabar)] font-semibold">{error}</p>
-          <p className="text-sm text-[var(--color-slate-soft)] mt-2">
-            If you have been signed out, sign in again and come back.
-          </p>
-          <div className="flex gap-2 mt-6">
-            <Link href="/login" className="btn btn-ghost flex-1">Sign in</Link>
-            <button className="btn btn-primary flex-1" onClick={load}>Retry</button>
-          </div>
+      <Centred>
+        <p className="text-[var(--color-cinnabar)] font-semibold text-balance">{error}</p>
+        <p className="text-sm text-[var(--color-slate-soft)] mt-2 leading-relaxed">
+          If you have been signed out, sign in again and come back.
+        </p>
+        <div className="flex gap-2 mt-6">
+          <Link href="/login" className="btn btn-ghost flex-1">Sign in</Link>
+          <button className="btn btn-primary flex-1" onClick={load}>Retry</button>
         </div>
-      </main>
+      </Centred>
     );
   }
 
-  if (!round) {
-    return (
-      <main className="min-h-dvh grid place-items-center">
-        <p className="text-[var(--color-slate-soft)]">Loading the arcade…</p>
-      </main>
-    );
-  }
+  if (!round) return <Loading what="Loading the arcade…" />;
 
   if (done) {
     const isBest = score > round.personalBest;
     return (
-      <main className="min-h-dvh grid place-items-center px-6 text-center">
-        <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="max-w-sm">
+      <Centred>
+        <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }}>
           <div className="text-5xl mb-3" aria-hidden>🎯</div>
-          <p className="text-5xl font-bold text-[var(--color-jade-bright)]">{score}</p>
+          <p className="text-5xl font-bold text-[var(--color-jade-bright)] tabular-nums">{score}</p>
           {isBest && <p className="text-[var(--color-gold)] font-semibold mt-2">New personal best!</p>}
-          <p className="text-sm text-[var(--color-slate-soft)] mt-3">
+          <p className="text-sm text-[var(--color-slate-soft)] mt-3 text-balance">
             Best streak {bestStreak} · previous best {round.personalBest}
           </p>
           <div className="flex gap-2 mt-7">
@@ -183,7 +176,7 @@ export default function Arcade() {
             <button className="btn btn-primary flex-1" onClick={load}>Again</button>
           </div>
         </motion.div>
-      </main>
+      </Centred>
     );
   }
 
@@ -193,35 +186,42 @@ export default function Arcade() {
   const listening = item.type === 'listen-char' || item.type === 'tone-discriminate';
 
   return (
-    <main className="min-h-dvh px-4 py-5 max-w-lg mx-auto">
-      <header className="flex items-center gap-3 mb-3">
-        <Link href="/play" className="btn btn-ghost px-2.5 py-1 text-xs">←</Link>
-        <span className="text-xs text-[var(--color-slate-soft)]">
-          {i + 1}/{round.items.length}
-        </span>
-        <span className="ml-auto text-lg font-bold text-[var(--color-jade-bright)]">{score}</span>
-        {streak >= 2 && (
-          <span className="text-xs text-[var(--color-gold)] font-semibold">🔥 {streak}</span>
-        )}
-        <SoundToggle />
-      </header>
+    <Screen width="narrow">
+      <PageHeader
+        back="/play"
+        title={
+          <span className="text-xs font-normal text-[var(--color-slate-soft)] tabular-nums">
+            {i + 1}/{round.items.length}
+          </span>
+        }
+        right={
+          <>
+            <span className="text-lg font-bold text-[var(--color-jade-bright)] tabular-nums">
+              {score}
+            </span>
+            {streak >= 2 && (
+              <span className="text-xs text-[var(--color-gold)] font-semibold whitespace-nowrap">
+                🔥 {streak}
+              </span>
+            )}
+            <SoundToggle className="min-w-[44px] min-h-[44px]" />
+          </>
+        }
+      />
 
       {/* Per-question clock */}
-      <div className="progress mb-5">
-        <i
-          style={{
-            width: `${pct}%`,
-            background:
-              pct < 25
-                ? 'linear-gradient(90deg,#C8442F,#E0A33E)'
-                : 'linear-gradient(90deg,#1F8A80,#2CB3A6)',
-            transition: 'width 100ms linear',
-          }}
-        />
-      </div>
+      <Progress
+        value={pct}
+        tone={
+          pct < 25
+            ? 'linear-gradient(90deg,#C8442F,#E0A33E)'
+            : 'linear-gradient(90deg,#1F8A80,#2CB3A6)'
+        }
+        className="mb-5 [&>i]:transition-[width] [&>i]:duration-100 [&>i]:ease-linear"
+      />
 
       {round.targetedPairs.length > 0 && i === 0 && (
-        <p className="text-[11px] text-center text-[var(--color-slate)] mb-4">
+        <p className="text-[11px] text-center text-[var(--color-slate)] mb-4 break-words">
           Built from the tones you have been missing: {round.targetedPairs.join(', ')}
         </p>
       )}
@@ -232,25 +232,29 @@ export default function Arcade() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -14 }}
-          className="surface p-6"
+          className="surface p-4 sm:p-6"
         >
           {listening ? (
             <div className="text-center py-6">
               <button
-                className="btn btn-ghost text-2xl px-6 py-4"
+                className="btn btn-ghost text-2xl px-6 py-4 min-h-[44px] min-w-[44px]"
                 onClick={() => void speak(item.audioText ?? item.stem, 'system')}
                 aria-label="Play again"
               >
                 🔊
               </button>
-              <p className="text-sm text-[var(--color-slate-soft)] mt-4">{item.stemEn}</p>
+              <p className="text-sm text-[var(--color-slate-soft)] mt-4 break-words">
+                {item.stemEn}
+              </p>
             </div>
           ) : (
             <div className="text-center py-4">
-              <div className="zh-display text-7xl leading-none">{item.stem}</div>
+              <div className="zh-display text-6xl sm:text-7xl leading-none break-words">
+                {item.stem}
+              </div>
               {item.audioText && (
                 <button
-                  className="btn btn-ghost mt-4 text-xs"
+                  className="btn btn-ghost mt-4 text-xs min-h-[44px]"
                   onClick={() => void speak(item.audioText!, 'system')}
                 >
                   🔊 hear it
@@ -259,32 +263,34 @@ export default function Arcade() {
             </div>
           )}
 
-          <div className="grid grid-cols-2 gap-2 mt-5">
-            {(item.options ?? []).map((o) => {
-              const value = o.pinyin ?? o.zh ?? o.en ?? '';
-              const isAnswer = result && value === result.answer;
-              return (
-                <button
-                  key={o.id}
-                  disabled={Boolean(result)}
-                  onClick={() => answer(value)}
-                  className={`btn btn-choice justify-center text-center ${
-                    result ? (isAnswer ? 'correct' : 'opacity-40') : ''
-                  }`}
-                >
-                  <span className={o.pinyin ? 'text-lg font-semibold' : 'zh text-base'}>
-                    {value}
-                  </span>
-                </button>
-              );
-            })}
+          <div className="mt-5">
+            <OptionList>
+              {(item.options ?? []).map((o) => {
+                const value = o.pinyin ?? o.zh ?? o.en ?? '';
+                const isAnswer = result && value === result.answer;
+                return (
+                  <button
+                    key={o.id}
+                    disabled={Boolean(result)}
+                    onClick={() => answer(value)}
+                    className={`btn btn-choice centre whitespace-normal ${
+                      result ? (isAnswer ? 'correct' : 'opacity-40') : ''
+                    }`}
+                  >
+                    <span className={o.pinyin ? 'text-lg font-semibold break-words' : 'zh text-base break-words'}>
+                      {value}
+                    </span>
+                  </button>
+                );
+              })}
+            </OptionList>
           </div>
 
           {result && (
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className={`mt-4 text-sm text-center ${
+              className={`mt-4 text-sm text-center break-words ${
                 result.correct ? 'text-[var(--color-jade-bright)]' : 'text-[var(--color-gold)]'
               }`}
             >
@@ -293,6 +299,6 @@ export default function Arcade() {
           )}
         </motion.div>
       </AnimatePresence>
-    </main>
+    </Screen>
   );
 }

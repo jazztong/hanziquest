@@ -7,6 +7,7 @@ import HanziPad from '@/components/HanziPad';
 import Speak from '@/components/Speak';
 import SoundToggle from '@/components/SoundToggle';
 import { sfx } from '@/lib/sfx';
+import { Screen, Centred, Loading, PageHeader, Progress } from '@/components/ui';
 
 interface Card {
   id: string;
@@ -97,50 +98,44 @@ export default function Deck() {
 
   if (done) {
     return (
-      <main className="min-h-dvh grid place-items-center px-6 text-center">
-        <div className="max-w-sm">
-          <div className="text-5xl mb-4" aria-hidden>🎴</div>
-          <h1 className="text-2xl font-bold">
-            {dueTotal === 0 ? 'Nothing due right now.' : 'Session done.'}
-          </h1>
-          <p className="text-sm text-[var(--color-slate-soft)] mt-2 leading-relaxed">
-            {deferred > 0
-              ? `${deferred} more cards are due but held back for tomorrow — a wall of cards is how people stop opening the app.`
-              : 'The deck is clear. New cards arrive from the next chapter.'}
-          </p>
-          <div className="flex gap-2 mt-7">
-            <Link href="/play" className="btn btn-ghost flex-1">
-              Map
-            </Link>
-            <Link href="/play/chapter" className="btn btn-primary flex-1">
-              Next chapter
-            </Link>
-          </div>
+      <Centred>
+        <div className="text-5xl mb-4" aria-hidden>🎴</div>
+        <h1 className="text-2xl font-bold text-balance">
+          {dueTotal === 0 ? 'Nothing due right now.' : 'Session done.'}
+        </h1>
+        <p className="text-sm text-[var(--color-slate-soft)] mt-2 leading-relaxed">
+          {deferred > 0
+            ? `${deferred} more cards are due but held back for tomorrow — a wall of cards is how people stop opening the app.`
+            : 'The deck is clear. New cards arrive from the next chapter.'}
+        </p>
+        <div className="flex gap-2 mt-7">
+          <Link href="/play" className="btn btn-ghost flex-1">
+            Map
+          </Link>
+          <Link href="/play/chapter" className="btn btn-primary flex-1 min-w-0 whitespace-normal">
+            Next chapter
+          </Link>
         </div>
-      </main>
+      </Centred>
     );
   }
 
-  if (!card) {
-    return (
-      <main className="min-h-dvh grid place-items-center">
-        <p className="text-[var(--color-slate-soft)]">Shuffling…</p>
-      </main>
-    );
-  }
+  if (!card) return <Loading what="Shuffling…" />;
 
   return (
-    <main className="min-h-dvh px-4 py-5 max-w-lg mx-auto">
-      <header className="flex items-center gap-3 mb-5">
-        <Link href="/play" className="btn btn-ghost px-2.5 py-1 text-xs">←</Link>
-        <div className="flex-1 progress">
-          <i style={{ width: `${((i + 1) / queue.length) * 100}%` }} />
-        </div>
-        <span className="text-xs text-[var(--color-slate-soft)]">
-          {i + 1}/{queue.length}
-        </span>
-        <SoundToggle />
-      </header>
+    <Screen width="narrow">
+      <PageHeader
+        back="/play"
+        right={
+          <>
+            <span className="text-xs text-[var(--color-slate-soft)] tabular-nums">
+              {i + 1}/{queue.length}
+            </span>
+            <SoundToggle className="min-w-[44px] min-h-[44px]" />
+          </>
+        }
+      />
+      <Progress value={i + 1} max={queue.length} className="mb-5" />
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -148,11 +143,11 @@ export default function Deck() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
-          className={`card-face r-${card.rarity} rounded-2xl p-6`}
+          className={`card-face r-${card.rarity} rounded-2xl p-4 sm:p-6`}
         >
-          <div className="flex items-center justify-between text-[10px] uppercase tracking-wider">
+          <div className="flex items-center justify-between gap-2 text-[10px] uppercase tracking-wider">
             <span style={{ color: 'var(--rarity)' }}>{card.rarity}</span>
-            <span className="text-[var(--color-slate)]">
+            <span className="text-[var(--color-slate)] text-right">
               Lv {card.cardLevel} {card.band ? `· HSK ${card.band}` : ''}
             </span>
           </div>
@@ -175,7 +170,7 @@ export default function Deck() {
                     Show me
                   </button>
                   <button
-                    className="block mx-auto text-xs text-[var(--color-slate-soft)] underline underline-offset-4"
+                    className="flex mx-auto items-center justify-center min-h-[44px] px-4 text-xs text-[var(--color-slate-soft)] underline underline-offset-4"
                     onClick={() => {
                       setUsedHint(true);
                       setRevealed(true);
@@ -187,15 +182,17 @@ export default function Deck() {
               ) : (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-[var(--color-jade-bright)]">
+                    <div className="text-2xl font-bold text-[var(--color-jade-bright)] break-words">
                       {card.readings[0] ?? ''}
                     </div>
                     {card.polyphonic && (
-                      <p className="text-[11px] text-[var(--color-cinnabar)] mt-1">
+                      <p className="text-[11px] text-[var(--color-cinnabar)] mt-1 break-words">
                         多音字 — also {card.readings.slice(1).join(', ')}
                       </p>
                     )}
-                    <p className="text-sm text-[var(--color-paper-dim)] mt-2">{card.gloss}</p>
+                    <p className="text-sm text-[var(--color-paper-dim)] mt-2 break-words">
+                      {card.gloss}
+                    </p>
                     {card.radical && (
                       <p className="text-[11px] text-[var(--color-slate)] mt-1">
                         radical <span className="zh">{card.radical}</span>
@@ -231,7 +228,7 @@ export default function Deck() {
               <p className="text-center text-sm text-[var(--color-slate-soft)] mb-1">
                 Write it from memory
               </p>
-              <p className="text-center text-lg text-[var(--color-paper-dim)] mb-4">
+              <p className="text-center text-lg text-[var(--color-paper-dim)] mb-4 break-words">
                 {card.readings[0]} — {card.gloss}
               </p>
               {result ? (
@@ -239,17 +236,19 @@ export default function Deck() {
                   {result.levelledUp ? `Levelled up to ${result.cardLevel}!` : 'Saved.'}
                 </p>
               ) : (
-                <HanziPad
-                  char={card.value}
-                  size={230}
-                  showOutline={false}
-                  onDone={(score) => grade(score >= 0.6, score)}
-                />
+                <div className="flex justify-center">
+                  <HanziPad
+                    char={card.value}
+                    size={230}
+                    showOutline={false}
+                    onDone={(score) => grade(score >= 0.6, score)}
+                  />
+                </div>
               )}
             </div>
           )}
         </motion.div>
       </AnimatePresence>
-    </main>
+    </Screen>
   );
 }

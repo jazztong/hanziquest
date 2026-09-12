@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ItemCard, { type Feedback } from '@/components/ItemCard';
 import type { PublicItem } from '@/lib/items/public';
 import SoundToggle from '@/components/SoundToggle';
+import { Screen, Loading, Progress } from '@/components/ui';
 import { sfx } from '@/lib/sfx';
 
 interface Stage {
@@ -78,7 +79,12 @@ export default function Prologue() {
 
       // Hold the feedback long enough to read it, then move on. A wrong answer
       // gets longer, because that is when the explanation matters.
-      const delay = b.feedback.correct === false ? 2600 : 1100;
+      // Longer holds now that the reveal card appears: it speaks the reading,
+      // and cutting away mid-word teaches nothing. Wrong answers hold longest,
+      // because that is when the explanation matters most.
+      const hasReveal = Boolean(b.feedback.reveal);
+      const delay =
+        b.feedback.correct === false ? (hasReveal ? 4200 : 2600) : hasReveal ? 2600 : 1100;
       setTimeout(() => {
         setFeedback(null);
         startedAt.current = Date.now();
@@ -100,29 +106,21 @@ export default function Prologue() {
 
   if (result) return <ResultScreen result={result} onGo={() => router.push('/play')} />;
 
-  if (!item && !stage) {
-    return (
-      <main className="min-h-dvh grid place-items-center">
-        <p className="text-[var(--color-slate-soft)]">Opening the prologue…</p>
-      </main>
-    );
-  }
+  if (!item && !stage) return <Loading what="Opening the prologue…" />;
 
   return (
-    <main className="min-h-dvh px-4 py-5 max-w-2xl mx-auto pb-24">
+    <Screen>
       <header className="mb-5">
-        <div className="flex items-center justify-between text-xs text-[var(--color-slate-soft)] mb-2">
-          <span className="uppercase tracking-wider">
+        <div className="flex items-center justify-between gap-2 text-xs text-[var(--color-slate-soft)] mb-2">
+          <span className="uppercase tracking-wider min-w-0 truncate">
             Prologue · {stage?.titleEn ?? ''}
           </span>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 shrink-0 tabular-nums">
             {progress.done} / {progress.total}
             <SoundToggle />
           </span>
         </div>
-        <div className="progress">
-          <i style={{ width: `${progress.pct}%` }} />
-        </div>
+        <Progress value={progress.pct} />
       </header>
 
       <AnimatePresence mode="wait">
@@ -132,13 +130,15 @@ export default function Prologue() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            className="surface p-7 text-center"
+            className="surface p-5 sm:p-7 text-center"
           >
             {resumed && stageIndex > 0 && (
               <p className="pill mb-4">Picking up where you stopped</p>
             )}
-            <div className="zh-display text-4xl text-[var(--color-gold)]">{stage.titleZh}</div>
-            <h2 className="text-xl font-bold mt-2">{stage.titleEn}</h2>
+            <div className="zh-display text-3xl sm:text-4xl text-[var(--color-gold)] break-words">
+              {stage.titleZh}
+            </div>
+            <h2 className="text-lg sm:text-xl font-bold mt-2 break-words">{stage.titleEn}</h2>
             <p className="text-sm text-[var(--color-slate-soft)] mt-3 leading-relaxed max-w-sm mx-auto">
               {stage.blurb}
             </p>
@@ -146,7 +146,7 @@ export default function Prologue() {
               {stage.count} {stage.count === 1 ? 'task' : 'tasks'} · about {stage.minutes} min
             </p>
             <button
-              className="btn btn-primary mt-6 px-8"
+              className="btn btn-primary mt-6 px-8 min-h-11 w-full sm:w-auto"
               onClick={() => {
                 sfx('unlock');
                 setShowStageCard(false);
@@ -165,7 +165,7 @@ export default function Prologue() {
           <ItemCard key={item.id} item={item} feedback={feedback} onAnswer={answer} busy={busy} />
         ) : null}
       </AnimatePresence>
-    </main>
+    </Screen>
   );
 }
 
@@ -182,27 +182,25 @@ const SKILL_LABEL: Record<string, string> = {
 
 function ResultScreen({ result, onGo }: { result: BaselineResult; onGo: () => void }) {
   return (
-    <main className="min-h-dvh px-4 py-8 max-w-2xl mx-auto pb-24">
+    <Screen>
       <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
         <p className="pill">Prologue complete · {result.minutesTaken} min</p>
-        <h1 className="text-3xl font-bold mt-3">Here is where you actually are.</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold mt-3">Here is where you actually are.</h1>
         <p className="text-sm text-[var(--color-slate-soft)] mt-2 leading-relaxed">
           Nothing here is a grade. It is the starting map — every chapter from now on is pitched at
           these numbers, and they move every week.
         </p>
 
-        <div className="surface p-5 mt-6">
-          <div className="flex items-baseline gap-3">
-            <span className="text-5xl font-bold text-[var(--color-jade-bright)]">
+        <div className="surface p-4 sm:p-5 mt-6">
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <span className="text-4xl sm:text-5xl font-bold text-[var(--color-jade-bright)] tabular-nums">
               {result.estimatedChars}
             </span>
             <span className="text-sm text-[var(--color-slate-soft)]">
               characters you can read on sight
             </span>
           </div>
-          <div className="progress mt-4">
-            <i style={{ width: `${Math.min(100, (result.estimatedChars / 2500) * 100)}%` }} />
-          </div>
+          <Progress value={Math.min(100, (result.estimatedChars / 2500) * 100)} className="mt-4" />
           <p className="text-xs text-[var(--color-slate)] mt-2">
             初一 assumes about 2,500 — that is the gap this game exists to close.
           </p>
@@ -212,15 +210,15 @@ function ResultScreen({ result, onGo }: { result: BaselineResult; onGo: () => vo
         <div className="space-y-2.5">
           {result.skills.map((s) => (
             <div key={s.skill} className="surface p-4">
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-sm font-semibold">{SKILL_LABEL[s.skill] ?? s.skill}</span>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                <span className="text-sm font-semibold min-w-0">
+                  {SKILL_LABEL[s.skill] ?? s.skill}
+                </span>
                 <span className="text-xs text-[var(--color-slate-soft)] whitespace-nowrap">
                   HSK {s.hskLevel} · {Math.round(s.percentOfTarget)}% of 初一
                 </span>
               </div>
-              <div className="progress mt-2">
-                <i style={{ width: `${Math.min(100, s.percentOfTarget)}%` }} />
-              </div>
+              <Progress value={Math.min(100, s.percentOfTarget)} className="mt-2" />
               <p className="text-xs text-[var(--color-slate-soft)] mt-2 leading-relaxed">
                 {s.summaryEn}
               </p>
@@ -236,11 +234,13 @@ function ResultScreen({ result, onGo }: { result: BaselineResult; onGo: () => vo
             </p>
             <ol className="space-y-2">
               {result.gaps.slice(0, 6).map((g, i) => (
-                <li key={g.tag} className="surface p-3 flex items-center gap-3">
-                  <span className="text-[var(--color-gold)] font-bold w-5">{i + 1}</span>
-                  <span className="flex-1">
-                    <span className="zh text-sm">{g.label}</span>
-                    <span className="block text-xs text-[var(--color-slate-soft)]">{g.labelEn}</span>
+                <li key={g.tag} className="surface p-3 flex items-start gap-3">
+                  <span className="text-[var(--color-gold)] font-bold w-5 shrink-0">{i + 1}</span>
+                  <span className="flex-1 min-w-0">
+                    <span className="zh text-sm break-words">{g.label}</span>
+                    <span className="block text-xs text-[var(--color-slate-soft)] break-words">
+                      {g.labelEn}
+                    </span>
                   </span>
                 </li>
               ))}
@@ -248,10 +248,10 @@ function ResultScreen({ result, onGo }: { result: BaselineResult; onGo: () => vo
           </>
         )}
 
-        <button className="btn btn-primary w-full mt-8 py-3.5" onClick={onGo}>
+        <button className="btn btn-primary w-full mt-8 py-3.5 min-h-11" onClick={onGo}>
           Start chapter one
         </button>
       </motion.div>
-    </main>
+    </Screen>
   );
 }

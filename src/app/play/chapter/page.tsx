@@ -9,6 +9,7 @@ import ArtImage from '@/components/ArtImage';
 import { useSpeak } from '@/components/Speak';
 import PreTeach from '@/components/PreTeach';
 import SoundToggle from '@/components/SoundToggle';
+import { Centred, PageHeader, Loading, OptionList } from '@/components/ui';
 import { sfx } from '@/lib/sfx';
 import type { ChapterScript, StoryNode, Line } from '@/lib/story/types';
 
@@ -140,29 +141,23 @@ export default function ChapterPage() {
     });
   }
 
-  if (!data) {
-    return (
-      <main className="min-h-dvh grid place-items-center">
-        <p className="text-[var(--color-slate-soft)]">Loading the next chapter…</p>
-      </main>
-    );
-  }
+  if (!data) return <Loading what="Loading the next chapter…" />;
 
   if (!data.chapter) {
     return (
-      <main className="min-h-dvh grid place-items-center px-6 text-center">
-        <div className="max-w-sm">
-          <p className="zh-display text-3xl text-[var(--color-gold)]">暂时没有新章节</p>
-          <p className="text-sm text-[var(--color-slate-soft)] mt-3 leading-relaxed">
-            {data.reason ?? 'No chapter is available at your level right now.'} Build up the deck for
-            a day or two and the next one will unlock — or add an <code>ANTHROPIC_API_KEY</code> to
-            have new chapters written on demand.
-          </p>
-          <button className="btn btn-ghost mt-6" onClick={() => router.push('/play')}>
-            Back to the map
-          </button>
-        </div>
-      </main>
+      <Centred>
+        <p className="zh-display text-2xl sm:text-3xl text-[var(--color-gold)] break-words">
+          暂时没有新章节
+        </p>
+        <p className="text-sm text-[var(--color-slate-soft)] mt-3 leading-relaxed break-words">
+          {data.reason ?? 'No chapter is available at your level right now.'} Build up the deck for a
+          day or two and the next one will unlock — or add an <code className="break-all">ANTHROPIC_API_KEY</code> to
+          have new chapters written on demand.
+        </p>
+        <button className="btn btn-ghost min-h-11 mt-6" onClick={() => router.push('/play')}>
+          Back to the map
+        </button>
+      </Centred>
     );
   }
 
@@ -178,13 +173,15 @@ export default function ChapterPage() {
 
   if (finished) {
     return (
-      <main className="min-h-dvh grid place-items-center px-6">
-        <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="text-center max-w-sm">
+      <Centred>
+        <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
           <p className="pill">Chapter complete</p>
-          <h1 className="zh-display text-3xl mt-4 text-[var(--color-gold)]">{data.chapter.title}</h1>
-          <p className="text-sm text-[var(--color-slate-soft)] mt-2">{data.chapter.titleEn}</p>
+          <h1 className="zh-display text-2xl sm:text-3xl mt-4 text-[var(--color-gold)] break-words">
+            {data.chapter.title}
+          </h1>
+          <p className="text-sm text-[var(--color-slate-soft)] mt-2 break-words">{data.chapter.titleEn}</p>
 
-          <div className="surface p-5 mt-6 text-left space-y-2.5">
+          <div className="surface p-4 sm:p-5 mt-6 text-left space-y-2.5">
             <Row label="New cards collected" value={`${finished.cardsMinted}`} />
             <Row label="XP earned" value={`+${finished.xp}`} />
             <Row
@@ -204,16 +201,16 @@ export default function ChapterPage() {
             <p className="mt-4 text-[var(--color-gold)] font-semibold">Level up!</p>
           )}
 
-          <div className="flex gap-2 mt-7">
-            <button className="btn btn-ghost flex-1" onClick={() => router.push('/deck')}>
+          <div className="flex flex-wrap gap-2 mt-7">
+            <button className="btn btn-ghost flex-1 min-w-0 min-h-11 px-2" onClick={() => router.push('/deck')}>
               See the new cards
             </button>
-            <button className="btn btn-primary flex-1" onClick={() => router.push('/play')}>
+            <button className="btn btn-primary flex-1 min-w-0 min-h-11 px-2" onClick={() => router.push('/play')}>
               Back to the map
             </button>
           </div>
         </motion.div>
-      </main>
+      </Centred>
     );
   }
 
@@ -222,28 +219,40 @@ export default function ChapterPage() {
   const speakerOf = (line: Line) => castById.get(line.speaker);
 
   return (
+    // Not `Screen`: the scene art is deliberately full-bleed, so the gutter has
+    // to start below it. The story column repeats Screen's gutter and safe-area
+    // inset instead.
     <main className="min-h-dvh flex flex-col">
-      <header className="px-4 py-3 flex items-center gap-3 border-b border-[#222d3d]">
-        <button className="btn btn-ghost px-2.5 py-1 text-xs" onClick={() => router.push('/play')}>
-          ←
-        </button>
-        <div className="min-w-0 flex-1">
-          <div className="zh text-sm truncate">{data.chapter.title}</div>
-          <div className="text-[11px] text-[var(--color-slate)] truncate">{data.chapter.titleEn}</div>
-        </div>
-        <SoundToggle />
-        <button
-          className={`btn px-2.5 py-1 text-xs ${autoPlay ? 'btn-primary' : 'btn-ghost'}`}
-          onClick={() => setAutoPlay((a) => !a)}
-          title="Read each line aloud automatically"
-        >
-          {autoPlay ? '🔊 auto' : '🔇 auto'}
-        </button>
-      </header>
+      <div className="px-4 pt-3 border-b border-[#222d3d]">
+        <PageHeader
+          back="/play"
+          title={<span className="zh">{data.chapter.title}</span>}
+          subtitle={data.chapter.titleEn}
+          right={
+            <>
+              <SoundToggle />
+              <button
+                className={`btn shrink-0 min-h-11 px-3 text-xs ${autoPlay ? 'btn-primary' : 'btn-ghost'}`}
+                onClick={() => setAutoPlay((a) => !a)}
+                title="Read each line aloud automatically"
+              >
+                {autoPlay ? '🔊 auto' : '🔇 auto'}
+              </button>
+            </>
+          }
+        />
+      </div>
 
       {/* Scene art. Bottom third stays low-detail by art direction, because the
-          dialogue panel sits over it. */}
-      <div className="relative aspect-[3/2] max-h-[38vh] w-full overflow-hidden bg-[#0e1520]">
+          dialogue panel sits over it.
+          The height is clamped rather than left at a fixed 3:2 ratio: on a short
+          screen a 3:2 block ate everything above the fold and left the story
+          text with a sliver. It now gives way to the text and never exceeds a
+          third of the viewport. */}
+      <div
+        className="relative aspect-[3/2] w-full shrink-0 overflow-hidden bg-[#0e1520]"
+        style={{ maxHeight: 'clamp(5rem, 30vh, 20rem)' }}
+      >
         <ArtImage
           id={node.artId ?? data.chapter.artId ?? ''}
           fallbackId={data.chapter.artId ?? undefined}
@@ -253,7 +262,14 @@ export default function ChapterPage() {
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#131a26] to-transparent" />
       </div>
 
-      <div className="flex-1 px-4 py-5 max-w-2xl w-full mx-auto pb-28">
+      <div
+        className="flex-1 min-h-0 px-4 py-5 max-w-2xl w-full mx-auto pb-28"
+        style={{
+          paddingBottom: 'calc(7rem + env(safe-area-inset-bottom))',
+          paddingLeft: 'max(1rem, env(safe-area-inset-left))',
+          paddingRight: 'max(1rem, env(safe-area-inset-right))',
+        }}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={node.id}
@@ -269,7 +285,7 @@ export default function ChapterPage() {
                 <div key={line.id}>
                   {cast && (
                     <button
-                      className="text-xs text-[var(--color-jade-bright)] mb-0.5"
+                      className="text-xs text-[var(--color-jade-bright)] inline-flex min-h-11 items-center text-left break-words"
                       title={cast.noteEn}
                     >
                       <span className="zh">{cast.nameZh}</span>{' '}
@@ -277,7 +293,7 @@ export default function ChapterPage() {
                     </button>
                   )}
                   <p
-                    className={`text-lg leading-relaxed ${isActive ? 'line-active' : 'line-idle'}`}
+                    className={`text-lg leading-relaxed break-words ${isActive ? 'line-active' : 'line-idle'}`}
                     onClick={() => {
                       setActiveLine(i);
                       playLine(line);
@@ -300,7 +316,7 @@ export default function ChapterPage() {
             {/* Node-specific controls */}
             {node.kind === 'narration' && (
               <button
-                className="btn btn-primary w-full mt-4"
+                className="btn btn-primary w-full min-h-11 mt-4"
                 onClick={() => (node.next ? goTo(node.next) : complete())}
               >
                 Continue
@@ -312,7 +328,7 @@ export default function ChapterPage() {
                 <p className="text-sm text-[var(--color-slate-soft)] leading-relaxed mb-4">
                   {node.outro}
                 </p>
-                <button className="btn btn-primary w-full" onClick={complete}>
+                <button className="btn btn-primary w-full min-h-11" onClick={complete}>
                   Finish the chapter
                 </button>
               </div>
@@ -320,18 +336,19 @@ export default function ChapterPage() {
 
             {node.kind === 'choice' && (
               <div className="mt-5">
-                <p className="zh text-lg mb-1">
+                <p className="zh text-lg mb-1 break-words">
                   <HanziText text={node.promptZh} targets={targets} support={data.support} />
                 </p>
                 {data.support === 'full' && (
-                  <p className="text-sm text-[var(--color-slate-soft)] mb-3">{node.promptEn}</p>
+                  <p className="text-sm text-[var(--color-slate-soft)] mb-3 break-words">{node.promptEn}</p>
                 )}
-                <div className="grid gap-2 mt-3">
+                <div className="mt-3">
+                 <OptionList>
                   {node.choices.map((c) => (
                     <button
                       key={c.id}
                       disabled={Boolean(choiceResult)}
-                      className={`btn btn-choice ${
+                      className={`btn btn-choice min-h-11 flex-col items-start ${
                         choiceResult && c.correct ? 'correct' : ''
                       }`}
                       onClick={() => {
@@ -343,14 +360,15 @@ export default function ChapterPage() {
                         setTimeout(() => goTo(c.to), c.correct ? 1400 : 3200);
                       }}
                     >
-                      <span className="zh text-base">{c.zh}</span>
+                      <span className="zh text-base break-words">{c.zh}</span>
                       {data.support === 'full' && (
-                        <span className="block text-xs text-[var(--color-slate-soft)] mt-1">
+                        <span className="block text-xs text-[var(--color-slate-soft)] break-words">
                           {c.en}
                         </span>
                       )}
                     </button>
                   ))}
+                 </OptionList>
                 </div>
                 {choiceResult && (
                   <motion.p
@@ -382,7 +400,7 @@ export default function ChapterPage() {
                     ))}
                   </div>
                 </div>
-                <button className="btn btn-primary w-full mt-4" onClick={() => goTo(node.rejoin)}>
+                <button className="btn btn-primary w-full min-h-11 mt-4" onClick={() => goTo(node.rejoin)}>
                   Got it — carry on
                 </button>
               </div>
@@ -394,9 +412,11 @@ export default function ChapterPage() {
                   {node.framing}
                 </p>
                 <div className="surface-paper p-4 mb-4">
-                  <p className="zh text-2xl text-[var(--color-ink)]">{node.targetZh}</p>
+                  <p className="zh text-xl sm:text-2xl text-[var(--color-ink)] break-words">
+                    {node.targetZh}
+                  </p>
                   {data.support === 'full' && (
-                    <p className="text-sm text-[var(--color-slate)] mt-1">{node.targetEn}</p>
+                    <p className="text-sm text-[var(--color-slate)] mt-1 break-words">{node.targetEn}</p>
                   )}
                 </div>
                 {!speakResult ? (

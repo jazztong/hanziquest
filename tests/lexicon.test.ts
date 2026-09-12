@@ -254,16 +254,21 @@ describe('recognition items are answerable and have one right answer', () => {
     }
   });
 
+  // Repeated, because distractors are drawn at random. A duplicate pair turned
+  // up in roughly one item per thousand, so a single pass over the sample missed
+  // it nine times out of ten and the failure looked like flake rather than a bug.
   it('always offers exactly four distinct options', () => {
-    for (const entry of sample) {
-      const item = charRecogniseItem(entry);
-      if (!item) continue;
-      const ens = item.payload.options!.map((o) => o.en);
-      expect({ c: entry.c, n: ens.length, distinct: new Set(ens).size }).toEqual({
-        c: entry.c,
-        n: 4,
-        distinct: 4,
-      });
+    for (let pass = 0; pass < 10; pass++) {
+      for (const entry of sample) {
+        const item = charRecogniseItem(entry);
+        if (!item) continue;
+        const ens = item.payload.options!.map((o) => o.en);
+        expect({ c: entry.c, n: ens.length, distinct: new Set(ens).size }).toEqual({
+          c: entry.c,
+          n: 4,
+          distinct: 4,
+        });
+      }
     }
   });
 });

@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { GENRES, AVATARS } from '@/content/genres';
 import ArtImage from '@/components/ArtImage';
+import { Screen, Panel } from '@/components/ui';
 
 export default function Onboarding() {
   const router = useRouter();
@@ -30,12 +31,16 @@ export default function Onboarding() {
   }
 
   return (
-    <main className="min-h-dvh px-5 py-8 max-w-3xl mx-auto">
+    <Screen width="wide">
       <Steps step={step} />
 
       <AnimatePresence mode="wait">
         {step === 0 && (
-          <Panel key="genre" title="Pick your story" sub="You can change this later without losing anything.">
+          <Panel key="genre">
+            <Heading
+              title="Pick your story"
+              sub="You can change this later without losing anything."
+            />
             <div className="grid gap-3 sm:grid-cols-2">
               {GENRES.map((g) => (
                 <button
@@ -44,17 +49,21 @@ export default function Onboarding() {
                     setGenre(g.id);
                     setStep(1);
                   }}
-                  className={`surface text-left p-4 transition hover:border-[var(--color-jade)] ${
+                  className={`surface text-left p-4 min-w-0 transition hover:border-[var(--color-jade)] ${
                     genre === g.id ? 'border-[var(--color-jade)]' : ''
                   }`}
                 >
-                  <div className="aspect-[3/2] mb-3 overflow-hidden rounded-lg bg-[#111925]">
+                  <div className="aspect-[3/2] max-w-full mb-3 overflow-hidden rounded-lg bg-[#111925]">
                     <ArtImage id={g.mapArtId} alt="" className="w-full h-full" />
                   </div>
                   <div className="zh-display text-2xl text-[var(--color-gold)]">{g.nameZh}</div>
-                  <div className="text-sm font-semibold mt-0.5">{g.nameEn}</div>
-                  <div className="text-xs text-[var(--color-jade-bright)] mt-1.5">{g.tagline}</div>
-                  <p className="text-sm text-[var(--color-slate-soft)] mt-2 leading-relaxed">{g.hook}</p>
+                  <div className="text-sm font-semibold mt-0.5 break-words">{g.nameEn}</div>
+                  <div className="text-xs text-[var(--color-jade-bright)] mt-1.5 break-words">
+                    {g.tagline}
+                  </div>
+                  <p className="text-sm text-[var(--color-slate-soft)] mt-2 leading-relaxed break-words">
+                    {g.hook}
+                  </p>
                 </button>
               ))}
             </div>
@@ -62,8 +71,12 @@ export default function Onboarding() {
         )}
 
         {step === 1 && (
-          <Panel key="avatar" title="Pick who you are" sub="Your face never shows up in scenes — you are looking out of them.">
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+          <Panel key="avatar">
+            <Heading
+              title="Pick who you are"
+              sub="Your face never shows up in scenes — you are looking out of them."
+            />
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
               {AVATARS.map((a) => (
                 <button
                   key={a.id}
@@ -71,14 +84,14 @@ export default function Onboarding() {
                     setAvatarId(a.id);
                     setStep(2);
                   }}
-                  className={`surface p-2 transition hover:border-[var(--color-jade)] ${
+                  className={`surface p-2 min-w-0 transition hover:border-[var(--color-jade)] ${
                     avatarId === a.id ? 'border-[var(--color-jade)]' : ''
                   }`}
                 >
-                  <div className="aspect-square overflow-hidden rounded-md bg-[#111925]">
+                  <div className="aspect-square max-w-full overflow-hidden rounded-md bg-[#111925]">
                     <ArtImage id={a.artId} alt={a.nameEn} className="w-full h-full" />
                   </div>
-                  <div className="text-[11px] mt-1.5 text-[var(--color-slate-soft)] leading-tight">
+                  <div className="text-[11px] mt-1.5 text-[var(--color-slate-soft)] leading-tight break-words">
                     {a.nameEn}
                   </div>
                 </button>
@@ -91,7 +104,11 @@ export default function Onboarding() {
         )}
 
         {step === 2 && (
-          <Panel key="name" title="What should the story call you?" sub="Any name. It is used in the story, nowhere else.">
+          <Panel key="name">
+            <Heading
+              title="What should the story call you?"
+              sub="Any name. It is used in the story, nowhere else."
+            />
             <input
               autoFocus
               value={heroName}
@@ -106,12 +123,12 @@ export default function Onboarding() {
               so every chapter after it is pitched at you rather than at nobody in particular. It
               takes about 40 minutes and you can stop halfway and come back — nothing is lost.
             </div>
-            <div className="flex gap-2 mt-5">
-              <button className="btn btn-ghost" onClick={() => setStep(1)}>
+            <div className="flex flex-wrap gap-2 mt-5">
+              <button className="btn btn-ghost shrink-0" onClick={() => setStep(1)}>
                 ← Back
               </button>
               <button
-                className="btn btn-primary flex-1"
+                className="btn btn-primary flex-1 min-w-0 whitespace-normal"
                 disabled={!heroName.trim() || busy}
                 onClick={finish}
               >
@@ -121,23 +138,36 @@ export default function Onboarding() {
           </Panel>
         )}
       </AnimatePresence>
-    </main>
+    </Screen>
+  );
+}
+
+/**
+ * Step title block. Kept separate from the shared `Panel`, which only owns the
+ * transition, so every step animates identically without re-typing the values.
+ */
+function Heading({ title, sub }: { title: string; sub: string }) {
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-balance">{title}</h1>
+      <p className="text-sm text-[var(--color-slate-soft)] mt-1 mb-5 text-pretty">{sub}</p>
+    </>
   );
 }
 
 function Steps({ step }: { step: number }) {
   const labels = ['Story', 'Character', 'Name'];
   return (
-    <div className="flex items-center gap-2 mb-8">
+    <div className="flex items-center gap-1.5 sm:gap-2 mb-8">
       {labels.map((l, i) => (
-        <div key={l} className="flex items-center gap-2 flex-1">
+        <div key={l} className="flex items-center gap-1.5 sm:gap-2 flex-1 min-w-0">
           <div
-            className={`h-1.5 flex-1 rounded-full ${
+            className={`h-1.5 flex-1 min-w-[12px] rounded-full ${
               i <= step ? 'bg-[var(--color-jade)]' : 'bg-[#2a3648]'
             }`}
           />
           <span
-            className={`text-[11px] uppercase tracking-wider ${
+            className={`text-[10px] sm:text-[11px] uppercase tracking-wider shrink-0 ${
               i <= step ? 'text-[var(--color-jade-bright)]' : 'text-[var(--color-slate)]'
             }`}
           >
@@ -146,28 +176,5 @@ function Steps({ step }: { step: number }) {
         </div>
       ))}
     </div>
-  );
-}
-
-function Panel({
-  title,
-  sub,
-  children,
-}: {
-  title: string;
-  sub: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <motion.section
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -12 }}
-      transition={{ duration: 0.22 }}
-    >
-      <h1 className="text-2xl font-bold">{title}</h1>
-      <p className="text-sm text-[var(--color-slate-soft)] mt-1 mb-5">{sub}</p>
-      {children}
-    </motion.section>
   );
 }

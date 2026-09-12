@@ -26,8 +26,10 @@ export default function SoundToggle({ className = '' }: { className?: string }) 
       aria-pressed={on}
       title={on ? 'Sound on' : 'Sound off'}
       onClick={() => setOn(toggleSound())}
-      className={`btn btn-ghost px-2.5 py-1 text-xs ${className}`}
-      style={{ opacity: ready ? 1 : 0.5 }}
+      className={`btn btn-ghost shrink-0 ${className}`}
+      // 44x44 rather than the text-button padding: this is a bare emoji, so
+      // without an explicit size it collapsed to about 28px - too small to hit.
+      style={{ opacity: ready ? 1 : 0.5, minWidth: 44, width: 44, padding: 0 }}
     >
       <span aria-hidden>{on ? '🔔' : '🔕'}</span>
     </button>
