@@ -239,8 +239,18 @@ describe('recognition items are answerable and have one right answer', () => {
   });
 
   it('never offers a distractor that is also a meaning of the target', () => {
+    // Parenthetical qualifiers come off first. 水 is glossed
+    // "water; (after a name) ... River"; leaving the qualifier in made that
+    // sense read as containing the word "name", which then collided with a
+    // perfectly good distractor "name" and failed a correct item.
     const norm = (x: string) =>
-      x.toLowerCase().replace(/^to\s+/, '').replace(/[^a-z\s]/g, '').trim();
+      x
+        .toLowerCase()
+        .replace(/\([^)]*\)?/g, ' ')
+        .replace(/^to\s+/, '')
+        .replace(/[^a-z\s]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
     for (const entry of sample) {
       const item = charRecogniseItem(entry);
       if (!item) continue;

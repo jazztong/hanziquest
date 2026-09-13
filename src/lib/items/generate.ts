@@ -46,7 +46,36 @@ function pick<T>(arr: readonly T[], n: number): T[] {
   return shuffle([...arr]).slice(0, n);
 }
 
-const glossOf = (e: CharEntry | WordEntry) => (e.gloss || '').split(';')[0].trim();
+/**
+ * Usage labels that are not meanings.
+ *
+ * A dictionary sense reading only "dialect" or "bound form" tells a learner
+ * where a word is used, not what it means, and cannot be reasoned to from the
+ * character. CC-CEDICT lists 话 as "dialect; language" - first sense first -
+ * so taking the first sense unexamined had the app asking what 话 means and
+ * keying the answer "dialect", which is not what 话 means. Same shape as the
+ * surname bug: the dictionary's first entry is not the teaching entry.
+ */
+const USAGE_LABEL = /^(dialect|bound form|literary|archaic|old|written|colloquial|abbr\.?)$/i;
+
+/** Drop parenthetical qualifiers - they annotate a meaning, they are not one. */
+const cleanSense = (x: string) =>
+  x.replace(/\([^)]*\)?/g, ' ').replace(/\s+/g, ' ').replace(/^[\s,;:-]+|[\s,;:-]+$/g, '').trim();
+
+/**
+ * The one short English meaning shown as an option.
+ *
+ * Senses are tried in order and the first usable one wins: cleaned of its
+ * qualifiers, non-empty, and an actual meaning rather than a usage label.
+ */
+const glossOf = (e: CharEntry | WordEntry) => {
+  const senses = (e.gloss || '').split(';');
+  for (const sense of senses) {
+    const cleaned = cleanSense(sense);
+    if (cleaned && !USAGE_LABEL.test(cleaned)) return cleaned;
+  }
+  return cleanSense(senses[0] ?? '');
+};
 
 // ---------------------------------------------------------------------------
 // Character recognition

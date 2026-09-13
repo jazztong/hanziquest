@@ -1,0 +1,29 @@
+# Singapore: the nearest region, and the one that keeps a Malaysian child's
+# data inside the region rather than shipping it across the world.
+app = "hanziquest"
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "3000"
+
+# The volume is mounted at /app/data, which is exactly where the code already
+# looks. Mounting it anywhere else would have meant threading a DATA_DIR
+# through seven files for no benefit.
+[[mounts]]
+  source = "hanziquest_data"
+  destination = "/app/data"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  # Never scale to zero: SQLite lives on the volume, and a cold start that
+  # takes a machine down mid-answer loses the attempt being written.
+  auto_stop_machines = false
+  min_machines_running = 1
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1gb"

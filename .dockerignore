@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+data/app.db
+data/app.db-*
+data/cache
+data/recordings
+public/audio/tts
+art/out
+*.log
