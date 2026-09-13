@@ -10,9 +10,9 @@
  *  - It is instant, so uploading a lesson on Sunday night produces a quest
  *    immediately rather than after a round trip.
  *
- * The lesson text stays local. It is the parent's copy of a book they bought,
- * used for their own child's study; it is never sent anywhere and never leaves
- * the database. Deleting the lesson deletes everything generated from it.
+ * The lesson text stays in this app's own database. It is the parent's copy of
+ * a book they bought, used for their own child's study; it is never shared and
+ * never sent to anyone else. Deleting the lesson deletes everything generated from it.
  */
 import {
   WORDS,

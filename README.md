@@ -19,17 +19,20 @@ npm install
 npm run dev
 ```
 
-That is the whole setup. The first run creates `.env`, builds the SQLite
-database, seeds it, and starts the app on <http://localhost:3000>.
+That is the whole setup. It runs against a local D1 database - a SQLite file
+wrangler manages - so development still needs no account and no network.
 
-| Account | Login |
-|---|---|
-| Student | `student` / printed by the seed |
-| Parent | `parent` / printed by the seed |
+To fill that local database the first time:
+
+```bash
+npm run seed        # writes data/app.db
+npm run d1:export   # dumps it to data/d1/*.sql
+npm run d1:local    # applies those to the local D1
+```
 
 `npm run seed` generates a random password for each account and prints it once.
-Set `SEED_PASSWORD` first if you would rather choose your own. Nothing here is
-built to be exposed to the internet - it is a household app on a home machine.
+Set `SEED_PASSWORD` first if you would rather choose your own. The account names
+are deliberately not documented here.
 
 ```bash
 npm test          # 121 tests
@@ -200,18 +203,29 @@ tests/                    121 tests
   register and the lengths the 纲要 specifies; the exam structure and rubric
   wording, which are factual specification and cited.
 - **Supplied at runtime:** the actual weekly 课文, via the parent's upload. It
-  stays in the local database and is never redistributed. Deleting a lesson
-  deletes the items generated from it.
+  stays in this app's own database and is never redistributed. Deleting a
+  lesson deletes the items generated from it.
 - Vendored HSK data keeps its upstream licences in `data/source/`.
 
 ## Privacy
 
-Two local accounts, scrypt-hashed. No email, no OAuth, no third-party analytics,
-no telemetry. Voice recordings are written to `data/recordings/` and only the
-path is stored; they are served through an authenticated route with a path
-traversal guard and never leave the machine. If you add an Azure key,
-pronunciation audio goes to Azure for scoring — that is the one exception, and
-it is off by default.
+Two accounts, scrypt-hashed. No email, no OAuth, no third-party analytics, no
+telemetry.
+
+Data lives in a D1 database belonging to whoever deploys it, and is not shared
+with anyone else. It is not "on your machine" — that was true when this only
+ran on a laptop, and the interface said so for a while after it had stopped
+being true.
+
+Voice recordings are **not stored at all**. The capture path was never built:
+the browser records for pronunciation scoring and the audio is discarded. The
+table and the authenticated read route exist in anticipation of it.
+
+If you add an Azure key, pronunciation audio goes to Azure for scoring — that
+is the one thing that leaves, and it is off by default.
+
+The app sends `Disallow: /` to robots. Login is the only gate and there is no
+rate limiting on it yet.
 
 ---
 

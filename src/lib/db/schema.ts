@@ -432,9 +432,16 @@ export const playSessions = sqliteTable(
 );
 
 /**
- * Voice recordings. Audio is written to data/recordings/ and only the path is
- * stored. Child voice data never leaves the machine and is never sent to a
- * third party unless the parent has configured Azure and triggers scoring.
+ * Voice recordings.
+ *
+ * Nothing writes to this table yet: the capture path was never built, so the
+ * `path` column describes an intention rather than a file. It pointed at
+ * data/recordings/ on local disk, which no longer exists - the app runs on
+ * Cloudflare Workers, which have no filesystem - so when capture is built the
+ * audio belongs in a column here, next to the row that describes it.
+ *
+ * Child voice data is not sent to a third party unless the parent has
+ * configured Azure and triggers scoring.
  */
 export const recordings = sqliteTable(
   'recordings',

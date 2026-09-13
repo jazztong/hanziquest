@@ -1,11 +1,16 @@
 /**
  * Local accounts. No email, no OAuth, no third party.
  *
- * This is a household app holding a child's voice recordings and error history.
- * The privacy requirement in the brief ("child data and voice recordings stay
+ * This is a household app holding a child's schoolwork and error history. The
+ * privacy requirement in the brief ("child data and voice recordings stay
  * private, no third-party analytics") is easiest to honour by never having an
- * identity provider at all: two local accounts, scrypt-hashed passwords, an
- * httpOnly session cookie, and nothing that leaves the machine.
+ * identity provider at all: two accounts, scrypt-hashed passwords, an httpOnly
+ * session cookie, and no account shared with anyone else's system.
+ *
+ * Note this is now reachable from the internet rather than only from a laptop,
+ * so the password is the whole of the defence. There is no rate limiting on
+ * the login route yet, which is the first thing to add if the address is ever
+ * shared beyond the family.
  */
 import crypto from 'node:crypto';
 import { verifyPassword } from './auth-hash';

@@ -184,11 +184,13 @@ export default function ParentDashboard() {
             </div>
           </Section>
 
-          <Section title="Recordings" sub="His own voice. Stored on this machine only.">
+          <Section title="Recordings" sub="Not stored yet - see below.">
             {d.recordings.length === 0 ? (
               <p className="text-sm text-[var(--color-slate-soft)]">
-                No recordings saved yet. Read-aloud attempts appear here once he plays a chapter with
-                a spoken line.
+                Nothing is saved here yet, and nothing will be until read-aloud capture is
+                built - the player records into the browser for scoring, but the audio is
+                never uploaded or kept. When it is built, the audio will be stored in this
+                app's own database rather than on any one device.
               </p>
             ) : (
               /* An <audio controls> element has a wide intrinsic minimum and
@@ -425,7 +427,7 @@ function Lessons({ lessons, onChange }: { lessons: Dash['lessons']; onChange: ()
     <>
       <Section
         title="Upload this week's 课文"
-        sub="Photograph the page from your own book, or paste the text. It stays on this machine and is never sent anywhere except to transcribe a photo."
+        sub="Photograph the page from your own book, or paste the text. It is stored in your own database, and the only thing ever sent out is a photo you upload, to be transcribed."
       >
         <div className="space-y-3">
           <div className="grid gap-2 sm:grid-cols-2">

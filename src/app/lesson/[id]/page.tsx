@@ -125,7 +125,7 @@ function Intro({ quest, onGo }: { quest: Quest; onGo: () => void }) {
         </button>
       </div>
       <p className="text-[11px] text-[var(--color-slate)] mt-4 text-center leading-relaxed">
-        Built from the lesson your parent uploaded. It stays on this machine.
+        Built from the lesson your parent uploaded. It stays in your own database.
       </p>
     </Panel>
   );
