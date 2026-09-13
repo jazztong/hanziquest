@@ -16,3 +16,8 @@ scratch/
 /*.png
 *.png.tmp
 data/source/cedict-raw.json
+
+# Cloudflare
+.open-next/
+.wrangler/
+data/d1/

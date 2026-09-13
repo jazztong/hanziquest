@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hanziquest",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-09-01",
+  // nodejs_compat supplies node:crypto and node:path, which the password
+  // hashing, session signing and pinyin code use. It does NOT supply node:fs -
+  // there is no filesystem here - which is why the lexicon and the art
+  // manifest are bundled as imports and the caches are in memory.
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  // D1 is SQLite, so the Drizzle schema used locally applies unchanged.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hanziquest",
+      "database_id": "8f8a59f3-59dc-4179-a991-2a1231f2cd20"
+    }
+  ],
+  "observability": { "enabled": true }
+}

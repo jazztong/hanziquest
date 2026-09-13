@@ -1,5 +1,3 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import { and, desc, eq, gte, sql } from 'drizzle-orm';
 import {
   db,
@@ -19,33 +17,20 @@ import {
 import { requireUser, studentIdFor, AuthError } from '@/lib/auth';
 import { knownChars, profile, skills } from '@/lib/player';
 import { route } from '@/lib/api';
+import manifest from '../../../../../art/manifest.json';
 
 /** Pending art, read from the manifest - the source of truth for art state. */
+/**
+ * Pending art, read from the manifest.
+ *
+ * Imported rather than read at request time: the manifest is written by the
+ * art generation script at build time and never changes while the app runs,
+ * and Cloudflare Workers have no filesystem to read it from.
+ */
 function pendingArt() {
-  const file = path.join(process.cwd(), 'art', 'manifest.json');
-  if (!fs.existsSync(file)) return [];
-  try {
-    const m = JSON.parse(fs.readFileSync(file, 'utf8')) as {
-      entries: {
-        id: string;
-        type: string;
-        status: string;
-        createdBy?: string;
-        error?: string;
-      }[];
-    };
-    return m.entries
-      .filter((e) => e.status !== 'done')
-      .map((e) => ({
-        id: e.id,
-        type: e.type,
-        status: e.status,
-        createdBy: e.createdBy,
-        error: e.error,
-      }));
-  } catch {
-    return [];
-  }
+  return (manifest.entries as { id: string; type: string; status: string; createdBy?: string; error?: string }[])
+    .filter((e) => e.status !== 'done')
+    .map((e) => ({ id: e.id, type: e.type, status: e.status, createdBy: e.createdBy, error: e.error }));
 }
 
 export async function GET() {

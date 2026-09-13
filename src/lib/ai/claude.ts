@@ -9,11 +9,19 @@
  * `available()` is false when no key is set, and every caller has a non-AI path.
  */
 import crypto from 'node:crypto';
-import fs from 'node:fs';
-import path from 'node:path';
 
 const MODEL = 'claude-sonnet-5';
-const CACHE_DIR = path.join(process.cwd(), 'data', 'cache', 'claude');
+/**
+ * Responses are cached in memory rather than on disk.
+ *
+ * The cache existed so re-running a generation during development did not pay
+ * for the same answer twice. Cloudflare Workers have no disk, and an isolate is
+ * short-lived, so this now saves the repeats within a single generation run and
+ * nothing more - which is where nearly all of them were. Anything that must
+ * outlive a restart belongs in the database with its prompt recorded, which is
+ * what the generated-content tables already do.
+ */
+const CACHE = new Map<string, { data: unknown; prompt: string; model: string }>();
 
 export function available(): boolean {
   return Boolean(process.env.ANTHROPIC_API_KEY);
@@ -63,12 +71,11 @@ export async function askJson<T>(
   }
 
   const key = cacheKey(opts);
-  const cacheFile = path.join(CACHE_DIR, `${key}.json`);
   const promptRecord = `SYSTEM:\n${opts.system}\n\nUSER:\n${opts.user}`;
 
-  if (!opts.fresh && fs.existsSync(cacheFile)) {
-    const cached = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
-    return { data: validate(cached.data), prompt: cached.prompt, model: cached.model, cached: true };
+  const hit = opts.fresh ? undefined : CACHE.get(key);
+  if (hit) {
+    return { data: validate(hit.data), prompt: hit.prompt, model: hit.model, cached: true };
   }
 
   let lastError = '';
@@ -115,11 +122,7 @@ export async function askJson<T>(
     try {
       const parsed = JSON.parse(json);
       const data = validate(parsed);
-      fs.mkdirSync(CACHE_DIR, { recursive: true });
-      fs.writeFileSync(
-        cacheFile,
-        JSON.stringify({ data: parsed, prompt: promptRecord, model: MODEL, purpose: opts.purpose, at: new Date().toISOString() }),
-      );
+      CACHE.set(key, { data: parsed, prompt: promptRecord, model: MODEL });
       return { data, prompt: promptRecord, model: MODEL, cached: false };
     } catch (err) {
       lastError = (err as Error).message.slice(0, 300);

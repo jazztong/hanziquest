@@ -1,6 +1,7 @@
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  serverExternalPackages: ['@libsql/client'],
 
   /**
    * Keep the dev watcher out of the data directories.
@@ -28,3 +29,10 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
+/**
+ * Gives `next dev` the same bindings the deployed Worker gets - here, a local
+ * D1 file that wrangler manages. Without it the database module has nothing to
+ * bind to outside a real Worker.
+ */
+initOpenNextCloudflareForDev();

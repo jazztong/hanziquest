@@ -1,5 +1,3 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import { eq } from 'drizzle-orm';
 import { db, recordings } from '@/lib/db';
 import { requireUser, studentIdFor } from '@/lib/auth';
@@ -23,13 +21,13 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
   const rec = rows[0];
   if (!rec || rec.userId !== studentId) return fail('not found', 404);
 
-  const dir = path.join(process.cwd(), 'data', 'recordings');
-  const file = path.resolve(dir, rec.path);
-  if (!file.startsWith(path.resolve(dir) + path.sep)) return fail('not found', 404);
-  if (!fs.existsSync(file)) return fail('recording file is missing', 404);
-
-  const buf = fs.readFileSync(file);
-  return new Response(new Uint8Array(buf), {
-    headers: { 'content-type': 'audio/webm', 'cache-control': 'private, max-age=3600' },
-  });
+  // Recordings have no bytes to serve on this deployment.
+  //
+  // They were read off local disk, which Cloudflare Workers do not have. That
+  // is not the real gap though: nothing in the app has ever written a
+  // recording - the upload path was never built, so this route has never had
+  // a row to serve. When that path is built, the audio should be stored in the
+  // database next to the row rather than on a disk that may not exist, and
+  // this becomes a read of that column.
+  return fail('recordings are not stored on this deployment', 404);
 }

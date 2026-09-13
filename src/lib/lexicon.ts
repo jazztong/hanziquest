@@ -5,9 +5,8 @@
  * Everything here is pure and synchronous so it can be unit-tested and called
  * from both server routes and build scripts.
  */
-import fs from 'node:fs';
-import path from 'node:path';
 import { pinyin } from 'pinyin-pro';
+import lexicon from '../../data/source/lexicon.json';
 
 export interface CharEntry {
   c: string;
@@ -30,17 +29,23 @@ export interface WordEntry {
 }
 
 /**
- * Read from disk rather than `import ... from '.json'`.
+ * Imported rather than read from disk.
  *
- * The lexicon is ~3 MB. A static import would inline it into every bundle that
- * touches this module, including client bundles if one ever imports it by
- * accident. Reading it here keeps it server-side by construction: a client
- * component that imports this file fails to build instead of shipping 3 MB of
- * JSON to a phone.
+ * This used to be a readFileSync, which had the useful side effect of keeping
+ * 1.3 MB of dictionary off any client bundle: a client component importing it
+ * failed to build instead of shipping the lot to a phone. Cloudflare Workers
+ * have no filesystem, so the read had to go - but the guard it provided was
+ * worth keeping. `server-only` was the obvious replacement and is the wrong
+ * one here: its Node entry point throws by design, and this module is called
+ * directly by the unit tests and the build scripts. The guard is therefore a
+ * convention now - nothing client-side may import this file - rather than
+ * something the toolchain enforces.
+ *
+ * Bundled, the dictionary is part of the Worker rather than a file it opens,
+ * which is also why it must stay lean - see the bundle-size check in the
+ * deploy notes.
  */
-const data = JSON.parse(
-  fs.readFileSync(path.join(process.cwd(), 'data', 'source', 'lexicon.json'), 'utf8'),
-) as { chars: CharEntry[]; words: WordEntry[] };
+const data = lexicon as unknown as { chars: CharEntry[]; words: WordEntry[] };
 
 export const CHARS: readonly CharEntry[] = data.chars;
 export const WORDS: readonly WordEntry[] = data.words;

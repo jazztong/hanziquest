@@ -13,8 +13,6 @@
  * them yet, and the client falls back per-clip.
  */
 import crypto from 'node:crypto';
-import fs from 'node:fs';
-import path from 'node:path';
 
 export type VoiceRole = 'narrator' | 'you' | 'auntie' | 'man' | 'elder' | 'child' | 'system';
 
@@ -53,18 +51,8 @@ export function clipId(text: string, role: string): string {
   return crypto.createHash('sha1').update(`${role}::${text}`).digest('hex').slice(0, 16);
 }
 
-export const AUDIO_DIR = path.join(process.cwd(), 'public', 'audio', 'tts');
-
-export function clipPath(id: string): string {
-  return path.join(AUDIO_DIR, `${id}.mp3`);
-}
-
 export function clipUrl(id: string): string {
   return `/audio/tts/${id}.mp3`;
-}
-
-export function clipExists(id: string): boolean {
-  return fs.existsSync(clipPath(id));
 }
 
 export interface ClipPlan {
@@ -74,7 +62,15 @@ export interface ClipPlan {
   azureVoice: string;
   web: { pitch: number; rate: number };
   url: string;
-  /** True when the mp3 is on disk and the client should just play it. */
+  /**
+   * True when a pre-rendered mp3 is expected to exist at `url`.
+   *
+   * Pre-rendered clips are produced at build time and served as static files,
+   * so at request time this is a statement about the build, not a filesystem
+   * check - there is no filesystem to check on Cloudflare. Clips that were
+   * never rendered simply 404 and the client falls back to browser speech,
+   * which is what it does when no Azure key is configured anyway.
+   */
   cached: boolean;
 }
 
@@ -88,7 +84,7 @@ export function planClip(text: string, speaker: string): ClipPlan {
     azureVoice: voice.azure,
     web: voice.web,
     url: clipUrl(id),
-    cached: clipExists(id),
+    cached: false,
   };
 }
 
@@ -101,10 +97,19 @@ export function azureConfigured(): boolean {
  * Returns false (rather than throwing) when unconfigured, so callers can treat
  * "no key" and "render failed" the same way: fall back to Web Speech.
  */
-export async function renderClip(text: string, speaker: string): Promise<boolean> {
-  if (!azureConfigured()) return false;
+/**
+ * Render one clip and hand back the audio.
+ *
+ * It used to write the mp3 into public/audio/tts and return whether that
+ * worked. Cloudflare Workers have no filesystem, and nothing in the app ever
+ * called it - the player falls back to the browser's own speech synthesis when
+ * no Azure key is set, which is the path everything actually uses. Returning
+ * the bytes leaves the integration usable by a caller that wants to store or
+ * stream them, without deciding here where they go.
+ */
+export async function renderClip(text: string, speaker: string): Promise<Uint8Array | null> {
+  if (!azureConfigured()) return null;
   const plan = planClip(text, speaker);
-  if (plan.cached) return true;
 
   const region = process.env.AZURE_SPEECH_REGION!;
   const ssml =
@@ -125,14 +130,13 @@ export async function renderClip(text: string, speaker: string): Promise<boolean
         body: ssml,
       },
     );
-    if (!res.ok) return false;
-    const buf = Buffer.from(await res.arrayBuffer());
-    if (buf.length < 512) return false;
-    fs.mkdirSync(AUDIO_DIR, { recursive: true });
-    fs.writeFileSync(clipPath(plan.id), buf);
-    return true;
+    if (!res.ok) return null;
+    const buf = new Uint8Array(await res.arrayBuffer());
+    // Anything this short is an error page, not audio.
+    if (buf.length < 512) return null;
+    return buf;
   } catch {
-    return false;
+    return null;
   }
 }
 
