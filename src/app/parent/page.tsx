@@ -103,7 +103,7 @@ export default function ParentDashboard() {
 
       {tab === 'overview' && (
         <>
-          <section className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-6">
+          <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 mb-6">
             <Stat label="Characters known" value={d.knownChars} sub="of 2,500 at 初一" />
             <Stat label="Cards" value={d.cards.total} sub={`${d.cards.mature} mature`} />
             <Stat label="Answers this week" value={d.attemptsThisWeek} sub="all mechanics" />
@@ -111,6 +111,14 @@ export default function ParentDashboard() {
               label="Accuracy"
               value={d.accuracyThisWeek === null ? '—' : `${Math.round(d.accuracyThisWeek * 100)}%`}
               sub="last 7 days"
+            />
+            {/* The band questions are drawn from. Shown because it is the one
+                number that says whether the work is still at the right level,
+                and it moves on its own as he improves. */}
+            <Stat
+              label="Difficulty"
+              value={d.profile ? `${d.profile.storyBand} / 7` : '—'}
+              sub="rises as he improves"
             />
           </section>
 

@@ -7,6 +7,7 @@ import { charsInBand, WORDS, CHARS, lookupChar } from '@/lib/lexicon';
 import { profile } from '@/lib/player';
 import type { Item } from '@/lib/items/types';
 import { BadRequest, body, route } from '@/lib/api';
+import { applyProgression } from '@/lib/apply-progression';
 
 /**
  * The 拼音/声调 arcade.
@@ -182,10 +183,16 @@ export async function POST(req: Request) {
       }
     }
 
+    // The band the arcade draws from is re-checked here, not only at the end of
+    // the prologue, so a player who has outgrown it stops being asked the same
+    // easy characters for the rest of the year.
+    const progression = await applyProgression(user.id);
+
     return {
       correct,
       answer: key?.pinyin ?? key?.zh ?? key?.en ?? '',
       explainEn: item.answer.explainEn ?? '',
+      ...(progression?.moved ? { bandMoved: progression.moved, band: progression.band } : null),
     };
   });
 }

@@ -6,6 +6,7 @@ import { buildReveal } from '@/lib/items/reveal';
 import { addXp, touchStreak } from '@/lib/player';
 import type { Item } from '@/lib/items/types';
 import { BadRequest, body, route } from '@/lib/api';
+import { applyProgression } from '@/lib/apply-progression';
 
 /**
  * Mark one 课文 side-quest answer.
@@ -63,6 +64,7 @@ export async function POST(req: Request) {
 
     await touchStreak(user.id);
     if (correct) await addXp(user.id, 6);
+    await applyProgression(user.id);
 
     return {
       correct,
