@@ -24,8 +24,15 @@ export async function route<T>(fn: () => Promise<T>) {
   try {
     return NextResponse.json(await fn());
   } catch (err) {
-    if (err instanceof AuthError) return fail(err.message, err.status);
-    if (err instanceof BadRequest) return fail(err.message, err.status);
+    // Anything carrying a status is a deliberate, expected refusal - a bad
+    // input, a failed sign-in, a name already taken - and its message is meant
+    // for the person who caused it. Matching on the property rather than on
+    // each class means a new error type does not silently become a 500 with a
+    // stack trace in the logs, which is what RegisterError did at first.
+    const status = (err as { status?: unknown }).status;
+    if (typeof status === 'number' && status >= 400 && status < 500) {
+      return fail((err as Error).message, status);
+    }
     console.error('[route]', err);
     return fail((err as Error).message || 'unexpected error', 500);
   }

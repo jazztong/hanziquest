@@ -13,6 +13,7 @@ export const DDL: string[] = [
     name TEXT NOT NULL,
     role TEXT NOT NULL,
     password_hash TEXT NOT NULL,
+    linked_student_id TEXT REFERENCES users(id),
     created_at INTEGER NOT NULL DEFAULT (unixepoch())
   )`,
   `CREATE UNIQUE INDEX IF NOT EXISTS users_name_idx ON users(name)`,

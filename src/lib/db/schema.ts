@@ -40,8 +40,17 @@ export const users = sqliteTable(
     id: text('id').primaryKey(),
     name: text('name').notNull(),
     role: text('role', { enum: ['student', 'parent'] }).notNull(),
-    /** scrypt hash; see src/lib/auth.ts. Local-only accounts, no email. */
+    /** scrypt hash; see src/lib/auth.ts. Self-registered accounts, no email. */
     passwordHash: text('password_hash').notNull(),
+    /**
+     * For a parent account, the student it can see. Null for students.
+     *
+     * Without this a parent account had to guess, and the guess was "the first
+     * student row in the table" - fine when there was exactly one child in the
+     * database, and a straightforward way to show one family's child to another
+     * family the moment there were two.
+     */
+    linkedStudentId: text('linked_student_id'),
     createdAt: integer('created_at').notNull().default(now),
   },
   (t) => [uniqueIndex('users_name_idx').on(t.name)],

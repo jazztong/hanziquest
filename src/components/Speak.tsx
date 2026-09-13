@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useRef, useState } from 'react';
+import { pickVoice, setAudioBlocked, voicesReady } from '@/lib/voices';
 
 /**
  * Speak a line of Chinese.
@@ -82,13 +83,13 @@ export function useSpeak() {
         audio.onerror = () => {
           // A missing file should fall through to Web Speech rather than
           // silently doing nothing - a chapter with no voice is broken.
-          webSpeak(text, plan!.clip.web, cb, () => setSpeaking(false));
+          void webSpeak(text, plan!.clip.web, cb, () => setSpeaking(false));
         };
-        void audio.play().catch(() => webSpeak(text, plan!.clip.web, cb, () => setSpeaking(false)));
+        void audio.play().catch(() => void webSpeak(text, plan!.clip.web, cb, () => setSpeaking(false)));
         return;
       }
 
-      webSpeak(text, plan?.clip.web ?? { pitch: 1, rate: 0.85 }, cb, () => setSpeaking(false));
+      void webSpeak(text, plan?.clip.web ?? { pitch: 1, rate: 0.85 }, cb, () => setSpeaking(false));
     },
     [stop],
   );
@@ -96,7 +97,7 @@ export function useSpeak() {
   return { speak, stop, speaking };
 }
 
-function webSpeak(
+async function webSpeak(
   text: string,
   voice: { pitch: number; rate: number },
   cb: { onEnd?: () => void; onBoundary?: (i: number) => void } | undefined,
@@ -107,18 +108,28 @@ function webSpeak(
     cb?.onEnd?.();
     return;
   }
+
+  // Wait for the voice list before choosing. getVoices() is empty on the first
+  // call - the list arrives asynchronously - so selecting synchronously meant
+  // the first line spoken in a session never got a Chinese voice.
+  const zh = pickVoice(await voicesReady());
+
   const u = new SpeechSynthesisUtterance(text);
   u.lang = 'zh-CN';
   u.pitch = voice.pitch;
   u.rate = voice.rate;
-  const zh = window.speechSynthesis.getVoices().find((v) => v.lang.toLowerCase().startsWith('zh'));
   if (zh) u.voice = zh;
   u.onboundary = (e) => cb?.onBoundary?.(e.charIndex);
+  u.onstart = () => setAudioBlocked(false);
   u.onend = () => {
     done();
     cb?.onEnd?.();
   };
-  u.onerror = () => {
+  u.onerror = (e) => {
+    // Chrome refuses to speak until the page has had a real interaction. That
+    // is not a failure worth hiding: the UI can offer to turn sound on rather
+    // than just appearing mute.
+    if (e.error === 'not-allowed') setAudioBlocked(true);
     done();
     cb?.onEnd?.();
   };

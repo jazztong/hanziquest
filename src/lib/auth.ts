@@ -13,10 +13,12 @@
  * shared beyond the family.
  */
 import crypto from 'node:crypto';
-import { verifyPassword } from './auth-hash';
+import { hashPassword, verifyPassword } from './auth-hash';
 import { cookies } from 'next/headers';
-import { eq, and, gt } from 'drizzle-orm';
+import { eq, and, gt, inArray } from 'drizzle-orm';
 import { db, users, sessions, profiles } from './db';
+import { bootstrapStudent } from './bootstrap';
+import { checkName, checkPassword } from './account-rules';
 
 const COOKIE = 'hq_session';
 const SESSION_DAYS = 30;
@@ -83,13 +85,89 @@ export async function requireStudent(): Promise<SessionUser> {
  */
 export async function studentIdFor(u: SessionUser): Promise<string> {
   if (u.role === 'student') return u.id;
-  const rows = await db
+
+  // A parent sees the student they are linked to.
+  const self = await db.select().from(users).where(eq(users.id, u.id)).limit(1);
+  const linked = self[0]?.linkedStudentId;
+  if (linked) return linked;
+
+  // Older parent accounts predate the link. Falling back to the only student
+  // in the database is safe while there is exactly one; it is how one family's
+  // child would be shown to another the moment there are two, so with more
+  // than one this refuses rather than guesses.
+  const students = await db
     .select({ id: users.id })
     .from(users)
     .where(eq(users.role, 'student'))
-    .limit(1);
-  if (!rows[0]) throw new AuthError('no student account exists');
-  return rows[0].id;
+    .limit(2);
+  if (!students[0]) throw new AuthError('no student account exists');
+  if (students.length > 1) {
+    throw new AuthError('this parent account is not linked to a student');
+  }
+  return students[0].id;
+}
+
+export class RegisterError extends Error {
+  status = 400;
+}
+
+/**
+ * Create a student account, and optionally the parent account that watches it.
+ *
+ * Both are made together or not at all. A parent account created without its
+ * link would land in the fallback above, and a student created without their
+ * starting data would open to an empty map.
+ */
+export async function register(input: {
+  name: string;
+  password: string;
+  parentName?: string;
+  parentPassword?: string;
+}): Promise<SessionUser> {
+  // Stored lowercase because login() lowercases what it is given. A name saved
+  // with a capital would simply never match, and the account would be lost the
+  // moment it was created.
+  const name = input.name.trim().toLowerCase();
+  const problem = checkName(name);
+  if (problem === 'length') throw new RegisterError('Pick a name of 2-24 characters.');
+  if (problem === 'characters') throw new RegisterError('Letters, numbers, spaces, - and _ only.');
+  if (!checkPassword(input.password)) throw new RegisterError('Use a password of at least 8 characters.');
+
+  const parentName = input.parentName?.trim().toLowerCase();
+  if (parentName) {
+    if (!input.parentPassword || !checkPassword(input.parentPassword)) {
+      throw new RegisterError('The parent password needs at least 8 characters.');
+    }
+    if (parentName === name) {
+      throw new RegisterError('The two accounts need different names.');
+    }
+  }
+
+  const wanted = parentName ? [name, parentName] : [name];
+  const clash = await db.select({ name: users.name }).from(users).where(inArray(users.name, wanted));
+  if (clash.length) throw new RegisterError('That name is taken. Try another.');
+
+  const studentId = `u-${crypto.randomUUID()}`;
+  await db.insert(users).values({
+    id: studentId,
+    name,
+    role: 'student',
+    passwordHash: hashPassword(input.password),
+  });
+  await bootstrapStudent(studentId);
+
+  if (parentName) {
+    await db.insert(users).values({
+      id: `u-${crypto.randomUUID()}`,
+      name: parentName,
+      role: 'parent',
+      passwordHash: hashPassword(input.parentPassword!),
+      linkedStudentId: studentId,
+    });
+  }
+
+  await createSession(studentId);
+  return { id: studentId, name, role: 'student' };
 }
 
 export class AuthError extends Error {
