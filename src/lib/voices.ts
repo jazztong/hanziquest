@@ -87,3 +87,46 @@ export function setAudioBlocked(v: boolean): void {
     window.dispatchEvent(new CustomEvent('hq:audio-blocked', { detail: v }));
   }
 }
+
+/**
+ * Unlock the speech engine on the first thing the player touches.
+ *
+ * Speaking inside a tap is not always possible: a listening question plays
+ * itself when it appears, and a chapter reads itself aloud. Neither is a
+ * gesture, and iOS refuses speech that did not start inside one - so those are
+ * exactly the places that stayed silent.
+ *
+ * The way round it is to spend the player's first tap - on anything at all, the
+ * Go button, an answer, the menu - on a zero-length utterance. It makes no
+ * sound and nobody notices it, but it satisfies the platform, and everything
+ * after it is allowed to speak on its own.
+ *
+ * Installed once, removed as soon as it has done its job.
+ */
+export function primeSpeech(): void {
+  if (typeof window === 'undefined' || !window.speechSynthesis) return;
+
+  let primed = false;
+  const prime = () => {
+    if (primed) return;
+    primed = true;
+    try {
+      // Must be synchronous, inside the gesture. A space rather than an empty
+      // string: some engines discard an empty utterance without unlocking.
+      const u = new SpeechSynthesisUtterance(' ');
+      u.volume = 0;
+      window.speechSynthesis.speak(u);
+      setAudioBlocked(false);
+    } catch {
+      // A platform that refuses even this cannot be unlocked here; the first
+      // real utterance will report not-allowed and the UI can say so.
+    }
+    for (const ev of ['pointerdown', 'keydown', 'touchstart']) {
+      window.removeEventListener(ev, prime, true);
+    }
+  };
+
+  for (const ev of ['pointerdown', 'keydown', 'touchstart']) {
+    window.addEventListener(ev, prime, { capture: true, passive: true });
+  }
+}

@@ -1,3 +1,4 @@
+import AudioPrimer from '@/components/AudioPrimer';
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
@@ -26,7 +27,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {/* Unlocks speech on the first tap, for the screens that speak without
+            being asked - a listening question, a chapter reading itself. */}
+        <AudioPrimer />
+        {children}
+      </body>
     </html>
   );
 }
