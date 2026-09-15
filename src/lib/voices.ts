@@ -130,3 +130,49 @@ export function primeSpeech(): void {
     window.addEventListener(ev, prime, { capture: true, passive: true });
   }
 }
+
+/**
+ * How fast to read, as a multiplier on the measured base rates.
+ *
+ * The defaults are set from timing the real voice and aiming at the 2 to 2.5
+ * syllables per second that careful teaching speech sits at. But the right
+ * speed for a particular learner on a particular day is not something a table
+ * can know - and it changes as he gets better - so it is adjustable, and the
+ * choice is remembered.
+ *
+ * "Steady" is the default rather than "Normal": the fastest setting here is
+ * still slower than conversational Mandarin, and calling it normal would
+ * suggest the others are remedial.
+ */
+export const SPEECH_SPEEDS = [
+  { id: 'steady', label: '慢', en: 'Steady', factor: 1 },
+  { id: 'slower', label: '更慢', en: 'Slower', factor: 0.85 },
+  { id: 'brisk', label: '快些', en: 'Brisk', factor: 1.2 },
+] as const;
+
+export type SpeechSpeedId = (typeof SPEECH_SPEEDS)[number]['id'];
+
+const SPEED_KEY = 'hq:speech-speed';
+
+export function speechSpeed(): (typeof SPEECH_SPEEDS)[number] {
+  if (typeof window === 'undefined') return SPEECH_SPEEDS[0];
+  try {
+    const id = window.localStorage.getItem(SPEED_KEY);
+    return SPEECH_SPEEDS.find((s) => s.id === id) ?? SPEECH_SPEEDS[0];
+  } catch {
+    return SPEECH_SPEEDS[0];
+  }
+}
+
+/** Move to the next speed and return it. */
+export function cycleSpeechSpeed(): (typeof SPEECH_SPEEDS)[number] {
+  const now = speechSpeed();
+  const next = SPEECH_SPEEDS[(SPEECH_SPEEDS.findIndex((s) => s.id === now.id) + 1) % SPEECH_SPEEDS.length];
+  try {
+    window.localStorage.setItem(SPEED_KEY, next.id);
+  } catch {
+    // A browser refusing storage still gets the change for this session.
+  }
+  window.dispatchEvent(new CustomEvent('hq:speech-speed', { detail: next.id }));
+  return next;
+}

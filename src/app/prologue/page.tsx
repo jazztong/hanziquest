@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ItemCard, { type Feedback } from '@/components/ItemCard';
 import type { PublicItem } from '@/lib/items/public';
 import SoundToggle from '@/components/SoundToggle';
+import SpeedToggle from '@/components/SpeedToggle';
 import { Screen, Loading, Progress } from '@/components/ui';
 import { sfx } from '@/lib/sfx';
 import { boundedAdvance, type Gate } from '@/lib/feedback-voice';
@@ -135,6 +136,7 @@ export default function Prologue() {
           </span>
           <span className="flex items-center gap-2 shrink-0 tabular-nums">
             {progress.done} / {progress.total}
+            <SpeedToggle />
             <SoundToggle />
           </span>
         </div>

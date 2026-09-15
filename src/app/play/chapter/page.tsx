@@ -9,6 +9,7 @@ import ArtImage from '@/components/ArtImage';
 import { useSpeak } from '@/components/Speak';
 import PreTeach from '@/components/PreTeach';
 import SoundToggle from '@/components/SoundToggle';
+import SpeedToggle from '@/components/SpeedToggle';
 import { Centred, PageHeader, Loading, OptionList } from '@/components/ui';
 import { sfx } from '@/lib/sfx';
 import type { ChapterScript, StoryNode, Line } from '@/lib/story/types';
@@ -230,7 +231,8 @@ export default function ChapterPage() {
           subtitle={data.chapter.titleEn}
           right={
             <>
-              <SoundToggle />
+              <SpeedToggle />
+            <SoundToggle />
               <button
                 className={`btn shrink-0 min-h-11 px-3 text-xs ${autoPlay ? 'btn-primary' : 'btn-ghost'}`}
                 onClick={() => setAutoPlay((a) => !a)}

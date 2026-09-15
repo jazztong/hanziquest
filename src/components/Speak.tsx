@@ -1,8 +1,8 @@
 'use client';
 
 import { useCallback, useRef, useState } from 'react';
-import { pickVoice, setAudioBlocked, voicesReady } from '@/lib/voices';
-import { voiceProfile } from '@/lib/voice-profiles';
+import { pickVoice, setAudioBlocked, speechSpeed, voicesReady } from '@/lib/voices';
+import { rateFor, voiceProfile } from '@/lib/voice-profiles';
 
 /**
  * Speak a line of Chinese.
@@ -74,7 +74,10 @@ export function useSpeak() {
       const u = new SpeechSynthesisUtterance(text);
       u.lang = 'zh-CN';
       u.pitch = profile.pitch;
-      u.rate = profile.rate;
+      // Short text is read more slowly - a lone character at conversational
+      // speed is gone before it registers - and the player's own speed setting
+      // scales the result.
+      u.rate = rateFor(profile, text) * speechSpeed().factor;
 
       // Read synchronously. getVoices() is empty until the list loads, and
       // waiting for it would cost the gesture - so an unvoiced first utterance
